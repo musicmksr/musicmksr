@@ -9,7 +9,8 @@ class App extends React.Component {
 			<div>
 				<h1>MusicMKSr</h1>
 				<div role='nav'>
-					<Link to='/' onlyActiveOnIndex>Home</Link>
+					<Link to='/' onlyActiveOnIndex>Sequencer</Link>
+					<Link to ='/profile'>Profile</Link>
 					<Link to='/login'>Login</Link>
 					<Link to='/logout'>Logout</Link>
 				</div>
