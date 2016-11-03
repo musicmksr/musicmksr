@@ -5,11 +5,13 @@ import App from './App.jsx';
 import Login from './Login.jsx';
 import Logout from './Logout.jsx';
 import Profile from './Profile.jsx';
+import Upload from './Upload.jsx';
 
 render((
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <Route path='/profile' component={Profile}/>
+      <Route path='/upload' component={Upload}/>
       <Route path='/login' component={Login}/>
       <Route path='/logout' component={Logout}/>
     </Route>

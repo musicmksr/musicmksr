@@ -11,6 +11,8 @@ class App extends React.Component {
 				<div role='nav'>
 					<Link to='/' onlyActiveOnIndex>Sequencer</Link>
 					<Link to ='/profile'>Profile</Link>
+					<Link to ='/user'>User</Link>
+					<Link to ='/upload'>Upload</Link>
 					<Link to='/login'>Login</Link>
 					<Link to='/logout'>Logout</Link>
 				</div>
