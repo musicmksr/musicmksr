@@ -1,11 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
-import App from './App.jsx';
-import Login from './Login.jsx';
-import Logout from './Logout.jsx';
-import Profile from './Profile.jsx';
-import Upload from './Upload.jsx';
+import App from './components/App.jsx';
+import Login from './components/Login.jsx';
+import Logout from './components/Logout.jsx';
+import Profile from './components/Profile.jsx';
+import Upload from './components/Upload.jsx';
 
 render((
   <Router history={browserHistory}>
