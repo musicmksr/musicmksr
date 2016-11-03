@@ -8,7 +8,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 
 const app = express();
 const root = `${__dirname}/src/client/public`;
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3000;
 
 // webpack watch setup
 const compiler = webpack(config);

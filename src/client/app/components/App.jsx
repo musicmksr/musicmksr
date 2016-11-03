@@ -7,7 +7,7 @@ class App extends React.Component {
 	render() {
 		return(
 			<div>
-				<h1>MusicMKSr - The coolest</h1>
+				<h1>MusicMKSr</h1>
 				<div role='nav'>
 					<Link to='/' onlyActiveOnIndex>Sequencer</Link>
 					<Link to ='/profile'>Profile</Link>
