@@ -4,10 +4,9 @@
   "description": "A sequencer app for professionals.",
   "main": "server.js",
   "scripts": {
-    "start": "webpack -p && nodemon server.js",
+    "start": "nodemon server.js",
     "test": "nodemon server.js",
-    "build": "webpack --watch",
-    "dev:hot": "webpack-dev-server --hot --inline --progress --colors --watch --display-error-details --display-cached --content-base ./"
+    "build": "webpack --watch"
   },
   "author": "Gery, Andrew, Chris, Alex",
   "license": "MIT",
