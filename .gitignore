@@ -39,3 +39,5 @@ jspm_packages
 .env
 
 db/seed.js
+
+src/client/public/bundle.js
