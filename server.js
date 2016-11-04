@@ -34,6 +34,3 @@ app.use(fallback('index.html', {root}));
 app.listen(port, () =>{
 	console.log(`Drunken Genius sippen on: ${port}`);
 });
-
-
-// https://github.com/tradersquare/tradersquare/blob/develop/server/server.js
