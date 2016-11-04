@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');
@@ -5,7 +6,6 @@ const webpack = require('webpack');
 const config = require('./webpack.config');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
-require('dotenv').config();
 
 const app = express();
 const root = `${__dirname}/src/client/public`;
