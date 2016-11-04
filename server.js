@@ -5,10 +5,11 @@ const webpack = require('webpack');
 const config = require('./webpack.config');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+require('dotenv').config();
 
 const app = express();
 const root = `${__dirname}/src/client/public`;
-const port = process.env.PORT || 3000;
+const port = process.env.NODE_DEV || process.env.NODE_PROD;
 
 // webpack watch setup
 const compiler = webpack(config);

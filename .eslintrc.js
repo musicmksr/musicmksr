@@ -27,7 +27,7 @@ module.exports = {
     "react/prefer-stateless-function": [1],
     "semi": [1],
     "no-param-reassign": 0,
-    "jsx-closing-bracket-location": [<enabled>, {
+    "jsx-closing-bracket-location": ['<enabled>', {
       "nonEmpty": "<location>" || false,
       "selfClosing": "<location>" || false
     }],
