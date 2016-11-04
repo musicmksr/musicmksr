@@ -24,6 +24,8 @@
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "nodemon": "^1.11.0",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
     "pg": "^6.1.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
