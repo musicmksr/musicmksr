@@ -39,7 +39,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 app.use(express.static(root)); // static files
 app.use(fallback('index.html', {root}));
 
-routes.router(app);
+routes(app);
 
 app.listen(port, () =>{
 	console.log(`Drunken Genius sippen on: ${port}`);
