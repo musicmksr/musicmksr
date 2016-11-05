@@ -1,0 +1,111 @@
+{
+	"samples": {
+		"0" : "sample1.mp3",
+		"1" : "sample2.mp3",
+		"2" : "sample3.mp3",
+		"3" : "sample4.mp3",
+		"4" : "sample5.mp3"
+	},
+	"matrix": [
+		[
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false}
+			
+		],
+		[
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false}
+			
+		],
+		[
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false}
+			
+		],
+		[
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false}
+			
+		],
+		[
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false},
+			{"on" : false}
+			
+		]
+	]
+}
