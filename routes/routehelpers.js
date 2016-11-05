@@ -2,31 +2,10 @@ require('dotenv').config();
 
 const Sequelize = require('sequelize');
 
+const db = require('../db/schema').db;
 const User = require('../db/schema').User;
 const Sequence = require('../db/schema').Sequence;
 const Sample = require('../db/schema').Sample;
-
-// set up the database config
-const db = new Sequelize(process.env.DB_DB, process.env.DB_NAME, process.env.DB_PASS, {
-  host: process.env.DB_HOST,
-  dialect: 'mysql',
-
-  pool: {
-    max: 5,
-    min: 0,
-    idle: 10000
-  },
-});
-
-// access the databse
-db
-  .authenticate()
-  .then(function (err) {
-    console.log('Connection established');
-  })
-  .catch(function (err) {
-    console.log('Unable to connect: ', err);
-  });
 
 module.exports = {
   newUser: function(req, res, next) {
