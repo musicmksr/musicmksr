@@ -8,7 +8,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware');
 require('dotenv').config();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const routes = require('./routes');
+const routes = require('./routes/routes');
 const keys = require('./config');
 
 const app = express();
