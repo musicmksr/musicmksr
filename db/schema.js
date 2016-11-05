@@ -3,7 +3,7 @@ require('dotenv').config();
 const Sequelize = require('sequelize');
 
 // set up the database config
-var db = new Sequelize(process.env.DB_DB, process.env.DB_NAME, process.env.DB_PASS, {
+const db = new Sequelize(process.env.DB_DB, process.env.DB_NAME, process.env.DB_PASS, {
   host: process.env.DB_HOST,
   dialect: 'mysql',
 
@@ -23,3 +23,58 @@ db
   .catch(function (err) {
     console.log('Unable to connect: ', err);
   });
+
+// users to log in
+const User = db.define('user', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: Sequelize.STRING, // facebook name
+  email: Sequelize.STRING // facebook email
+});
+
+// sequences of matrix to store
+const Sequence = db.define('sequence', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  matrix: Sequelize.STRING
+});
+
+// samples to be played for each track in matrix
+const Sample = db.define('sample', {
+  id: {
+    type: Sequelize.INTEGER,
+    primaryKey: true,
+    autoIncrement: true
+  },
+  name: Sequelize.STRING
+});
+
+User.hasMany(Sequence);
+Sequence.belongsTo(User);
+
+User.hasMany(Sample);
+Sample.belongsTo(User);
+
+Sequence.hasMany(Sample);
+Sample.belongsTo(Sequence);
+
+//Create Tables
+db
+  .sync({
+    force: false,
+  })
+  .then(function() {
+    console.log('Tables created');
+});
+
+module.exports = {
+  User: User,
+  Sequence: Sequence,
+  Sample: Sample
+};
