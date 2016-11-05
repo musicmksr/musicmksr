@@ -5,16 +5,16 @@ import { bindActionCreators } from 'redux';
 
 class Clap extends React.Component{
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       playing: false
-    }
+    };
   }
   render(){
     var clap = new Howl({
       src: './samples/clap.wav',
       toggle: false
-    })
+    });
     return(
     <div>
       <div>
@@ -131,4 +131,3 @@ function mapStateToProps(state) {
 
 // sequencer from component to container
 export default Sequencer;
-// 
