@@ -9,16 +9,17 @@ const Sample = require('../db/schema').Sample;
 
 module.exports = {
   newUser: function(req, res, next) {
-    console.log('inside newUser', req.session.passport.user);
-      User.findOrCreate({ where: { name: req.session.passport.user.displayName, 
-                                   email: req.session.passport.user.emails[0] } })
-        .then(function(user) {
-          req.session.userID = user[0].dataValues.id;
-          next();
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+    console.log('name', req.session.passport.user.displayName);
+    console.log('user email', req.session.passport.user.emails[0].value);
+    User.findOrCreate({ where: { name: req.session.passport.user.displayName, 
+                                 email: req.session.passport.user.emails[0].value } })
+      .then(function(user) {
+        req.session.userID = user[0].dataValues.id;
+        next();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   },
 
   terminateSession: function(req, res, next) {

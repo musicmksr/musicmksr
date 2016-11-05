@@ -33,7 +33,6 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'displayName', 'email']
 }, function(accessToken, refreshToken, profile, done){
   process.nextTick(function() {
-    console.log('After Authenticaion', profile);
     return done(null, profile);
   });
 }));
