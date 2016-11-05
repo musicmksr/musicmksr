@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-module.exports.router = function(app) {
+module.exports = function(app) {
 
   app.get('/auth/facebook', passport.authenticate('facebook'));
 
