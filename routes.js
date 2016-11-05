@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-modlue.exports.router = function(app) {
+module.exports.router = function(app) {
 
   app.get('/auth/facebook', passport.authenticate('facebook'));
 

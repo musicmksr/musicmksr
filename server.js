@@ -5,10 +5,11 @@ const webpack = require('webpack');
 const config = require('./webpack.config');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpackHotMiddleware = require('webpack-hot-middleware');
+require('dotenv').config();
 const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
-const routes = require('./routes'); 
-require('dotenv').config();
+const routes = require('./routes');
+const keys = require('./config');
 
 const app = express();
 const root = `${__dirname}/src/client/public`;
@@ -23,9 +24,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new FacebookStrategy({
-  clientID: FB_APP_ID,
-  clientSecret: FB_APP_SECRET,
-  callbackURL: 'callbackURLpathgoeshere'
+  clientID: keys.keys.clientID,
+  clientSecret: keys.keys.clientSecret,
+  callbackURL: keys.keys.callbackURL
 }, function(accessToken, refreshToken, profile, done){
   process.nextTick(function() {
     return done(null, user);
