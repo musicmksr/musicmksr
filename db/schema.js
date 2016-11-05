@@ -76,5 +76,6 @@ db
 module.exports = {
   User: User,
   Sequence: Sequence,
-  Sample: Sample
+  Sample: Sample,
+  db: db
 };
