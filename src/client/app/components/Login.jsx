@@ -5,7 +5,15 @@ class Login extends React.Component {
 
   render() {
     return(
-      <div>Login</div>
+      <div>
+        <div>Login</div>
+        <p>
+          <a href="auth/facebook">Log In with Facebook</a>
+        </p>
+        <p>
+          <a href="/logout">Log Out</a>
+        </p>
+      </div>
     )
   }
 
