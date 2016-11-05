@@ -28,6 +28,10 @@ const config = {
         test : /\.jsx?/,
         include : APP_DIR,
         loaders : ['babel']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   }
