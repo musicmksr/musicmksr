@@ -54,10 +54,14 @@
     "webpack-hot-middleware": "^2.13.1"
   },
   "devDependencies": {
+    "babel-register": "^6.18.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.5.0"
+    "eslint-plugin-react": "^6.5.0",
+    "jasmine": "^2.5.2",
+    "supertest": "^2.0.1",
+    "supertest-as-promised": "^4.0.2"
   }
 }
