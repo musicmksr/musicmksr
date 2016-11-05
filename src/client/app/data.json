@@ -1,111 +1,112 @@
+
 {
-	"samples": {
-		"0" : "sample1.mp3",
-		"1" : "sample2.mp3",
-		"2" : "sample3.mp3",
-		"3" : "sample4.mp3",
-		"4" : "sample5.mp3"
-	},
-	"matrix": [
-		[
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false}
-			
-		],
-		[
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false}
-			
-		],
-		[
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false}
-			
-		],
-		[
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false}
-			
-		],
-		[
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false},
-			{"on" : false}
-			
-		]
-	]
+    "samples": {
+        "0" : "bigkik.wav",
+        "1" : "chord.wav",
+        "2" : "Synth.wav",
+        "3" : "FunkStab.wav",
+        "4" : "PluckBass.wav"
+    },
+    "matrix": [
+        [
+            {"on" : false},
+            {"on" : false},
+            {"on" : false},
+            {"on" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false}
+
+        ],
+        [
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false}
+
+        ],
+        [
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false}
+
+        ],
+        [
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false}
+
+        ],
+        [
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false}
+
+        ]
+    ]
 }

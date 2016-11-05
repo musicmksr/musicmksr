@@ -10,7 +10,7 @@ import Logout from './components/Logout.jsx';
 import Profile from './components/Profile.jsx';
 import Upload from './components/Upload.jsx';
 import Sequencer from './containers/Sequencer.jsx';
-import rootReducer from './reducers/rootreducer';
+import rootReducer from './reducers/rootreducer.js';
 
 const store = createStore(rootReducer);
 // const history = syncHistoryWithStore(browserHistory, store)

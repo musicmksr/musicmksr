@@ -1,9 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
-
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
-
 const config = {
   entry: [
     'webpack/hot/dev-server',
@@ -29,9 +27,12 @@ const config = {
         test : /\.jsx?/,
         include : APP_DIR,
         loaders : ['babel']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   }
 };
-
 module.exports = config;
