@@ -42,4 +42,4 @@ db/seed.js
 
 src/client/public/bundle.js
 
-.gitignore
+config.js
