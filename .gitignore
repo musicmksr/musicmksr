@@ -41,5 +41,3 @@ jspm_packages
 db/seed.js
 
 src/client/public/bundle.js
-
-.gitignore
