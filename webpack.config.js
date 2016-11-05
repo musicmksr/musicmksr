@@ -12,7 +12,6 @@ const config = {
   ],
   output: {
     path: BUILD_DIR,
-    publicPath: 'http://localhost:3000/',
     filename: 'bundle.js'
   },
   plugins: [
