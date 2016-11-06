@@ -56,8 +56,9 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static(root)); // static files
 
-routes(app);
 app.use(fallback('index.html', {root}));
+
+routes(app);
 
 app.listen(port, () =>{
 	console.log(`Drunken Genius sippen on: ${port}`);
