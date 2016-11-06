@@ -13,7 +13,7 @@ import Sequencer from './containers/Sequencer.jsx';
 import rootReducer from './reducers/rootreducer.js';
 
 const store = createStore(rootReducer);
-// const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store)
 
 render((
   <Provider store={store}>
