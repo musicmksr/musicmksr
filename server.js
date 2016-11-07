@@ -44,10 +44,8 @@ app.use(session({
   cookie: {maxAge: 10000} //10 seconds
 }));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // webpack watch setup
 webpackMiddleWare(app);
@@ -56,9 +54,8 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static(root)); // static files
 
-app.use(fallback('index.html', {root}));
-
 routes(app);
+app.use(fallback('index.html', {root}));
 
 app.listen(port, () =>{
 	console.log(`Drunken Genius sippen on: ${port}`);
