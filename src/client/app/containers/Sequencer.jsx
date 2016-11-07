@@ -43,14 +43,22 @@ class Sequencer extends React.Component {
 
   render() {
     return(
-      <div>
-        <button onClick={this.play.bind(this, null)}>Play</button>
-        {data.matrix.map((track, index) =>
-            <Track key={index} track={track} data={data} index={index} sound={data.samples[index]}/>
+    	<div>
+        {this.props.sequence.matrix.map((track, index) =>
+            <Track 
+            	key={index} 
+            	track={track} 
+            	index={index} 
+            	sound={data.samples[index]}
+            />
         )}
       </div>
     )
   }
 }
 
-export default Sequencer;
+function mapStateToProps(state) {
+  return { sequence: state.sequence }
+}
+
+export default connect(mapStateToProps)(Sequencer);
