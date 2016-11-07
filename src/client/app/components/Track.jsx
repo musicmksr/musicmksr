@@ -10,7 +10,6 @@ class Track extends React.Component {
           <Sample 
             key={[this.props.index, index]} 
             step={step} 
-            data={this.props.data} 
             index={[this.props.index, index]} 
             sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
           />
