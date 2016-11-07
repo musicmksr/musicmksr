@@ -5,7 +5,7 @@ class Sample extends React.Component{
   constructor(props){
       super(props);
       this.state = {
-          class: 'step-tf'
+        class: 'step-tf'
       };
     }
 

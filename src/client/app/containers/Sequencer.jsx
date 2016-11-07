@@ -9,30 +9,41 @@ let currentCol = 1;
 let innerPlay;
 
 class Sequencer extends React.Component {
-  play() {
-    currentCol = 0;
-    innerPlay = setInterval(function(){
-      steps.forEach(function(step){
-        console.log('step: ', step);
-        if(step.props.stepIndex === currentCol && step.props.sound.toggled){
-          step.props.sound.play();
-        }
-      })
-      if (currentCol < 16){
-        currentCol++
-      } else {currentCol = 1}
-    },125)
+  constructor(props) {
+    super(props);
+    this.state = {
+      playing: false
+    };
   }
 
-  stop() {
-    clearInterval(innerPlay);
+  play() {
+    if (!this.state.playing) {
+      this.setState({
+        playing: true
+      });
+      currentCol = 0;
+      innerPlay = setInterval(function(){
+        steps.forEach(function(step){
+          if(step.props.stepIndex === currentCol && step.props.sound.toggled){
+            step.props.sound.play();
+          }
+        })
+        if (currentCol < 16){
+          currentCol++
+        } else {currentCol = 1}
+      },125)
+    } else {
+      clearInterval(innerPlay);
+      this.setState({
+        playing: false
+      });
+    }
   }
 
   render() {
     return(
       <div>
-        <button onClick={this.play}>Play</button>
-        <button onClick={this.stop}>Stop</button>
+        <button onClick={this.play.bind(this, null)}>Play</button>
         {data.matrix.map((track, index) =>
             <Track key={index} track={track} data={data} index={index} sound={data.samples[index]}/>
         )}
