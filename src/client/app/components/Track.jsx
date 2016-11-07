@@ -22,7 +22,8 @@ class Track extends React.Component {
             {
               let sample =
               <Sample step={step} data={this.props.data} stepIndex={this.setStepIndex()} index={this.props.index} sound= {new Howl({
-                  src: `./samples/${this.props.sound}`
+                    toggled: false,
+                    src: `./samples/${this.props.sound}`
               })}/>
               steps.push(sample);
               return sample;
@@ -33,4 +34,4 @@ class Track extends React.Component {
     )
   };
 }
-export default Track;
+export { Track, steps };
