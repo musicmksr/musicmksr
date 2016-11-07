@@ -8,7 +8,7 @@ const Sequence = require('../db/schema').Sequence;
 const Sample = require('../db/schema').Sample;
 
 module.exports = {
-  newUser: function(req, res, next) {
+  newUser(req, res, next) {
     let emailOrId;
 
     if (!req.session.passport.user.emails) {
@@ -28,9 +28,15 @@ module.exports = {
       });
   },
 
-  terminateSession: function(req, res, next) {
+  terminateSession(req, res, next) {
     req.session.destroy();
     console.log('Checking if destroyed', req.session);
     next();
+  },
+
+  loginRedirect(req, res, next) {
+    console.log(`Login Action ${req.session}`);
+    res.redirect('/');
   }
+
 };

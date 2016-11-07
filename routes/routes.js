@@ -7,14 +7,13 @@ module.exports = function(app) {
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
     helpers.newUser,
-    (req, res) => {
-      res.redirect('/');
-    }
-    );
+    helpers.loginRedirect
+  );
 
-  app.get('/logout', helpers.terminateSession, (req, res) => {
-    console.log('logging out', res.session);
-    res.redirect('/');
-  });
+  app.get('/logout', 
+    helpers.terminateSession, 
+    helpers.loginRedirect
+  );
 
-}
+  // app.get('/api/song/:songTitle', helpers.getSong);
+};
