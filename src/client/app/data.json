@@ -9,10 +9,10 @@
     },
     "matrix": [
         [
-            {"on" : false},
-            {"on" : false},
-            {"on" : false},
-            {"on" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
+            {"toggled" : false},
             {"toggled" : false},
             {"toggled" : false},
             {"toggled" : false},

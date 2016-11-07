@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const fs = require('fs');
+const path = require('path');
 const Sequelize = require('sequelize');
 
 const db = require('../db/schema').db;
@@ -62,6 +64,26 @@ module.exports = {
   loginRedirect(req, res, next) {
     console.log(`Login Action ${req.session}`);
     res.redirect('/');
+  },
+
+  getSong(req, res, next) {
+    console.log(req.params.songTitle, ' song title being getted');
+      const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
+      fs.stat(filePath, (err, stat) =>{
+        if(err) {
+          console.log(err)
+        }
+
+        res.writeHead(200, {
+          'Content-Type': 'audio/wav',
+          'Content-Length': stat.size
+        });
+
+        const rs = fs.createReadStream(filePath);
+        // console.log(readStream, ' file')
+        // We replaced all the event handlers with a simple call to readStream.pipe()
+        rs.pipe(res);
+      });
   }
 
 };

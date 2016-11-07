@@ -3,6 +3,7 @@ const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
 const config = {
+  devtool: 'source-map',
   entry: [
     'webpack/hot/dev-server',
     'webpack-hot-middleware/client',
