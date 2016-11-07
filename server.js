@@ -44,10 +44,8 @@ app.use(session({
   cookie: {maxAge: 10000} //10 seconds
 }));
 
-
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // webpack watch setup
 webpackMiddleWare(app);
