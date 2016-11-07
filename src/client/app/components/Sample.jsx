@@ -1,5 +1,4 @@
 import React from 'react';
-import Howler from 'react-howler';
 
 class Sample extends React.Component{
   constructor(props){
@@ -23,13 +22,15 @@ class Sample extends React.Component{
       <div style={{display: 'inline-block'}}>
         <div className={this.state.class}
           onClick={() => {
-            if(this.state.toggled){
-              this.props.sound.play()
+              if(this.state.toggled){
+                this.props.sound.play()
+              }
+              this.setState({toggled: !this.state.toggled})
+              this.changeStyle();
             }
-            this.setState({toggled: !this.state.toggled})
-            this.changeStyle();
           }
-        }></div>
+        >
+        </div>
       </div>
     )
   }

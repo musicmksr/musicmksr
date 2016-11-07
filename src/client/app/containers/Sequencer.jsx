@@ -1,5 +1,4 @@
 import React from 'react';
-import Howler from 'react-howler';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import data from '../data.json';
