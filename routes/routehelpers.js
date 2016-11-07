@@ -9,8 +9,16 @@ const Sample = require('../db/schema').Sample;
 
 module.exports = {
   newUser: function(req, res, next) {
+    let emailOrId;
+
+    if (!req.session.passport.user.emails) {
+      emailOrId = req.session.passport.user.id;
+    }else{
+      emailOrId = req.session.passport.user.emails[0].value;
+    }
+
     User.findOrCreate({ where: { name: req.session.passport.user.displayName, 
-                                 email: req.session.passport.user.emails[0].value || req.session.passport.user.id } })
+                                 email: emailOrId } })
       .then(function(user) {
         req.session.userID = user[0].dataValues.id;
         next();
