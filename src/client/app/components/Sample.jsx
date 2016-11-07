@@ -22,14 +22,15 @@ class Sample extends React.Component{
       <div style={{display: 'inline-block'}}>
         <div className={this.state.class}
           onClick={() => {
-            console.log(this.props.sound);
-            if(this.state.toggled){
-              this.props.sound.play()
+              if(this.state.toggled){
+                this.props.sound.play()
+              }
+              this.setState({toggled: !this.state.toggled})
+              this.changeStyle();
             }
-            this.setState({toggled: !this.state.toggled})
-            this.changeStyle();
           }
-        }></div>
+        >
+        </div>
       </div>
     )
   }

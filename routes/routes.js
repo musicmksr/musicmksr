@@ -18,5 +18,5 @@ module.exports = function(app) {
     helpers.loginRedirect
   );
 
-  app.get('/api/song/:songTitle', helpers.getSong);
+  app.get('/api/sample/:songTitle', helpers.getSong);
 };
