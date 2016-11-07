@@ -20,6 +20,7 @@ module.exports = {
     User.findOrCreate({ where: { name: req.session.passport.user.displayName, 
                                  email: emailOrId } })
       .then(function(user) {
+        console.log(user[0].dataValues.id);
         req.session.userID = user[0].dataValues.id;
         next();
       })
@@ -31,6 +32,30 @@ module.exports = {
   terminateSession(req, res, next) {
     req.session.destroy();
     console.log('Checking if destroyed', req.session);
+    next();
+  },
+
+  setCookie(req, res, next) {
+    req.session.cookie.passport = req.session.passport;
+    next();
+  },
+
+  setUserId(req, res, next) {
+    User.find({ where: { name: req.session.passport.user.displayName } })
+      .then((user) => {
+        req.session.cookie.passport.user.mainId = user.dataValues.id;
+      })
+      .then(() => {
+        console.log('Current User:', req.session.cookie.passport.user);
+        next();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  setHeader(req, res, next) {
+    res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
     next();
   },
 
