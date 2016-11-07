@@ -7,6 +7,9 @@ module.exports = function(app) {
 
   app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRedirect: '/login' }),
     helpers.newUser,
+    helpers.setCookie,
+    helpers.setUserId,
+    helpers.setHeader,
     helpers.loginRedirect
   );
 
