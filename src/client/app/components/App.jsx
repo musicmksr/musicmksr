@@ -1,8 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Link } from 'react-router';
+import { Modal } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 class App extends React.Component {
+	constructor(props) {
+    super(props);
+    this.state = {
+      showModal: false
+    };
+  }
+
+	close() {
+		this.setState({ showModal: false });
+	};
+
+	open() {
+		this.setState({ showModal: true });
+	};
+
 	render() {
 		return(
 			<div>
@@ -22,8 +39,19 @@ class App extends React.Component {
 	              <li><Link to='/sequencer'>Sequencer</Link></li>
 	              <li><Link to ='/user'>User</Link></li>
 	              <li><Link to ='/upload'>Upload</Link></li>
-	              <li><Link to='/login'>Login</Link></li>
+	              <li onClick={this.open.bind(this)}><a href='javascript:void(0)'>Login</a></li>
 	            </ul>
+
+
+	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+	            	<Modal.Header closeButton>
+            			<Modal.Title>Log In with Facebook</Modal.Title>
+          			</Modal.Header>
+          			<Modal.Body>
+          				<a href="auth/facebook"><Button>Sign In</Button></a>
+          				<a href="/logout"><Button>Sign Out</Button></a>
+          			</Modal.Body>
+	            </Modal>
 	          </div>
 	        </div>
 	      </nav>
