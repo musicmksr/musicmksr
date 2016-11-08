@@ -34,7 +34,7 @@ class Track extends React.Component {
   }
 
   render() {
-    console.log(this.props.playSequence);
+    console.log('playsequence:', this.props.playSequence);
     return(
       <div>
         {this.props.track.map((step, index) =>
