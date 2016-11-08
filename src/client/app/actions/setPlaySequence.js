@@ -1,6 +1,7 @@
-export default (array) =>{
+export default (array, trackLength) =>{
 	return{
 		type: "SET_PLAY_SEQUENCE",
-		payload: array
+		payload: array,
+		trackLength: trackLength
 	};
 };

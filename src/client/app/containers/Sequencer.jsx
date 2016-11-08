@@ -62,6 +62,7 @@ class Sequencer extends React.Component {
             	track={track}
             	index={index}
             	sound={data.samples[index]}
+              trackLength={this.props.sequence.matrix.length}
             	toggleMatrix={this.props.toggleMatrix.bind(this)}
             />
         )}

@@ -30,7 +30,7 @@ class Track extends React.Component {
                />
       }
     );
-    this.props.setPlaySequence(ps);
+    this.props.setPlaySequence(ps, this.props.trackLength);
   }
 
   render() {
