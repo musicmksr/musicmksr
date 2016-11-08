@@ -17,9 +17,7 @@ class Sequencer extends React.Component {
     };
   }
 
-
   play() {
-    console.log(this);
     if (!this.state.playing) {
       this.setState({
         playing: true
@@ -40,7 +38,6 @@ class Sequencer extends React.Component {
         } else {
           currentCol = 1;
         }
-
       },125);
     } else {
       clearInterval(innerPlay);
@@ -52,7 +49,6 @@ class Sequencer extends React.Component {
 
   render() {
     return(
-
     	<div className="sequence">
         <button onClick={this.play.bind(this, null)}>Play</button>
         {this.props.sequence.matrix.map((track, index) =>
