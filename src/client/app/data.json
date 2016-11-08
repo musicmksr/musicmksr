@@ -9,7 +9,7 @@
     },
     "matrix": [
         [
-            {"toggled" : true, "class": "step-tt"},
+            {"toggled" : false, "class": "step-tf"},
             {"toggled" : false, "class": "step-tf"},
             {"toggled" : false, "class": "step-tf"},
             {"toggled" : false, "class": "step-tf"},
