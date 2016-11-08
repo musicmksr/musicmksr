@@ -8,9 +8,10 @@ class Sample extends React.Component{
       <div className='track'>
         <div className={this.props.step.class}
           onClick={() => {
-            if(!this.props.step.toggled) this.props.sound.play();
+            console.log(this.props.playState)
+            if(!this.props.step.toggled && !this.props.playState) this.props.sound.play();
             this.props.toggleMatrix.call(null, this.props.index);
-          } 
+          }
         }>
         </div>
       </div>

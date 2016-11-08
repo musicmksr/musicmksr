@@ -34,13 +34,11 @@ class Track extends React.Component {
   }
 
   render() {
-    console.log(this.props.playSequence);
     return(
       <div>
         {this.props.track.map((step, index) =>
-          {
-            let sample =
             <Sample
+              playState={this.props.playState}
               key={[this.props.index, index]}
               stepIndex={this.setStepIndex()}
               step={step}
@@ -48,9 +46,6 @@ class Track extends React.Component {
               sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />
-            steps.push(sample);
-            return sample;
-          }
         )}
       </div>
     )
