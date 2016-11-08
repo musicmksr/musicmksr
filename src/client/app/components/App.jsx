@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Link } from 'react-router';
-import Howler from 'react-howler';
 
 class App extends React.Component {
 	render() {

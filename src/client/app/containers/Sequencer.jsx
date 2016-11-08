@@ -1,133 +1,68 @@
 import React from 'react';
-import Howler from 'react-howler';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import data from '../data.json';
+import { Track, steps } from '../components/Track.jsx';
+import toggleMatrix from '../actions/toggleMatrix.js';
 
-class Clap extends React.Component{
-  constructor(props){
+let currentCol = 1;
+let innerPlay;
+
+class Sequencer extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       playing: false
     };
   }
-  render(){
-    var clap = new Howl({
-      src: './samples/clap.wav',
-      toggle: false
-    });
-    return(
-    <div>
-      <div>
-        <button style={{backgroundColor: "#00B1E1", height: '30px', width: '30px', padding: '1px',margin: '15px'}}
-        onClick={() => {
-          clap.toggle = !clap.toggle;
-           console.log(clap.toggle);
-            if(clap.toggle){
-              clap.play()
-            }
+
+  play() {
+    console.log(steps);
+    if (!this.state.playing) {
+      this.setState({
+        playing: true
+      });
+      currentCol = 0;
+      innerPlay = setInterval(function(){
+        steps.forEach(function(step){
+          console.log('STEP: ', step);
+          if(step.props.stepIndex === currentCol && step.props.sound.toggled){
+            step.props.sound.play();
           }
-        }>Play</button>
-      </div>  
-    </div>
-    )
-  }
-}
-
-class Chord extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-
-      toggled: true,
-      class: 'step-tf'
-
-    }
-  }
-    changeStyle() {
-    if (this.state.toggled === false) {
-      this.setState({class: 'step-tf'});
+        })
+        if (currentCol < 16){
+          currentCol++
+        } else {currentCol = 1}
+      },125)
     } else {
-      this.setState({class: 'step-tt'});
+      clearInterval(innerPlay);
+      this.setState({
+        playing: false
+      });
     }
   }
-  render(){
-    var chord = new Howl({
-      src: './samples/chord4.wav'
-    })
-    return(
-  
-      <div style={{display: 'inline-block'}}>
-        
-        <div className={this.state.class}
-         onClick={() => {
-          
-           console.log(this.state.toggled);
-            if(this.state.toggled){
-              chord.play()
-            }
-          this.setState({toggled: !this.state.toggled})
-          this.changeStyle();
-          }
-        }></div>
-      </div>  
 
-    )
-  }
-}
-
-
-
-
-class ChordTrack extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      playing: false
-    }
-
-  }
-  makeRow(steps){
-    var results =[];
-    for(var i = 1; i <= steps; i++){
-      results.push(<Chord />)       
-    }
-    return results;
-  }
-  render(){
-
-    return(
-      <div>
-        {this.makeRow(16).map(function(step){
-          return step;
-        })}
-      </div>
-    )
-  }
-}
-class Sequencer extends React.Component {
   render() {
+  	console.log(this.props, ' inside sequencence')
     return(
-      <div>
-        <ChordTrack />
+    	<div>
+    		<button onClick={this.play.bind(this,null)}>Play</button>
+        {this.props.sequence.matrix.map((track, index) =>
+            <Track 
+            	key={index} 
+            	track={track} 
+            	index={index} 
+            	sound={data.samples[index]}
+            	toggleMatrix={this.props.toggleMatrix.bind(this)}
+            />
+        )}
       </div>
     )
   }
 }
 
-
-// anything returned from this function will be props on
-// Sequencer container
 function mapStateToProps(state) {
-  return {
-    playing: state.playing
-  }
+  return { sequence: state.sequence }
 }
 
-// function mapDispatchToProps(dispatch) {
-//   // whenever clickButton is called, the result
-//   // is passed to all of our reducers via dispatch
-//   return bindActionCreators({ clickButton: clickButton }, dispatch);
-// }
-
-// sequencer from component to container
-export default Sequencer;
+export default connect(mapStateToProps, { toggleMatrix: toggleMatrix })(Sequencer);

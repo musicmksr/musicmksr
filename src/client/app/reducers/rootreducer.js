@@ -1,11 +1,10 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
-import PlayingReducer from './reducer_playing';
-
+import matrixReducer from './reducer_playing';
 
 const rootReducer = combineReducers({
-  playing: PlayingReducer,
-  routing: routerReducer
+  routing: routerReducer,
+  sequence: matrixReducer
 });
 
 export default rootReducer;

@@ -34,7 +34,6 @@ passport.use(new FacebookStrategy({
   profileFields: ['id', 'displayName', 'email']
 }, function(accessToken, refreshToken, profile, done){
   process.nextTick(function() {
-    console.log('After Authenticaion', profile);
     return done(null, profile);
   });
 }));
@@ -49,16 +48,15 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-
 // webpack watch setup
 webpackMiddleWare(app);
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(express.static(root)); // static files
-// app.use(fallback('index.html', {root}));
 
 routes(app);
+app.use(fallback('index.html', {root}));
 
 app.listen(port, () =>{
 	console.log(`Drunken Genius sippen on: ${port}`);

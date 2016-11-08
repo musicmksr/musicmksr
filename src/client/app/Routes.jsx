@@ -10,16 +10,16 @@ import Logout from './components/Logout.jsx';
 import Profile from './components/Profile.jsx';
 import Upload from './components/Upload.jsx';
 import Sequencer from './containers/Sequencer.jsx';
-import rootReducer from './reducers/rootreducer';
+import rootReducer from './reducers/rootreducer.js';
 
 const store = createStore(rootReducer);
-// const history = syncHistoryWithStore(browserHistory, store)
+const history = syncHistoryWithStore(browserHistory, store);
 
 render((
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route path='/' component={App}>
-        <Route path='/sequencer' component={Sequencer}/>>
+        <Route path='/sequencer' component={Sequencer}/>
         <Route path='/profile' component={Profile}/>
         <Route path='/upload' component={Upload}/>
         <Route path='/login' component={Login}/>
