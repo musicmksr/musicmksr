@@ -1,32 +1,17 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class Sample extends React.Component{
-  constructor(props){
-      super(props);
-      this.state = {
-        class: 'step-tf'
-      };
-    }
-
-  changeStyle() {
-    if (this.props.sound.toggled === false) {
-      this.setState({class: 'step-tf'});
-    } else {
-      this.setState({class: 'step-tt'});
-    }
-  }
 
   render(){
+    console.log(this.props.step.class, ' inside sample')
     return(
-      <div style={{display: 'inline-block'}}>
-        <div className={this.state.class}
+      <div className='track'>
+        <div className={this.props.step.class}
           onClick={() => {
-            if(!this.props.sound.toggled){
-              this.props.sound.play()
-            }
-            this.props.sound.toggled = !this.props.sound.toggled;
-            this.changeStyle();
-          }
+            if(!this.props.step.toggled) this.props.sound.play();
+            this.props.toggleMatrix.call(null, this.props.index);
+          } 
         }>
         </div>
       </div>
