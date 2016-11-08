@@ -27,5 +27,5 @@ module.exports = function(app) {
 
   app.get('/api/sample/:songTitle', helpers.getSong);
 
-  app.get('/api/profile', helpers.getUserProfile)
+  app.get('/api/session', helpers.getUserProfile)
 };

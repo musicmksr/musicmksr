@@ -5,7 +5,7 @@ import request from 'axios';
 class Profile extends React.Component {
 	constructor(props){
 		super(props);
-		request.get('/api/profile')
+		request.get('/api/session')
 			.then((response) =>{
 				if(response.data.userID === undefined){
 					console.log('not logged in')
