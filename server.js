@@ -58,7 +58,7 @@ routes(app);
 app.use(fallback('index.html', {root}));
 
 app.listen(port, () =>{
-	console.log(`Drunken Genius sippen on: ${port}`);
+	console.log(`Listening on: ${port}`);
 });
 
 module.exports = app;
