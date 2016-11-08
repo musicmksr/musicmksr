@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import initialMatrix from '../data.json';
 
 export default (state = initialMatrix, action) => {
