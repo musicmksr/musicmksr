@@ -53,6 +53,7 @@ class Sequencer extends React.Component {
     }
   }
   render() {
+    console.log('playsequence:', this);
     return(
         <div className="sequence">
         <button onClick = {this.mute.bind(this, null)}>MuteChord</button>
@@ -82,3 +83,4 @@ export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence
 })(Sequencer);
+
