@@ -1,3 +1,6 @@
+.track{
+	display: inline-block;
+}
 .step-tf{
 	background-color: #00B1E1;
 	height: 30px;

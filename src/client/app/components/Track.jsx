@@ -26,6 +26,7 @@ class Track extends React.Component {
               step={step}
               index={[this.props.index, index]}
               sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
+              toggleMatrix={this.props.toggleMatrix}
             />
             steps.push(sample);
             return sample;
@@ -35,4 +36,5 @@ class Track extends React.Component {
     )
   };
 }
+
 export { Track, steps };

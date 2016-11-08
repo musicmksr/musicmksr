@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import data from '../data.json';
 import { Track, steps } from '../components/Track.jsx';
+import toggleMatrix from '../actions/toggleMatrix.js';
 
 let currentCol = 1;
 let innerPlay;
@@ -42,14 +43,17 @@ class Sequencer extends React.Component {
   }
 
   render() {
+  	console.log(this.props, ' inside sequencence')
     return(
     	<div>
+    		<button onClick={this.play.bind(this,null)}>Play</button>
         {this.props.sequence.matrix.map((track, index) =>
             <Track 
             	key={index} 
             	track={track} 
             	index={index} 
             	sound={data.samples[index]}
+            	toggleMatrix={this.props.toggleMatrix.bind(this)}
             />
         )}
       </div>
@@ -61,4 +65,4 @@ function mapStateToProps(state) {
   return { sequence: state.sequence }
 }
 
-export default connect(mapStateToProps)(Sequencer);
+export default connect(mapStateToProps, { toggleMatrix: toggleMatrix })(Sequencer);
