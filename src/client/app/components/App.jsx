@@ -37,7 +37,7 @@ class App extends React.Component {
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-right">
 	              <li><Link to='/sequencer'>Sequencer</Link></li>
-	              <li><Link to ='/user'>User</Link></li>
+	              <li><Link to ='/profile'>Profile</Link></li>
 	              <li><Link to ='/upload'>Upload</Link></li>
 	              <li onClick={this.open.bind(this)}><a href='javascript:void(0)'>Login</a></li>
 	            </ul>
@@ -55,7 +55,9 @@ class App extends React.Component {
 	          </div>
 	        </div>
 	      </nav>
-				{this.props.children}
+	      <div className="container-fluid">
+				 {this.props.children}
+				</div>
 			</div>
 		)
 	}
