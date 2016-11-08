@@ -67,18 +67,16 @@ module.exports = {
   },
 
   getSong(req, res, next) {
-    console.log(req.params.songTitle, ' song title being getted');
       const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
+      const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
       fs.stat(filePath, (err, stat) =>{
         if(err) {
-          console.log(err)
+          console.log(err);
         }
-
         res.writeHead(200, {
-          'Content-Type': 'audio/wav',
+          'Content-Type': `audio/${fileInfo[1]}`,
           'Content-Length': stat.size
         });
-
         const rs = fs.createReadStream(filePath);
         // console.log(readStream, ' file')
         // We replaced all the event handlers with a simple call to readStream.pipe()
