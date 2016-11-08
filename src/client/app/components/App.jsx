@@ -20,14 +20,16 @@ class App extends React.Component {
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-right">
 	              <li><Link to='/sequencer'>Sequencer</Link></li>
-	              <li><Link to ='/user'>User</Link></li>
+	              <li><Link to ='/profile'>Profile</Link></li>
 	              <li><Link to ='/upload'>Upload</Link></li>
 	              <li><Link to='/login'>Login</Link></li>
 	            </ul>
 	          </div>
 	        </div>
 	      </nav>
-				{this.props.children}
+	      <div className="container-fluid">
+				 {this.props.children}
+				</div>
 			</div>
 		)
 	}

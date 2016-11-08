@@ -11,6 +11,7 @@
   "author": "Gery, Andrew, Chris, Alex",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.15.2",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.5",

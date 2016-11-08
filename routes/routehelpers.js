@@ -56,11 +56,6 @@ module.exports = {
       });
   },
 
-  setHeader(req, res, next) {
-    res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
-    next();
-  },
-
   loginRedirect(req, res, next) {
     console.log(`Login Action ${req.session}`);
     res.redirect('/');
@@ -82,6 +77,11 @@ module.exports = {
         // We replaced all the event handlers with a simple call to readStream.pipe()
         rs.pipe(res);
       });
+  },
+
+  getUserProfile(req, res, next) {
+    console.log(req.session);
+    res.send(req.session);
   }
 
 };
