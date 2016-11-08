@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
-
 let lastId = 0;
 let steps = [];
 class Track extends React.Component {
@@ -11,7 +10,6 @@ class Track extends React.Component {
     super(props);
     this.setPlaySequence();
   }
-
   setStepIndex() {
     if (lastId === 16){
       lastId = 0;
@@ -19,7 +17,6 @@ class Track extends React.Component {
     lastId++;
     return lastId;
   }
-
   setPlaySequence(){
     let ps = this.props.track.map((step, index) =>
       {
@@ -32,7 +29,6 @@ class Track extends React.Component {
     );
     this.props.setPlaySequence(ps, this.props.trackLength);
   }
-
   render() {
     return(
       <div>
@@ -51,9 +47,7 @@ class Track extends React.Component {
     )
   };
 }
-
 function mapStateToProps(state) {
   return { playSequence: state.playSequence }
 }
-
 export default connect(mapStateToProps, { setPlaySequence: setPlaySequence })(Track);
