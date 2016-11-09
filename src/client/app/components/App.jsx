@@ -1,15 +1,19 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import request from 'axios';
+
 
 class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
-      showModal: false
+      showModal: false,
+      loggedIn: false
     };
+    this.getCookie();
   }
 
 	close() {
@@ -18,9 +22,47 @@ class App extends React.Component {
 
 	open() {
 		this.setState({ showModal: true });
-	};
+	}
+
+	getCookie() {
+		request.get('/api/session')
+			.then((response) =>{
+				if(response.data.userID === undefined){
+					console.log('not logged in');
+					window.newCookie = undefined;
+				} else {
+					window.newCookie = response.data.passport;
+					console.log('logged in', window.newCookie);
+
+					this.setState({
+						loggedIn: true
+					});
+				}
+			})
+			.catch((error) =>{
+		    console.log(error);
+		  });
+	}
+	
+	notLoggedIn() {
+		alert('Login to upload your beats');
+	}
 
 	render() {
+		let profileLink;
+		let login;
+		let upload;
+
+		if(this.state.loggedIn){
+			profileLink = <Link to ='/profile'>Profile</Link>;
+			login = 'Logout';
+			upload = <Link to ='/upload'>Upload</Link>;
+		}else{
+			profileLink = '';
+			login = 'Login';
+			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>
+		}
+
 		return(
 			<div>
 				<nav className="navbar navbar-default">
@@ -37,12 +79,10 @@ class App extends React.Component {
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-right">
 	              <li><Link to='/sequencer'>Sequencer</Link></li>
-	              <li><Link to ='/profile'>Profile</Link></li>
-	              <li><Link to ='/upload'>Upload</Link></li>
-	              <li onClick={this.open.bind(this)}><a href='javascript:void(0)'>Login</a></li>
+	              <li>{profileLink}</li>
+	              <li>{upload}</li>
+	              <li onClick={this.open.bind(this)}><a href='javascript:void(0)'>{login}</a></li>
 	            </ul>
-
-
 	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
 	            	<Modal.Header closeButton>
             			<Modal.Title>Log In with Facebook</Modal.Title>

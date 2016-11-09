@@ -60,6 +60,11 @@ module.exports = {
     console.log(`Login Action ${req.session}`);
     res.redirect('/');
   },
+  
+  setHeader(req, res, next) {
+    res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
+    next();
+  },
 
   getSong(req, res, next) {
       const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
@@ -81,6 +86,30 @@ module.exports = {
 
   getUserSession(req, res, next) {
     res.send(req.session);
+  },
+
+  saveSequence(req, res, next) {
+    const sequence = JSON.stringify(req.body);
+
+    Sequence.find({where: { matrix: sequence }})
+      .then((foundItem) =>{
+        if(!foundItem){
+          // create
+          Sequence.create({matrix: sequence, userId: req.session.passport.user.mainId})
+            .then((response) =>{
+              res.send('Saved');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }else{
+          // update
+          // Sequence.update();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
 };

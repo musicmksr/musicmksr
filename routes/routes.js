@@ -17,6 +17,7 @@ module.exports = function(app) {
     helpers.newUser,
     helpers.setCookie,
     helpers.setUserId,
+    helpers.setHeader,
     helpers.loginRedirect
   );
 
@@ -28,5 +29,7 @@ module.exports = function(app) {
   app.get('/api/sample/:songTitle', helpers.getSong);
 
   app.get('/api/session', helpers.getUserSession);
+
+  app.post('/api/save', helpers.saveSequence);
 
 };
