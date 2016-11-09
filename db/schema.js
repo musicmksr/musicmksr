@@ -42,7 +42,7 @@ const Sequence = db.define('sequence', {
     primaryKey: true,
     autoIncrement: true
   },
-  matrix: Sequelize.STRING
+  matrix: Sequelize.TEXT
 });
 
 // samples to be played for each track in matrix
