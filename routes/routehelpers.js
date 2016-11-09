@@ -79,8 +79,7 @@ module.exports = {
       });
   },
 
-  getUserProfile(req, res, next) {
-    console.log(req.session);
+  getUserSession(req, res, next) {
     res.send(req.session);
   }
 

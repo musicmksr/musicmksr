@@ -55,7 +55,7 @@ class App extends React.Component {
 	          </div>
 	        </div>
 	      </nav>
-	      <div className="container-fluid">
+	      <div className="scrollbox container-fluid">
 				 {this.props.children}
 				</div>
 			</div>
