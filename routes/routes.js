@@ -30,6 +30,8 @@ module.exports = function(app) {
 
   app.get('/api/session', helpers.getUserSession);
 
+  app.get('/api/profile', helpers.getUserProfile);
+
   app.post('/api/save', helpers.saveSequence);
 
 };
