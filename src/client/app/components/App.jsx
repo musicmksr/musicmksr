@@ -5,7 +5,6 @@ import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import request from 'axios';
 
-
 class App extends React.Component {
 	constructor(props) {
     super(props);

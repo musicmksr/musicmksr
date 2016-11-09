@@ -69,17 +69,19 @@ module.exports = {
   getSong(req, res, next) {
       const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
+
       fs.stat(filePath, (err, stat) =>{
         if(err) {
           console.log(err);
         }
+
         res.writeHead(200, {
           'Content-Type': `audio/${fileInfo[1]}`,
           'Content-Length': stat.size
         });
+
         const rs = fs.createReadStream(filePath);
-        // console.log(readStream, ' file')
-        // We replaced all the event handlers with a simple call to readStream.pipe()
+
         rs.pipe(res);
       });
   },
@@ -89,8 +91,16 @@ module.exports = {
   },
 
   getUserProfile(req, res, next) {
-    console.log('get user info');
-    res.send();
+    Sequence.findAll({where: { userId: req.params.userId }})
+      .then((sequences) =>{
+        Sample.findAll({where: { userId: { $or: [req.params.userId, null] } } })
+          .then((samples) =>{
+            res.send({sequences: sequences, samples: samples});
+          });
+      })
+      .catch((err) =>{
+        console.log(err);
+      });
   },
 
   saveSequence(req, res, next) {

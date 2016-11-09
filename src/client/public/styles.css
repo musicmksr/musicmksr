@@ -1,6 +1,13 @@
+/*MAIN*/
 body{
 	background-color: #2F3434
 }
+.hidden{
+	display: none;
+}
+/*MAIN*/
+
+/*SEQUENCER*/
 .track{
 	display: inline-block;
 }
@@ -27,6 +34,32 @@ body{
 	padding: 1px;
 	margin: 15px;
 }
-.hidden{
-	display: none;
+/*SEQUENCER*/
+
+/*PROFILE*/
+.userSequence-container {
+	margin: 1%;
 }
+.userSequence-container:hover {
+	background-color: #4A69BF;
+}
+.userSequence {
+	text-align: center;
+}
+.userSequence img {
+	width: 100%; 
+	padding: 3%;
+}
+
+.userSample-container {
+	margin: 4%;
+}
+
+.userSample {
+	text-align: center;
+}
+.userSample img{
+	padding: 1%;
+	width: 50%;
+}
+/*PROFILE**/
