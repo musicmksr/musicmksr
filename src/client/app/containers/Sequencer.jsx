@@ -7,7 +7,7 @@ import toggleMatrix from '../actions/toggleMatrix.js';
 import setPlaySequence from '../actions/setPlaySequence';
 import request from 'axios';
 
-let currentCol = 1;
+window.currentCol = 1;
 let innerPlay;
 class Sequencer extends React.Component {
   constructor(props) {
@@ -36,17 +36,21 @@ class Sequencer extends React.Component {
       const steps = _.flatten(this.props.playSequence);
       steps.forEach((sound)=>{
         console.log('MUTE STATUS:', sound.props.sound._muted);
-      })
+      });
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
-          if(step.props.stepIndex === currentCol && context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true){
+          if(step.props.stepIndex === currentCol && 
+              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && 
+              !step.props.sound._muted
+            )
+          {
             step.props.sound.play();
           }
         });
         if (currentCol < 16){
-          currentCol++;
+          window.currentCol++;
         } else {
-          currentCol = 1;
+          window.currentCol = 1;
         }
       },125);
     } else {
@@ -86,11 +90,9 @@ class Sequencer extends React.Component {
   }
 
   render() {
-
     let message = this.state.message;
 
     return(
-
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
