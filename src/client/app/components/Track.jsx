@@ -24,6 +24,26 @@ class Track extends React.Component {
     })
     console.log('matrix:', this.props.playSequence)
   }
+  volUp(){
+    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+      if(sample.props.sound._volume<1){
+          sample.props.sound._volume += 0.1;
+          console.log(sample.props.sound._volume);
+    } else {
+      sample.props.sound._volume = 1;
+    }
+    })
+  }
+  volDown(){
+    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+      if(sample.props.sound._volume>0){
+          sample.props.sound._volume -= 0.1;
+          console.log(sample.props.sound._volume)
+    } else {
+      sample.props.sound._volume = 0;
+    }
+    })
+  }
   setPlaySequence(){
     let ps = this.props.track.map((step, index) =>
       {
@@ -54,6 +74,9 @@ class Track extends React.Component {
 
         )}
         <button onClick={this.mute.bind(this)}>MUTE</button>
+        <button onClick={this.volDown.bind(this)}>-</button>
+          {this.props.playSequence[this.props.index]._volume}
+        <button onClick={this.volUp.bind(this)}>+</button>
       </div>
     )
   };
