@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix.js';
 import setPlaySequence from '../actions/setPlaySequence';
-import data from '../data.json';
+
 let currentCol = 1;
 let innerPlay;
 class Sequencer extends React.Component {
@@ -55,16 +55,17 @@ class Sequencer extends React.Component {
   render() {
     console.log('playsequence:', this);
     return(
+
         <div className="sequence">
         <button onClick = {this.mute.bind(this, null)}>MuteChord</button>
         <button onClick={this.play.bind(this, null)}>Play</button>
         {this.props.sequence.matrix.map((track, index) =>
             <Track
               playState={this.state.playing}
-                key={index}
-                track={track}
-                index={index}
-                sound={data.samples[index]}
+            	key={index}
+            	track={track}
+            	index={index}
+            	sound={this.props.sequence.samples[index]}
               trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
             /> 

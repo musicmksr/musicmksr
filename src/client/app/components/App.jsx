@@ -32,7 +32,7 @@ class App extends React.Component {
 	              <span className="icon-bar"></span>
 	              <span className="icon-bar"></span>
 	            </button>
-	            <Link className="navbar-brand" to='/sequencer'>Boot Fader</Link>
+	            <Link className="navbar-brand" to='/sequencer'>SimpletonLive</Link>
 	          </div>
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-right">
