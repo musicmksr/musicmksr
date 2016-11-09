@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Alert } from 'react-bootstrap';
 import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix.js';
 import setPlaySequence from '../actions/setPlaySequence';
+import request from 'axios';
 
 let currentCol = 1;
 let innerPlay;
@@ -11,16 +13,18 @@ class Sequencer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playing: false
+      playing: false,
+      message: '',
+      messageCl: 'hidden'
     };
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
     steps.forEach(function(sample){
       if(sample.props.index[0]===1){
-        sample.props.sound._muted = !sample.props.sound._muted
+        sample.props.sound._muted = !sample.props.sound._muted;
       }
-    })
+    });
   }
   play() {
     if (!this.state.playing) {
@@ -31,7 +35,7 @@ class Sequencer extends React.Component {
       const context = this;
       const steps = _.flatten(this.props.playSequence);
       steps.forEach((sound)=>{
-        console.log('MUTE STATUS:', sound.props.sound._muted)
+        console.log('MUTE STATUS:', sound.props.sound._muted);
       })
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
@@ -49,16 +53,51 @@ class Sequencer extends React.Component {
       clearInterval(innerPlay);
       this.setState({
         playing: false
-      })
+      });
     }
   }
+  save(sequence){
+    if(window.newCookie){
+      this.setState({
+        message: 'Saving Sequence...',
+        messageCl: 'show'
+      });
+
+      request.post('/api/save', JSON.stringify(this.props.sequence))
+        .then((response) =>{
+          this.setState({
+            message: 'Sequence Saved!',
+            messageCl: 'show'
+          });
+        })
+        .catch((error) =>{
+          console.log(error);
+        });
+
+      setTimeout(() =>{
+        this.setState({
+          message: '',
+          messageCl: 'hidden'
+        });
+      }, 3000);
+    }else {
+      alert('Login to save your beats');
+    }
+  }
+
   render() {
-    console.log('playsequence:', this);
+
+    let message = this.state.message;
+
     return(
 
-        <div className="sequence">
-        <button onClick = {this.mute.bind(this, null)}>MuteChord</button>
+      <div className="sequence">
+        <Alert className={this.state.messageCl} bsStyle="info">
+          {message}
+        </Alert>
+        
         <button onClick={this.play.bind(this, null)}>Play</button>
+        <button onClick={this.save.bind(this, this.props.sequence)}>Save</button>
         {this.props.sequence.matrix.map((track, index) =>
             <Track
               playState={this.state.playing}
