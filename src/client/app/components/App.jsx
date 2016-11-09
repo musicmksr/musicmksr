@@ -18,7 +18,7 @@ class App extends React.Component {
 
 	close() {
 		this.setState({ showModal: false });
-	};
+	}
 
 	open() {
 		this.setState({ showModal: true });
@@ -60,7 +60,7 @@ class App extends React.Component {
 		}else{
 			profileLink = '';
 			login = 'Login';
-			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>
+			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
 		}
 
 		return(
@@ -104,14 +104,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-
-// <div role='nav'>
-// 					<Link to='/' onlyActiveOnIndex>Home</Link>
-// 					<Link to='/sequencer'>Sequencer</Link>
-// 					<Link to ='/profile'>Profile</Link>
-// 					<Link to ='/user'>User</Link>
-// 					<Link to ='/upload'>Upload</Link>
-// 					<Link to='/login'>Login</Link>
-// 					<Link to='/logout'>Logout</Link>
-// 				</div>
