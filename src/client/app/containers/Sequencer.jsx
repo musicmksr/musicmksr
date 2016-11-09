@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix.js';
 import setPlaySequence from '../actions/setPlaySequence';
-import data from '../data.json';
 
 let currentCol = 1;
 let innerPlay;
@@ -57,7 +56,7 @@ class Sequencer extends React.Component {
             	key={index}
             	track={track}
             	index={index}
-            	sound={data.samples[index]}
+            	sound={this.props.sequence.samples[index]}
               trackLength={this.props.sequence.matrix.length}
             	toggleMatrix={this.props.toggleMatrix.bind(this)}
             />
