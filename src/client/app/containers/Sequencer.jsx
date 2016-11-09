@@ -14,8 +14,15 @@ class Sequencer extends React.Component {
       playing: false
     };
   }
+  mute(){
+    const steps = _.flatten(this.props.playSequence);
+    steps.forEach(function(sample){
+      if(sample.props.index[0]===1){
+        sample.props.sound._muted = !sample.props.sound._muted
+      }
+    })
+  }
   play() {
-    console.log(this);
     if (!this.state.playing) {
       this.setState({
         playing: true
@@ -23,6 +30,9 @@ class Sequencer extends React.Component {
       currentCol = 1;
       const context = this;
       const steps = _.flatten(this.props.playSequence);
+      steps.forEach((sound)=>{
+        console.log('MUTE STATUS:', sound.props.sound._muted)
+      })
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
           if(step.props.stepIndex === currentCol && context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true){
@@ -45,6 +55,7 @@ class Sequencer extends React.Component {
   render() {
     return(
         <div className="sequence">
+        <button onClick = {this.mute.bind(this, null)}>MuteChord</button>
         <button onClick={this.play.bind(this, null)}>Play</button>
         {this.props.sequence.matrix.map((track, index) =>
             <Track
@@ -55,8 +66,8 @@ class Sequencer extends React.Component {
                 sound={data.samples[index]}
               trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
-            />
-        )}
+            /> 
+        )} 
       </div>
     )
   }
