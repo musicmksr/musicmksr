@@ -88,6 +88,11 @@ module.exports = {
     res.send(req.session);
   },
 
+  getUserProfile(req, res, next) {
+    console.log('get user info');
+    res.send();
+  },
+
   saveSequence(req, res, next) {
     const sequence = JSON.stringify(req.body);
 
