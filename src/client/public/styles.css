@@ -1,15 +1,27 @@
+body{
+	background-color: #2F3434
+}
 .track{
 	display: inline-block;
 }
 .step-tf{
-	background-color: #00B1E1;
+	background-color: #DFE1E2;
 	height: 30px;
 	width: 30px;
 	padding: 1px;
 	margin: 15px;
 }
 .step-tt{
-	background-color: #ffde00;
+	background-color: #4A69BF;
+	height: 30px;
+	width: 30px;
+	padding: 1px;
+	margin: 15px;
+}
+
+.step-tt-pl{
+	border-color: #C91625;
+	background-color: #4A69BF;
 	height: 30px;
 	width: 30px;
 	padding: 1px;
