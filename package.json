@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "nodemon server.js",
+    "test": "NODE_ENV=test jasmine",
     "build": "webpack --watch"
   },
   "author": "Gery, Andrew, Chris, Alex",
@@ -57,11 +57,14 @@
     "webpack-hot-middleware": "^2.13.1"
   },
   "devDependencies": {
+    "babel-register": "^6.18.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
-    "json-loader": "^0.5.4"
+    "jasmine": "^2.5.2",
+    "supertest": "^2.0.1",
+    "supertest-as-promised": "^4.0.2"
   }
 }

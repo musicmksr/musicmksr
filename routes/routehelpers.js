@@ -1,13 +1,17 @@
 require('dotenv').config();
 
+console.log('inside routhelpers', process.env.NODE_ENV);
+
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 
-const db = require('../db/schema').db;
-const User = require('../db/schema').User;
-const Sequence = require('../db/schema').Sequence;
-const Sample = require('../db/schema').Sample;
+if(process.env.NODE_ENV !== 'test'){
+  const db = require('../db/schema').db;
+  const User = require('../db/schema').User;
+  const Sequence = require('../db/schema').Sequence;
+  const Sample = require('../db/schema').Sample;
+}
 
 module.exports = {
   newUser(req, res, next) {

@@ -17,6 +17,7 @@ body{
 	width: 30px;
 	padding: 1px;
 	margin: 15px;
+	display: inline-block;
 }
 .step-tt{
 	background-color: #4A69BF;
