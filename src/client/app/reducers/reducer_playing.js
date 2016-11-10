@@ -21,6 +21,7 @@ export default (state = initialMatrix, action) => {
 
 	      return newSequence;
    	 	}else {
+        console.log(action.payload[1].matrix);
    	 		return action.payload[1].matrix;
    	 	}
    	 	break;
