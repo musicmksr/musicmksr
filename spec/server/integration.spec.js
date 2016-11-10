@@ -3,7 +3,7 @@
 const request = require('supertest');
 
 describe('/api/sample', function() {
-	if('should echo the correct song', function(done) {
+	it('should echo the correct song', function(done) {
 		request(this.app)
 			.get('/api/sample/chord.wav')
 			.then((res) =>{

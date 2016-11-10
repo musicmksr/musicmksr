@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "nodemon server.js",
+    "test": "NODE_ENV=test jasmine",
     "build": "webpack --watch"
   },
   "author": "Gery, Andrew, Chris, Alex",

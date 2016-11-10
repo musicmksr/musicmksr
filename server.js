@@ -49,7 +49,9 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // webpack watch setup
-webpackMiddleWare(app);
+if(process.env.NODE_ENV !== 'test'){
+  webpackMiddleWare(app);
+}
 
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
