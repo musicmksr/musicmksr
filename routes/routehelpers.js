@@ -56,33 +56,80 @@ module.exports = {
       });
   },
 
+  loginRedirect(req, res, next) {
+    console.log(`Login Action ${req.session}`);
+    res.redirect('/');
+  },
+  
   setHeader(req, res, next) {
     res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
     next();
   },
 
-  loginRedirect(req, res, next) {
-    console.log(`Login Action ${req.session}`);
-    res.redirect('/');
-  },
-
   getSong(req, res, next) {
-    console.log(req.params.songTitle, ' song title being getted');
       const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
+      const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
+
       fs.stat(filePath, (err, stat) =>{
         if(err) {
-          console.log(err)
+          console.log(err);
         }
 
         res.writeHead(200, {
-          'Content-Type': 'audio/wav',
+          'Content-Type': `audio/${fileInfo[1]}`,
           'Content-Length': stat.size
         });
 
         const rs = fs.createReadStream(filePath);
-        // console.log(readStream, ' file')
-        // We replaced all the event handlers with a simple call to readStream.pipe()
+
         rs.pipe(res);
+      });
+  },
+
+  getUserSession(req, res, next) {
+    res.send(req.session);
+  },
+
+  getUserProfile(req, res, next) {
+    Sequence.findAll({where: { userId: req.params.userId }})
+      .then((sequences) =>{
+        Sample.findAll({where: { userId: { $or: [req.params.userId, null] } } })
+          .then((samples) =>{
+            res.send({sequences: sequences, samples: samples});
+          });
+      })
+      .catch((err) =>{
+        console.log(err);
+      });
+  },
+
+  saveSequence(req, res, next) {
+    const sequence = JSON.stringify(req.body.sequence);
+    const title = req.body.title;
+    Sequence.find({where: { name: title }})
+      .then((foundItem) =>{
+        console.log(foundItem)
+        if(!foundItem){
+          // create
+          Sequence.create({name: title, matrix: sequence, userId: req.session.passport.user.mainId})
+            .then((response) =>{
+              res.send('Saved');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }else{
+          foundItem.updateAttributes({ matrix: sequence })
+            .then((response) =>{
+              res.send('Successful Update');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }
 

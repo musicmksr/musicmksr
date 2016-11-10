@@ -27,9 +27,9 @@ passport.deserializeUser(function(user, done) {
 });
 
 passport.use(new FacebookStrategy({
-  clientID: keys.keys.clientID,
-  clientSecret: keys.keys.clientSecret,
-  callbackURL: keys.keys.callbackURL,
+  clientID: keys.clientID,
+  clientSecret: keys.clientSecret,
+  callbackURL: keys.callbackURL,
   enableProof: true,
   profileFields: ['id', 'displayName', 'email']
 }, function(accessToken, refreshToken, profile, done){
@@ -42,7 +42,7 @@ app.use(session({
   secret: 'secret',
   resave: true,
   saveUninitialized: true,
-  cookie: {maxAge: 10000} //10 seconds
+  cookie: {maxAge: 60000 * 30} //30 minutes
 }));
 
 app.use(passport.initialize());
@@ -59,7 +59,7 @@ routes(app);
 app.use(fallback('index.html', {root}));
 
 app.listen(port, () =>{
-	console.log(`Drunken Genius sippen on: ${port}`);
+	console.log(`Listening on: ${port}`);
 });
 
 module.exports = app;
