@@ -29,7 +29,6 @@ class Sequencer extends React.Component {
   }
 
   mute(){
-    const steps = steps;
     steps.forEach(function(sample){
       if(sample.props.index[0]===1){
         sample.props.sound._muted = !sample.props.sound._muted;
