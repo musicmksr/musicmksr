@@ -3,12 +3,13 @@ import { connect } from 'react-redux';
 import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
+
 let lastId = 0;
 let steps = [];
 class Track extends React.Component {
   constructor(props){
     super(props);
-    this.setPlaySequence();
+    // this.setPlaySequence();
   }
   setStepIndex() {
     if (lastId === 16){
@@ -25,7 +26,7 @@ class Track extends React.Component {
     console.log('matrix:', this.props.playSequence)
   }
   volUp(){
-    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+    this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume<1){
           sample.props.sound._volume += 0.1;
           console.log(sample.props.sound._volume);
@@ -35,7 +36,7 @@ class Track extends React.Component {
     })
   }
   volDown(){
-    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+    this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume>0){
           sample.props.sound._volume -= 0.1;
           console.log(sample.props.sound._volume)
@@ -44,23 +45,23 @@ class Track extends React.Component {
     }
     })
   }
-  setPlaySequence(){
-    let ps = this.props.track.map((step, index) =>
-      {
-        return <Sample
-                index={[this.props.index, index]}
-                stepIndex={this.setStepIndex()}
-                sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
-               />
-
-      }
-    );
-    this.props.setPlaySequence(ps, this.props.trackLength);
-  }
+  // setPlaySequence(){
+  //   let ps = this.props.track.map((step, index) =>
+  //     {
+  //       return <Sample
+  //               index={[this.props.index, index]}
+  //               stepIndex={this.setStepIndex()}
+  //               sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
+  //              />
+  //     }
+  //   );
+  //   this.props.setPlaySequence(ps, this.props.trackLength);
+  // }
   render() {
     return(
       <div>
         {this.props.track.map((step, index) =>
+          { let sample =
             <Sample
               playState={this.props.playState}
               key={[this.props.index, index]}
@@ -68,20 +69,21 @@ class Track extends React.Component {
               step={step}
               index={[this.props.index, index]}
               sound={new Howl( {
+                toggled: false,
                 src: `/api/sample/${this.props.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />
-
+            steps.push(sample);
+            return sample;
+          }
         )}
         <button onClick={this.mute.bind(this)}>MUTE</button>
         <button onClick={this.volDown.bind(this)}>-</button>
-          {this.props.playSequence[this.props.index]._volume}
         <button onClick={this.volUp.bind(this)}>+</button>
       </div>
     )
   };
 }
-function mapStateToProps(state) {
-  return { playSequence: state.playSequence }
-}
-export default connect(mapStateToProps, { setPlaySequence: setPlaySequence })(Track);
+
+
+export { Track, steps };

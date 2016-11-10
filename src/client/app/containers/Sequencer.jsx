@@ -2,11 +2,12 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-bootstrap';
-import Track from '../components/Track.jsx';
+import {Track, steps } from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix.js';
 import setPlaySequence from '../actions/setPlaySequence';
 import request from 'axios';
 
+console.log('STEPS: ', steps);
 let currentCol = 1;
 let innerPlay;
 class Sequencer extends React.Component {
@@ -19,7 +20,7 @@ class Sequencer extends React.Component {
     };
   }
   mute(){
-    const steps = _.flatten(this.props.playSequence);
+    const steps = steps;
     steps.forEach(function(sample){
       if(sample.props.index[0]===1){
         sample.props.sound._muted = !sample.props.sound._muted;
@@ -33,13 +34,9 @@ class Sequencer extends React.Component {
       });
       currentCol = 1;
       const context = this;
-      const steps = _.flatten(this.props.playSequence);
-      steps.forEach((sound)=>{
-        console.log('MUTE STATUS:', sound.props.sound._muted);
-      })
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
-          if(step.props.stepIndex === currentCol && context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true){
+          if(step.props.stepIndex === currentCol && step.props.sound.toggled === true){
             step.props.sound.play();
           }
         });
@@ -95,7 +92,7 @@ class Sequencer extends React.Component {
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>
-        
+
         <button onClick={this.play.bind(this, null)}>Play</button>
         <button onClick={this.save.bind(this, this.props.sequence)}>Save</button>
         {this.props.sequence.matrix.map((track, index) =>
@@ -106,9 +103,9 @@ class Sequencer extends React.Component {
             	index={index}
             	sound={this.props.sequence.samples[index]}
               trackLength={this.props.sequence.matrix.length}
-                toggleMatrix={this.props.toggleMatrix.bind(this)}
-            /> 
-        )} 
+              toggleMatrix={this.props.toggleMatrix.bind(this)}
+            />
+        )}
       </div>
     )
   }
@@ -123,4 +120,3 @@ export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence
 })(Sequencer);
-
