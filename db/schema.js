@@ -32,7 +32,7 @@ const User = db.define('user', {
     autoIncrement: true
   },
   name: Sequelize.STRING, // facebook name
-  email: Sequelize.STRING // facebook email
+  email: Sequelize.STRING // facebook email or id
 });
 
 // sequences of matrix to store
@@ -42,6 +42,7 @@ const Sequence = db.define('sequence', {
     primaryKey: true,
     autoIncrement: true
   },
+  name: Sequelize.STRING,
   matrix: Sequelize.TEXT
 });
 
@@ -60,9 +61,6 @@ Sequence.belongsTo(User);
 
 User.hasMany(Sample);
 Sample.belongsTo(User);
-
-Sequence.hasMany(Sample);
-Sample.belongsTo(Sequence);
 
 //Create Tables
 db

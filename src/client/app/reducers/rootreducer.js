@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   sequence: matrixReducer,
   playSequence: playSequenceReducer,
-  changeCurrCol: columnReducer
+  currCol: columnReducer
 });
 
 export default rootReducer;

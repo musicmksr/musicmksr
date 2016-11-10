@@ -104,13 +104,14 @@ module.exports = {
   },
 
   saveSequence(req, res, next) {
-    const sequence = JSON.stringify(req.body);
-
-    Sequence.find({where: { matrix: sequence }})
+    const sequence = JSON.stringify(req.body.sequence);
+    const title = req.body.title;
+    Sequence.find({where: { name: title }})
       .then((foundItem) =>{
+        console.log(foundItem)
         if(!foundItem){
           // create
-          Sequence.create({matrix: sequence, userId: req.session.passport.user.mainId})
+          Sequence.create({name: title, matrix: sequence, userId: req.session.passport.user.mainId})
             .then((response) =>{
               res.send('Saved');
             })
@@ -118,8 +119,13 @@ module.exports = {
               console.log(err);
             });
         }else{
-          // update
-          // Sequence.update();
+          foundItem.updateAttributes({ matrix: sequence })
+            .then((response) =>{
+              res.send('Successful Update');
+            })
+            .catch((err) => {
+              console.log(err);
+            });
         }
       })
       .catch((err) => {

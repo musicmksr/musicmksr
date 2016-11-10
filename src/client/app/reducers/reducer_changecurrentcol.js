@@ -1,7 +1,7 @@
-export default (state=null, action) => {
+export default (state = null, action) => {
   switch (action.type){
     case "CHANGE_CURRENT_COLUMN":
-      return state;
+      return action.payload + 1;
     default:
       return state;
   }

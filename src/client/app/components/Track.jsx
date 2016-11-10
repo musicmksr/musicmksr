@@ -21,8 +21,8 @@ class Track extends React.Component {
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       console.log(sample.props.sound._muted, index);
       sample.props.sound._muted = !sample.props.sound._muted;
-    })
-    console.log('matrix:', this.props.playSequence)
+    });
+    console.log('matrix:', this.props.playSequence);
   }
   volUp(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){ 
@@ -32,13 +32,13 @@ class Track extends React.Component {
     } else {
       sample.props.sound._volume = 1;
     }
-    })
+    });
   }
   volDown(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){ 
       if(sample.props.sound._volume>0){
           sample.props.sound._volume -= 0.1;
-          console.log(sample.props.sound._volume)
+          console.log(sample.props.sound._volume);
     } else {
       sample.props.sound._volume = 0;
     }

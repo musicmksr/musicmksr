@@ -53,7 +53,7 @@ class Profile extends React.Component {
               <h3>All Sequences</h3>
               <div className='row'>
                 {this.state.sequences.map((sequence, index) => 
-                  <UserSequence key={index} matrix={sequence.matrix} />
+                  <UserSequence key={index} newSequence={sequence} name={sequence.name}/>
                 )}
               </div>
             </div>
