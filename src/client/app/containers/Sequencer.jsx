@@ -116,7 +116,6 @@ class Sequencer extends React.Component {
       play = 'Stop';
     }
 
-    console.log(this.props.sequence, ' inside sequence.jsx');
     return(
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
@@ -134,9 +133,11 @@ class Sequencer extends React.Component {
             	key={index}
             	track={track}
             	index={index}
+              matrix={this.props.sequence.matrix}
+              samples={this.props.sequence.samples}
             	sound={this.props.sequence.samples[index]}
               trackLength={this.props.sequence.matrix.length}
-                toggleMatrix={this.props.toggleMatrix.bind(this)}
+              toggleMatrix={this.props.toggleMatrix.bind(this)}
             /> 
         )} 
       </div>

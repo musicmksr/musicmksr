@@ -3,11 +3,17 @@ import { connect } from 'react-redux';
 import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
+import Options from './SampleOptions.jsx';
+
 let lastId = 0;
 let steps = [];
 class Track extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      sound: this.props.samples[this.props.index]
+    };
+
     this.setPlaySequence();
   }
   setStepIndex() {
@@ -57,6 +63,13 @@ class Track extends React.Component {
     );
     this.props.setPlaySequence(ps, this.props.trackLength);
   }
+
+  changeSample(event) {
+    this.setState({
+      sound: event.target.value
+    });
+  }
+
   render() {
     return(
       <div>
@@ -68,7 +81,7 @@ class Track extends React.Component {
               step={step}
               index={[this.props.index, index]}
               sound={new Howl( {
-                src: `/api/sample/${this.props.sound}`} )}
+                src: `/api/sample/${this.state.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />
 
@@ -77,9 +90,14 @@ class Track extends React.Component {
         <button onClick={this.volDown.bind(this)}>-</button>
           {this.props.playSequence[this.props.index]._volume}
         <button onClick={this.volUp.bind(this)}>+</button>
+        <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
+          {this.props.matrix.map((track, index) =>
+            <Options key={this.props.samples[index]} sound={this.props.samples[index]} />
+          )}
+        </select>
       </div>
     )
-  };
+  }
 }
 function mapStateToProps(state) {
   return { playSequence: state.playSequence }
