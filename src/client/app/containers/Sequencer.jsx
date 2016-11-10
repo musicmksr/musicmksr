@@ -40,7 +40,7 @@ class Sequencer extends React.Component {
     this.props.updatePlayState(playState);
     if (!playState) {
       playState = true;
-      currentCol = 1;
+      currentCol = 0;
       const context = this;
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
