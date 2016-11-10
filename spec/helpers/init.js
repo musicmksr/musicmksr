@@ -33,7 +33,6 @@ beforeEach(function () {
 });
 
 afterEach(function (done) {
-	db.close(() =>{
-		done();
-	});
+	db.close();
+	done();
 });

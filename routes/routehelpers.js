@@ -8,11 +8,10 @@ const Sequelize = require('sequelize');
 
 if(process.env.NODE_ENV !== 'test'){
   const db = require('../db/schema').db;
+  const User = require('../db/schema').User;
+  const Sequence = require('../db/schema').Sequence;
+  const Sample = require('../db/schema').Sample;
 }
-
-const User = require('../db/schema').User;
-const Sequence = require('../db/schema').Sequence;
-const Sample = require('../db/schema').Sample;
 
 module.exports = {
   newUser(req, res, next) {
