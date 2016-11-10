@@ -19,6 +19,7 @@ export default (state = initialMatrix, action) => {
 			}
       console.log('sequence from toggle matrix: ', newSequence);
       return newSequence;
+
     default:
       return state;
   }

@@ -11,6 +11,11 @@ class Track extends React.Component {
     super(props);
     // this.setPlaySequence();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('number of steps in steps:', steps.length);
+  }
+
   setStepIndex() {
     if (lastId === 16){
       lastId = 0;
@@ -18,6 +23,7 @@ class Track extends React.Component {
     lastId++;
     return lastId;
   }
+
   mute(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       console.log(sample.props.sound._muted, index);
@@ -25,6 +31,7 @@ class Track extends React.Component {
     })
     console.log('matrix:', this.props.playSequence)
   }
+
   volUp(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume<1){
@@ -63,13 +70,11 @@ class Track extends React.Component {
         {this.props.track.map((step, index) =>
           { let sample =
             <Sample
-              playState={this.props.playState}
               key={[this.props.index, index]}
               stepIndex={this.setStepIndex()}
               step={step}
               index={[this.props.index, index]}
               sound={new Howl( {
-                toggled: false,
                 src: `/api/sample/${this.props.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />

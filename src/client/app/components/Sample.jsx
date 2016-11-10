@@ -9,6 +9,10 @@ class Sample extends React.Component{
     }
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Sample updated.');
+
+  }
 
   changeStyle() {
    if (this.props.sound.toggled === false) {
@@ -23,10 +27,13 @@ class Sample extends React.Component{
       <div className='track'>
         <div className={this.state.class}
           onClick={() => {
-            if(!this.props.sound.toggled && !this.props.playState) this.props.sound.play();
+            console.log('Play State at Sample: ', this.props.playState);
+            if(!this.props.sound.toggled && !this.props.playState) {
+              this.props.sound.play()
+            };
             this.props.sound.toggled = !this.props.sound.toggled;
             this.changeStyle();
-            this.props.toggleMatrix.call(null, this.props.index);
+            // this.props.toggleMatrix.call(null, this.props.index);
           }
         }>
         </div>
@@ -35,4 +42,10 @@ class Sample extends React.Component{
   }
 }
 
-export default Sample;
+function mapStateToProps(state) {
+  return {
+    playState: state.playState
+  }
+}
+
+export default connect(mapStateToProps, {})(Sample);

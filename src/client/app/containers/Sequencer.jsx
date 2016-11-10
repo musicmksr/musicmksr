@@ -2,23 +2,32 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-bootstrap';
-import {Track, steps } from '../components/Track.jsx';
-import toggleMatrix from '../actions/toggleMatrix.js';
+import { Track, steps } from '../components/Track.jsx';
+import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
+import updatePlayState from '../actions/updatePlayState';
 import request from 'axios';
 
-console.log('STEPS: ', steps);
 let currentCol = 1;
 let innerPlay;
+let playState = false;
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      playing: false,
       message: '',
       messageCl: 'hidden'
     };
   }
+
+  shouldComponentUpdate() {
+    return false;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('Sequencer updated.', steps.length);
+  }
+
   mute(){
     const steps = steps;
     steps.forEach(function(sample){
@@ -28,15 +37,14 @@ class Sequencer extends React.Component {
     });
   }
   play() {
-    if (!this.state.playing) {
-      this.setState({
-        playing: true
-      });
+    this.props.updatePlayState(playState);
+    if (!playState) {
+      playState = true;
       currentCol = 1;
       const context = this;
       innerPlay = setInterval(() =>{
         steps.forEach((step) =>{
-          if(step.props.stepIndex === currentCol && step.props.sound.toggled === true){
+          if(step.props.stepIndex === currentCol && step.props.sound.toggled){
             step.props.sound.play();
           }
         });
@@ -48,9 +56,7 @@ class Sequencer extends React.Component {
       },125);
     } else {
       clearInterval(innerPlay);
-      this.setState({
-        playing: false
-      });
+      playState = false;
     }
   }
   save(sequence){
@@ -97,7 +103,6 @@ class Sequencer extends React.Component {
         <button onClick={this.save.bind(this, this.props.sequence)}>Save</button>
         {this.props.sequence.matrix.map((track, index) =>
             <Track
-              playState={this.state.playing}
             	key={index}
             	track={track}
             	index={index}
@@ -110,13 +115,15 @@ class Sequencer extends React.Component {
     )
   }
 }
+
 function mapStateToProps(state) {
   return {
     sequence: state.sequence,
     playSequence: state.playSequence
   }
 }
+
 export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
-  setPlaySequence: setPlaySequence
+  updatePlayState: updatePlayState
 })(Sequencer);
