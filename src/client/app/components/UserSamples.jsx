@@ -6,6 +6,7 @@ class UserSamples extends React.Component {
     return(
       <div className='col-md-3 userSample-container'>
         <div className='userSample'>
+          <h3>{this.props.sample.name}</h3>
          <center><img src='imgs/sample.jpg' /></center>
           <audio controls>
             <source 

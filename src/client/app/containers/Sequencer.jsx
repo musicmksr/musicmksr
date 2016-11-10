@@ -3,11 +3,11 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-bootstrap';
 import Track from '../components/Track.jsx';
-import toggleMatrix from '../actions/toggleMatrix.js';
+import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
 import request from 'axios';
 
-window.currentCol = 1;
+let currentCol = 1;
 let innerPlay;
 class Sequencer extends React.Component {
   constructor(props) {
@@ -15,7 +15,9 @@ class Sequencer extends React.Component {
     this.state = {
       playing: false,
       message: '',
-      messageCl: 'hidden'
+      messageCl: 'hidden',
+      title: this.props.sequence.name || '',
+      titleWarning: ''
     };
   }
   mute(){
@@ -48,9 +50,9 @@ class Sequencer extends React.Component {
           }
         });
         if (currentCol < 16){
-          window.currentCol++;
+          currentCol++;
         } else {
-          window.currentCol = 1;
+          currentCol = 1;
         }
       },125);
     } else {
@@ -62,44 +64,68 @@ class Sequencer extends React.Component {
   }
   save(sequence){
     if(window.newCookie){
-      this.setState({
-        message: 'Saving Sequence...',
-        messageCl: 'show'
-      });
-
-      request.post('/api/save', JSON.stringify(this.props.sequence))
-        .then((response) =>{
-          this.setState({
-            message: 'Sequence Saved!',
-            messageCl: 'show'
-          });
-        })
-        .catch((error) =>{
-          console.log(error);
-        });
-
-      setTimeout(() =>{
+      if(this.state.title !== ''){
         this.setState({
-          message: '',
-          messageCl: 'hidden'
+          message: 'Saving Sequence...',
+          messageCl: 'show'
         });
-      }, 3000);
+        
+        const sendObj = { sequence: sequence, title: this.state.title };
+
+        request.post('/api/save', sendObj)
+          .then((response) =>{
+            this.setState({
+              message: 'Sequence Saved!',
+              messageCl: 'show'
+            });
+          })
+          .catch((error) =>{
+            console.log(error);
+          });
+
+        setTimeout(() =>{
+          this.setState({
+            message: '',
+            messageCl: 'hidden'
+          });
+        }, 3000);
+      }
     }else {
       alert('Login to save your beats');
     }
   }
+  setTitle(event) {
+    this.props.sequence.name = '';
+    let title = event.target.value;
+
+    this.setState({
+      title: title,
+      titleWarning: 'New titles will save as new beats!'
+    });
+  }
 
   render() {
     let message = this.state.message;
+    let play = '';
 
+    if(this.state.playing === false){
+      play = 'Play';
+    } else {
+      play = 'Stop';
+    }
+
+    console.log(this.props.sequence, ' inside sequence.jsx');
     return(
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>
         
-        <button onClick={this.play.bind(this, null)}>Play</button>
-        <button onClick={this.save.bind(this, this.props.sequence)}>Save</button>
+        <button onClick={this.play.bind(this, null)}>{play}</button>
+        <form action='javascript:void(0)'>
+          <input type='text' name='title' value={this.state.title || this.props.sequence.name} onChange={this.setTitle.bind(this)} required/>
+          <button onClick={this.save.bind(this, this.props.sequence)}>Save</button> <span>{this.state.titleWarning}</span>
+        </form>
         {this.props.sequence.matrix.map((track, index) =>
             <Track
               playState={this.state.playing}
@@ -118,11 +144,10 @@ class Sequencer extends React.Component {
 function mapStateToProps(state) {
   return {
     sequence: state.sequence,
-    playSequence: state.playSequence
+    playSequence: state.playSequence,
   }
 }
 export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
-  setPlaySequence: setPlaySequence
+  setPlaySequence: setPlaySequence,
 })(Sequencer);
-
