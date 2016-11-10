@@ -9,7 +9,7 @@ export default (state = initialMatrix, action) => {
     	if(index !== null){
 	    	const newSequence = _.cloneDeep(state);
 
-				// mutate toggle 
+				// mutate toggle
 				newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
 
 				// mutate class
@@ -18,12 +18,13 @@ export default (state = initialMatrix, action) => {
 				}else {
 					newSequence.matrix[index[0]][index[1]].class = 'step-tf';
 				}
-
+        console.log('sequence from toggle matrix: ', newSequence);
 	      return newSequence;
    	 	}else {
    	 		return action.payload[1].matrix;
    	 	}
    	 	break;
+
     default:
       return state;
   }

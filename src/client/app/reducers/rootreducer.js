@@ -2,13 +2,13 @@ import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
 import matrixReducer from './reducer_playing';
 import playSequenceReducer from './reducer_playsequence';
-import columnReducer from './reducer_changecurrentcol';
+import playStateReducer from './reducer_playstate';
 
 const rootReducer = combineReducers({
   routing: routerReducer,
   sequence: matrixReducer,
   playSequence: playSequenceReducer,
-  currCol: columnReducer
+  playState: playStateReducer,
 });
 
 export default rootReducer;
