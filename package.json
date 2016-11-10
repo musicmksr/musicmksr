@@ -4,7 +4,7 @@
   "description": "A sequencer app for professionals.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js",
+    "start": "node server.js",
     "test": "nodemon server.js",
     "build": "webpack --watch"
   },
