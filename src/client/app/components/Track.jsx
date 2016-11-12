@@ -3,13 +3,21 @@ import { connect } from 'react-redux';
 import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
+import Options from './SampleOptions.jsx';
+import request from 'axios';
+
 let lastId = 0;
 let lastWrapId = 0;
 let steps = [];
 class Track extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      sound: this.props.samples[this.props.index]
+    };
+
     this.setPlaySequence();
+    this.getOptionSamples();
   }
   setStepIndex() {
     if (lastId === 16){
@@ -58,12 +66,35 @@ class Track extends React.Component {
         return <Sample
                 index={[this.props.index, index]}
                 stepIndex={this.setStepIndex()}
-                sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
+                sound={new Howl( { src: `/api/sample/${this.state.sound}`} )}
                />
       }
     );
     this.props.setPlaySequence(ps, this.props.trackLength);
   }
+  getOptionSamples() {
+    // get the samples from the server
+    // add them on to this.props.samples when and if they do not already exist in the array (push them)
+    if(window.newCookie){
+      request.get(`/api/options/${window.newCookie.user.mainId}`)
+        .then((response) =>{
+          // response is an object with data 
+            // data has a samples propert
+              // samples is an array of objects
+                // these objects have a name property we want to use
+          console.log(response, ' options')
+        })
+        .catch((err) =>{
+          console.log(err);
+        });
+    }
+  }
+  changeSample(event) {
+    this.setState({
+      sound: event.target.value
+    });
+  }
+
   render() {
     return(
       <div>
@@ -75,7 +106,7 @@ class Track extends React.Component {
               step={step}
               index={[this.props.index, index]}
               sound={new Howl( {
-                src: `/api/sample/${this.props.sound}`} )}
+                src: `/api/sample/${this.state.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />
             </div>
@@ -84,9 +115,14 @@ class Track extends React.Component {
         <button onClick={this.volDown.bind(this)}>-</button>
           {this.props.playSequence[this.props.index]._volume}
         <button onClick={this.volUp.bind(this)}>+</button>
+        <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
+          {this.props.matrix.map((track, index) =>
+            <Options key={this.props.samples[index]} sound={this.props.samples[index]} />
+          )}
+        </select>
       </div>
     )
-  };
+  }
 }
 function mapStateToProps(state) {
   return { playSequence: state.playSequence }

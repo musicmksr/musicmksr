@@ -32,6 +32,8 @@ module.exports = function(app) {
 
   app.get('/api/profile/:userId', helpers.getUserProfile);
 
+  app.get('/api/options/:userId', helpers.getSampleOptions);
+
   app.post('/api/save', helpers.saveSequence);
   
 };
