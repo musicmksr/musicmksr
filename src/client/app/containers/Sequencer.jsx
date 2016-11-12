@@ -93,6 +93,7 @@ class Sequencer extends React.Component {
         });
 
         const sendObj = { sequence: sequence, title: this.state.title };
+
         request.post('/api/save', sendObj)
           .then((response) =>{
             this.setState({
@@ -103,6 +104,7 @@ class Sequencer extends React.Component {
           .catch((error) =>{
             console.log(error);
           });
+
         setTimeout(() =>{
           this.setState({
             message: '',

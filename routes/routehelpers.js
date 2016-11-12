@@ -105,8 +105,12 @@ module.exports = {
 
   saveSequence(req, res, next) {
     const sequence = JSON.stringify(req.body.sequence);
-    const title = req.body.title;
-    Sequence.find({where: { name: title }})
+    let title = req.body.title;
+
+    title = title.replace(/<script.*>.*<\/script>/g, " ");
+    title = title.trim();
+
+    Sequence.find({where: { name: title, userId: req.params.userId }})
       .then((foundItem) =>{
         console.log(foundItem)
         if(!foundItem){
