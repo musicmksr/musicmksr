@@ -26,14 +26,30 @@ module.exports = function(app) {
     helpers.loginRedirect
   );
 
+  // get songs for sequencer
   app.get('/api/sample/:songTitle', helpers.getSong);
 
-  app.get('/api/session', helpers.getUserSession);
-
-  app.get('/api/profile/:userId', helpers.getUserProfile);
-
+  // get sound options for each track in sequencer
   app.get('/api/options/:userId', helpers.getSampleOptions);
 
-  app.post('/api/save', helpers.saveSequence);
+  // get session info for requests
+  app.get('/api/session', helpers.getUserSession);
+
+  // get profile info for user (sequences saved and samples uploaded)
+  app.get('/api/profile/:userId', 
+    helpers.isLoggedIn, 
+    helpers.getUserProfile
+  );
+
+  // save sequences when logged in as a user
+  app.post('/api/save', 
+    helpers.isLoggedIn, 
+    helpers.saveSequence
+  );
+
+  app.delete('/api/deleteSequence/:sequenceName/:userId', 
+    helpers.isLoggedIn, 
+    helpers.deleteSequence
+  );
   
 };

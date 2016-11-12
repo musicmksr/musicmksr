@@ -92,7 +92,7 @@ class Sequencer extends React.Component {
           messageCl: 'show'
         });
 
-        const sendObj = { sequence: sequence, title: this.state.title };
+        const sendObj = { sequence: sequence, title: this.state.title, userId: window.newCookie.user.mainId };
 
         request.post('/api/save', sendObj)
           .then((response) =>{
