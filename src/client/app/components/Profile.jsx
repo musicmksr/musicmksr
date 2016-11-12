@@ -18,6 +18,8 @@ class Profile extends React.Component {
       sequences: [],
       samples: []
     };
+
+    clearInterval(window.innerPlay);
 	}
 
 	componentDidMount() {

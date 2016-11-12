@@ -8,8 +8,9 @@ import setPlaySequence from '../actions/setPlaySequence';
 import request from 'axios';
 
 let currentCol = 1;
-let innerPlay;
+window.innerPlay;
 class Sequencer extends React.Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +20,9 @@ class Sequencer extends React.Component {
       title: this.props.sequence.name || '',
       titleWarning: ''
     };
+  }
+  componentDidMount(){
+    clearInterval(window.innerPlay);
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -37,13 +41,11 @@ class Sequencer extends React.Component {
       const context = this;
       const steps = _.flatten(this.props.playSequence);
       steps.forEach((sound)=>{
-        console.log('MUTE STATUS:', sound.props.sound._muted);
       });
-      innerPlay = setInterval(() =>{
-        steps.forEach((step) =>{
+      window.innerPlay = setInterval(() =>{
+        steps.forEach((step, index) =>{
           if(step.props.stepIndex === currentCol && 
-              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && 
-              !step.props.sound._muted
+              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true
             )
           {
             step.props.sound.play();
@@ -56,7 +58,7 @@ class Sequencer extends React.Component {
         }
       },125);
     } else {
-      clearInterval(innerPlay);
+      clearInterval(window.innerPlay);
       this.setState({
         playing: false
       });
