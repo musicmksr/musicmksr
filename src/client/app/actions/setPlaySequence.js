@@ -1,8 +1,8 @@
-export default (array, trackLength) =>{
-  console.log(array, 'play sequence')
+export default (array, trackLength, index) =>{
 	return{
 		type: "SET_PLAY_SEQUENCE",
 		payload: array,
-		trackLength: trackLength
+		trackLength: trackLength,
+    index: index
 	};
 };
