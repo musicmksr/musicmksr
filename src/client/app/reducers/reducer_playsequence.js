@@ -1,6 +1,4 @@
 export default (state = null, action) => {
-  console.log(action.index, ' inside reducer index for track change');
-
   switch (action.type){
     case "SET_PLAY_SEQUENCE":
     	state = state || [];

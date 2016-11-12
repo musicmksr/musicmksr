@@ -127,9 +127,9 @@ class Track extends React.Component {
             </div>
         )}
         <div className='buttons'>
-          <button className='btn' data-toggle="button" class-toggle="btn-inverse" onClick={this.mute.bind(this)}>MUTE</button>
+          <button className='btn' data-toggle="button" onClick={this.mute.bind(this)}>MUTE</button>
           <button className='btn' onClick={this.volDown.bind(this)}>-</button>
-            {this.props.playSequence[this.props.index]._volume}
+            volume
           <button className='btn' onClick={this.volUp.bind(this)}>+</button>
         </div>
         <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
