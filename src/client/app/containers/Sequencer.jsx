@@ -132,10 +132,10 @@ class Sequencer extends React.Component {
           {message}
         </Alert>
 
-        <button onClick={this.play.bind(this, null)}>{play}</button>
+        <button className='btn' onClick={this.play.bind(this, null)}>{play}</button>
         <form action='javascript:void(0)'>
           <input type='text' name='title' value={this.state.title || this.props.sequence.name} onChange={this.setTitle.bind(this)} required/>
-          <button onClick={this.save.bind(this, this.props.sequence)}>Save</button> <span>{this.state.titleWarning}</span>
+          <button className='btn' onClick={this.save.bind(this, this.props.sequence)}>Save</button> <span>{this.state.titleWarning}</span>
         </form>
         {this.props.sequence.matrix.map((track, index) =>
             <Track

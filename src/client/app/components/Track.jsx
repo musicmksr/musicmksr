@@ -80,10 +80,12 @@ class Track extends React.Component {
             />
             </div>
         )}
-        <button onClick={this.mute.bind(this)}>MUTE</button>
-        <button onClick={this.volDown.bind(this)}>-</button>
+        <div className='buttons'>
+        <button className='btn' data-toggle="button" class-toggle="btn-inverse" onClick={this.mute.bind(this)}>MUTE</button>
+        <button className='btn' onClick={this.volDown.bind(this)}>-</button>
           {this.props.playSequence[this.props.index]._volume}
-        <button onClick={this.volUp.bind(this)}>+</button>
+        <button className='btn' onClick={this.volUp.bind(this)}>+</button>
+        </div>
       </div>
     )
   };
