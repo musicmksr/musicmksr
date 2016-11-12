@@ -4,6 +4,7 @@ import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
 import Options from './SampleOptions.jsx';
+import request from 'axios';
 
 let lastId = 0;
 let steps = [];
@@ -15,6 +16,7 @@ class Track extends React.Component {
     };
 
     this.setPlaySequence();
+    this.getOptionSamples();
   }
   setStepIndex() {
     if (lastId === 16){
@@ -63,7 +65,23 @@ class Track extends React.Component {
     );
     this.props.setPlaySequence(ps, this.props.trackLength);
   }
-
+  getOptionSamples() {
+    // get the samples from the server
+    // add them on to this.props.samples when and if they do not already exist in the array (push them)
+    if(window.newCookie){
+      request.get(`/api/options/${window.newCookie.user.mainId}`)
+        .then((response) =>{
+          // response is an object with data 
+            // data has a samples propert
+              // samples is an array of objects
+                // these objects have a name property we want to use
+          console.log(response, ' options')
+        })
+        .catch((err) =>{
+          console.log(err);
+        });
+    }
+  }
   changeSample(event) {
     this.setState({
       sound: event.target.value
