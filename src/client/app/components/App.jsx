@@ -15,7 +15,7 @@ class App extends React.Component {
     browserHistory.push('/sequencer');
   }
   componentWillMount() {
-  	this.getCookie();
+  	this.getCookie.call(this);
   }
 	close() {
 		this.setState({ showModal: false });

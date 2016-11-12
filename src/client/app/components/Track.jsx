@@ -19,8 +19,9 @@ class Track extends React.Component {
     };
   }
   componentDidMount() {
+    console.log('!!!!!!!!!!!!!!!!!!!!!');
     this.createPlaySequence.call(this);
-    this.getOptionSamples();
+    this.getOptionSamples.call(this);
   }
   setStepIndex() {
     if (lastId === 16){
@@ -78,8 +79,9 @@ class Track extends React.Component {
   }
   getOptionSamples() {
     let samplesArr = this.state.samples.slice();
-
+    console.log('before get request in track', window.newCookie)
     if(window.newCookie){
+      console.log('inside if statement before get request in track')
       request.get(`/api/options/${window.newCookie.user.mainId}`)
         .then((response) =>{
           response.data.samples.forEach((sound, index) =>{
@@ -87,6 +89,7 @@ class Track extends React.Component {
               samplesArr.push(sound.name);
             }
           }); 
+          console.log(samplesArr)
           this.setState({
             samples: samplesArr
           });

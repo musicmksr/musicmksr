@@ -23,7 +23,7 @@ class Profile extends React.Component {
 	}
 
 	componentDidMount() {
-		this.getUserInfo();
+		this.getUserInfo.call(this);
 	}
 
   getUserInfo() {
