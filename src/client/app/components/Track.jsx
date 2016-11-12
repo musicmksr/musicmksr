@@ -4,6 +4,7 @@ import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
 let lastId = 0;
+let lastWrapId = 0;
 let steps = [];
 class Track extends React.Component {
   constructor(props){
@@ -17,6 +18,13 @@ class Track extends React.Component {
     lastId++;
     return lastId;
   }
+  setWrapIndex() {
+    if (lastWrapId === 16){
+      lastWrapId = 0;
+    }
+    lastWrapId++;
+    return lastWrapId;
+  }
   mute(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       console.log(sample.props.sound._muted, index);
@@ -25,7 +33,7 @@ class Track extends React.Component {
     console.log('matrix:', this.props.playSequence);
   }
   volUp(){
-    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+    this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume<1){
           sample.props.sound._volume += 0.1;
           console.log(sample.props.sound._volume);
@@ -35,7 +43,7 @@ class Track extends React.Component {
     });
   }
   volDown(){
-    this.props.playSequence[this.props.index].forEach(function(sample, index){ 
+    this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume>0){
           sample.props.sound._volume -= 0.1;
           console.log(sample.props.sound._volume);
@@ -52,7 +60,6 @@ class Track extends React.Component {
                 stepIndex={this.setStepIndex()}
                 sound={new Howl( { src: `/api/sample/${this.props.sound}`} )}
                />
-
       }
     );
     this.props.setPlaySequence(ps, this.props.trackLength);
@@ -61,7 +68,7 @@ class Track extends React.Component {
     return(
       <div>
         {this.props.track.map((step, index) =>
-            <Sample
+            <div id='step-wrapper' className={this.setWrapIndex()}><Sample
               playState={this.props.playState}
               key={[this.props.index, index]}
               stepIndex={this.setStepIndex()}
@@ -71,7 +78,7 @@ class Track extends React.Component {
                 src: `/api/sample/${this.props.sound}`} )}
               toggleMatrix={this.props.toggleMatrix}
             />
-
+            </div>
         )}
         <button onClick={this.mute.bind(this)}>MUTE</button>
         <button onClick={this.volDown.bind(this)}>-</button>

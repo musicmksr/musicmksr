@@ -16,17 +16,33 @@ body{
 	height: 30px;
 	width: 30px;
 	padding: 1px;
-	margin: 15px;
 	display: inline-block;
+	margin: 4px;
 }
 .step-tt{
 	background-color: #4A69BF;
 	height: 30px;
 	width: 30px;
 	padding: 1px;
-	margin: 15px;
+	margin: 4px;
+	display: inline-block;
 }
-
+#step-wrapper{
+	background-color: #EEE;
+	height: 40px;
+	width: 40px;
+	padding: 1px;
+	margin: 15px;
+	display: inline-block;
+}
+#step-wrapper-active{
+	background-color: #C91625;
+	height: 40px;
+	width: 40px;
+	padding: 1px;
+	margin: 15px;
+	display: inline-block;
+}
 .step-tt-pl{
 	border-color: #C91625;
 	background-color: #4A69BF;
@@ -48,7 +64,7 @@ body{
 	text-align: center;
 }
 .userSequence img {
-	width: 100%; 
+	width: 100%;
 	padding: 1%;
 }
 
