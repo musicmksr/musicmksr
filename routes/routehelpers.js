@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log('inside routhelpers', process.env.NODE_ENV);
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -96,10 +94,9 @@ module.exports = {
   getUserProfile(req, res, next) {
     Sequence.findAll({where: { userId: req.params.userId }})
       .then((sequences) =>{
-        Sample.findAll({where: { userId: { $or: [req.params.userId, null] } } })
-          .then((samples) =>{
-            res.send({sequences: sequences, samples: samples});
-          });
+        module.exports.getUserSamples(req.params.userId, (samples) =>{
+          res.send({sequences: sequences, samples: samples});
+        });
       })
       .catch((err) =>{
         console.log(err);
@@ -130,6 +127,22 @@ module.exports = {
               console.log(err);
             });
         }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+
+  getSampleOptions(req, res, next) {
+    module.exports.getUserSamples(req.params.userId, (samples) =>{
+      res.send({samples: samples});
+    });
+  },
+
+  getUserSamples(userId, cb) {
+    Sample.findAll({where: { userId: { $or: [userId, null] } } })
+      .then((samples) =>{
+        if(cb) cb(samples);
       })
       .catch((err) => {
         console.log(err);

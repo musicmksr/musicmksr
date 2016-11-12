@@ -13,6 +13,7 @@ class App extends React.Component {
       loggedIn: false
     };
     this.getCookie();
+    browserHistory.push('/sequencer');
   }
 
 	close() {
@@ -73,7 +74,7 @@ class App extends React.Component {
 	              <span className="icon-bar"></span>
 	              <span className="icon-bar"></span>
 	            </button>
-	            <Link className="navbar-brand" to='/sequencer'>SimpletonLive</Link>
+	            <Link className="navbar-brand" to='/sequencer'>Steps 160</Link>
 	          </div>
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-right">
