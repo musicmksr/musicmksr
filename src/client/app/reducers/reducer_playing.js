@@ -6,8 +6,9 @@ export default (state = initialMatrix, action) => {
     case "TOGGLE_SAMPLE":
     	const index = action.payload[0];
 
+      const newSequence = _.cloneDeep(state);
+
     	if(index !== null){
-	    	const newSequence = _.cloneDeep(state);
 
 				// mutate toggle 
 				newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
@@ -20,7 +21,10 @@ export default (state = initialMatrix, action) => {
 				}
 
 	      return newSequence;
-   	 	}else {
+   	 	}else if(action.sound !== undefined && action.sampleIndex !== undefined){
+        newSequence.samples[action.sampleIndex] = action.sound;
+        return newSequence;
+      }else {
         console.log(action.payload[1].matrix);
    	 		return action.payload[1].matrix;
    	 	}

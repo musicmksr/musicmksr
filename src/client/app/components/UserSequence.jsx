@@ -8,8 +8,6 @@ class UserSequence extends React.Component {
 
 	chooseSequence() {
     // right now we are not able to set the store sequence to the new sequence becasue of some parsing error in json
-
-    console.log(this.props.newSequence);
     this.props.toggleMatrix(null, this.props.newSequence);
     browserHistory.push('/sequencer');
 	}
