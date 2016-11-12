@@ -110,8 +110,6 @@ module.exports = {
     title = title.replace(/<script.*>.*<\/script>/g, " ");
     title = title.trim();
 
-    console.log('TITLE KJFDNODNIONDSONF    ', title);
-
     Sequence.find({where: { name: title, userId: req.params.userId }})
       .then((foundItem) =>{
         console.log(foundItem)
