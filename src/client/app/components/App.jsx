@@ -12,10 +12,11 @@ class App extends React.Component {
       showModal: false,
       loggedIn: false
     };
-    this.getCookie();
     browserHistory.push('/sequencer');
   }
-
+  componentWillMount() {
+  	this.getCookie();
+  }
 	close() {
 		this.setState({ showModal: false });
 	}

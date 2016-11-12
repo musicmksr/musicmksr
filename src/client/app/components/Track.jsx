@@ -9,14 +9,17 @@ import request from 'axios';
 let lastId = 0;
 let lastWrapId = 0;
 let steps = [];
+
 class Track extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      samples: Object.keys(this.props.samples).map(key => this.props.samples[key]),
       sound: this.props.samples[this.props.index]
     };
-
-    this.setPlaySequence();
+  }
+  componentDidMount() {
+    this.createPlaySequence.call(this);
     this.getOptionSamples();
   }
   setStepIndex() {
@@ -45,9 +48,9 @@ class Track extends React.Component {
       if(sample.props.sound._volume<1){
           sample.props.sound._volume += 0.1;
           console.log(sample.props.sound._volume);
-    } else {
-      sample.props.sound._volume = 1;
-    }
+      } else {
+        sample.props.sound._volume = 1;
+      }
     });
   }
   volDown(){
@@ -55,12 +58,13 @@ class Track extends React.Component {
       if(sample.props.sound._volume>0){
           sample.props.sound._volume -= 0.1;
           console.log(sample.props.sound._volume);
-    } else {
-      sample.props.sound._volume = 0;
-    }
-    })
+      } else {
+        sample.props.sound._volume = 0;
+      }
+    });
   }
-  setPlaySequence(){
+  createPlaySequence(){
+    console.log('hello')
     let ps = this.props.track.map((step, index) =>
       {
         return <Sample
@@ -70,19 +74,22 @@ class Track extends React.Component {
                />
       }
     );
-    this.props.setPlaySequence(ps, this.props.trackLength);
+    this.props.setPlaySequence.call(null, ps, this.props.trackLength);
   }
   getOptionSamples() {
-    // get the samples from the server
-    // add them on to this.props.samples when and if they do not already exist in the array (push them)
+    let samplesArr = this.state.samples.slice();
+
     if(window.newCookie){
       request.get(`/api/options/${window.newCookie.user.mainId}`)
         .then((response) =>{
-          // response is an object with data 
-            // data has a samples propert
-              // samples is an array of objects
-                // these objects have a name property we want to use
-          console.log(response, ' options')
+          response.data.samples.forEach((sound, index) =>{
+            if(samplesArr.indexOf(sound.name) === -1){
+              samplesArr.push(sound.name);
+            }
+          }); 
+          this.setState({
+            samples: samplesArr
+          });
         })
         .catch((err) =>{
           console.log(err);
@@ -93,22 +100,25 @@ class Track extends React.Component {
     this.setState({
       sound: event.target.value
     });
+
+    this.createPlaySequence.call(this);
   }
 
   render() {
     return(
       <div>
         {this.props.track.map((step, index) =>
-            <div id='step-wrapper' className={this.setWrapIndex()}><Sample
-              playState={this.props.playState}
-              key={[this.props.index, index]}
-              stepIndex={this.setStepIndex()}
-              step={step}
-              index={[this.props.index, index]}
-              sound={new Howl( {
-                src: `/api/sample/${this.state.sound}`} )}
-              toggleMatrix={this.props.toggleMatrix}
-            />
+            <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
+              <Sample
+                playState={this.props.playState}
+                key={[this.props.index, index]}
+                stepIndex={this.setStepIndex()}
+                step={step}
+                index={[this.props.index, index]}
+                sound={new Howl( {
+                  src: `/api/sample/${this.state.sound}`} )}
+                toggleMatrix={this.props.toggleMatrix}
+              />
             </div>
         )}
         <button onClick={this.mute.bind(this)}>MUTE</button>
@@ -116,8 +126,8 @@ class Track extends React.Component {
           {this.props.playSequence[this.props.index]._volume}
         <button onClick={this.volUp.bind(this)}>+</button>
         <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
-          {this.props.matrix.map((track, index) =>
-            <Options key={this.props.samples[index]} sound={this.props.samples[index]} />
+          {this.state.samples.map((sound, index) =>
+            <Options key={sound} sound={sound} />
           )}
         </select>
       </div>

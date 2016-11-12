@@ -6,11 +6,14 @@ import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
 import request from 'axios';
+
 let currentCol = 1;
+
 window.innerPlay;
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       playing: false,
       message: '',
@@ -24,6 +27,7 @@ class Sequencer extends React.Component {
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
+
     steps.forEach(function(sample){
       if(sample.props.index[0]===1){
         sample.props.sound._muted = !sample.props.sound._muted;
@@ -32,33 +36,33 @@ class Sequencer extends React.Component {
   }
   play() {
     if (!this.state.playing) {
+
       this.setState({
         playing: true
       });
+
       currentCol = 1;
       const context = this;
       const steps = _.flatten(this.props.playSequence);
-      steps.forEach((sound)=>{
-      });
+
       window.innerPlay = setInterval(() =>{
         steps.forEach((step, index) =>{
           if(step.props.stepIndex === currentCol){
             let elements = document.getElementsByClassName(step.props.stepIndex.toString());
-            elements = Array.prototype.slice.call(elements)
-            console.log(elements);
+            elements = Array.prototype.slice.call(elements);
+
             elements.forEach((element)=>{
               element.id='step-wrapper-active';
-            })
-
-          }
-          else if(step.props.stepIndex !== currentCol){
+            });
+          }else if(step.props.stepIndex !== currentCol){
             let elements = document.getElementsByClassName(step.props.stepIndex.toString());
-            elements = Array.prototype.slice.call(elements)
+            elements = Array.prototype.slice.call(elements);
             elements.forEach((element)=>{
                 element.id='step-wrapper';
-              })
+              });
 
-            }
+          }
+
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !step.props.sound._muted
             )
@@ -66,6 +70,7 @@ class Sequencer extends React.Component {
             step.props.sound.play();
           }
         });
+
         if (currentCol < 16){
           currentCol++;
         } else {
@@ -112,6 +117,7 @@ class Sequencer extends React.Component {
   setTitle(event) {
     this.props.sequence.name = '';
     let title = event.target.value;
+
     this.setState({
       title: title,
       titleWarning: 'New titles will save as new beats!'
@@ -120,11 +126,13 @@ class Sequencer extends React.Component {
   render() {
     let message = this.state.message;
     let play = '';
+
     if(this.state.playing === false){
       play = 'Play';
     } else {
       play = 'Stop';
     }
+    
     return(
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
@@ -132,10 +140,23 @@ class Sequencer extends React.Component {
         </Alert>
 
         <button onClick={this.play.bind(this, null)}>{play}</button>
+
         <form action='javascript:void(0)'>
-          <input type='text' name='title' value={this.state.title || this.props.sequence.name} onChange={this.setTitle.bind(this)} required/>
-          <button onClick={this.save.bind(this, this.props.sequence)}>Save</button> <span>{this.state.titleWarning}</span>
+          <input 
+            type='text' 
+            name='title' 
+            value={this.state.title || this.props.sequence.name} 
+            onChange={this.setTitle.bind(this)} 
+            required
+          />
+          <button onClick={this.save.bind(this, this.props.sequence)}>
+            Save
+          </button> 
+          <span>
+            {this.state.titleWarning}
+          </span>
         </form>
+
         {this.props.sequence.matrix.map((track, index) =>
             <Track
               playState={this.state.playing}
