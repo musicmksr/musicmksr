@@ -1,7 +1,5 @@
 require('dotenv').config();
 
-console.log('inside routhelpers', process.env.NODE_ENV);
-
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
@@ -136,7 +134,6 @@ module.exports = {
   },
 
   getSampleOptions(req, res, next) {
-    console.log(req.params);
     module.exports.getUserSamples(req.params.userId, (samples) =>{
       res.send({samples: samples});
     });

@@ -13,6 +13,7 @@ class App extends React.Component {
       loggedIn: false
     };
     this.getCookie();
+    browserHistory.push('/sequencer');
   }
 
 	close() {
