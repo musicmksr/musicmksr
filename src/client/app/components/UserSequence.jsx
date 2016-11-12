@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import toggleMatrix from '../actions/toggleMatrix';
+import request from 'axios';
 
 class UserSequence extends React.Component {
 
@@ -12,13 +13,26 @@ class UserSequence extends React.Component {
     browserHistory.push('/sequencer');
 	}
 
+  deleteSequence() {
+    request.delete(`/api/deleteSequence/${this.props.name}/${window.newCookie.user.mainId}`)
+      .then((response) =>{
+        this.props.getUserInfo();
+      })
+      .catch((err) =>{
+        console.log(err);
+      });
+  }
+
   render() {
     return(
-      <div onClick={this.chooseSequence.bind(this)} className='col-md-2 userSequence-container'>
-        <h3>{this.props.name}</h3>
-      	<div className='userSequence'>
-      		<img src='imgs/sequence.jpg'/>
-      	</div>
+      <div  className='col-md-2 userSequence-container'>
+        <div onClick={this.chooseSequence.bind(this)}>
+          <h3>{this.props.name}</h3>
+        	<div className='userSequence'>
+        		<img src='imgs/sequence.jpg'/>
+        	</div>
+        </div>
+        <button className='btn' onClick={this.deleteSequence.bind(this)}>Delete</button>
       </div>
     )
   }

@@ -56,14 +56,22 @@ module.exports = {
       });
   },
 
+  setHeader(req, res, next) {
+    res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
+    next();
+  },
+
   loginRedirect(req, res, next) {
     console.log(`Login Action ${req.session}`);
     res.redirect('/');
   },
-  
-  setHeader(req, res, next) {
-    res.setHeader('Set-Cookie', JSON.stringify(req.session.cookie.passport));
-    next();
+
+  isLoggedIn(req, res, next) {
+    if(req.session.passport.user.displayName && req.session.passport.user.provider === 'facebook'){
+      next();
+    }else{
+      res.end('failed');
+    }
   },
 
   getSong(req, res, next) {
@@ -84,6 +92,12 @@ module.exports = {
 
         rs.pipe(res);
       });
+  },
+
+  getSampleOptions(req, res, next) {
+    module.exports.getUserSamples(req.params.userId, (samples) =>{
+      res.send({samples: samples});
+    });
   },
 
   getUserSession(req, res, next) {
@@ -109,12 +123,12 @@ module.exports = {
     title = title.replace(/<script.*>.*<\/script>/g, " ");
     title = title.trim();
 
-    Sequence.find({where: { name: title, userId: req.params.userId }})
+    Sequence.find({where: { name: title, userId: req.body.userId }})
       .then((foundItem) =>{
         console.log(foundItem)
         if(!foundItem){
           // create
-          Sequence.create({name: title, matrix: sequence, userId: req.session.passport.user.mainId})
+          Sequence.create({name: title, matrix: sequence, userId: req.body.userId})
             .then((response) =>{
               res.send('Saved');
             })
@@ -136,10 +150,14 @@ module.exports = {
       });
   },
 
-  getSampleOptions(req, res, next) {
-    module.exports.getUserSamples(req.params.userId, (samples) =>{
-      res.send({samples: samples});
-    });
+  deleteSequence(req, res, next) {
+    Sequence.destroy({where: { name: req.params.sequenceName, userId: req.params.userId}})
+      .then((response) =>{
+        res.end();
+      })
+      .catch((err) =>{
+        console.log(err);
+      });
   },
 
   getUserSamples(userId, cb) {
