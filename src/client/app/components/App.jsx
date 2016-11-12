@@ -12,10 +12,10 @@ class App extends React.Component {
       showModal: false,
       loggedIn: false
     };
-    this.getCookie();
-    browserHistory.push('/sequencer');
   }
-
+  componentWillMount() {
+  	this.getCookie.call(this);
+  }
 	close() {
 		this.setState({ showModal: false });
 	}
@@ -37,7 +37,12 @@ class App extends React.Component {
 					this.setState({
 						loggedIn: true
 					});
+
+					//
 				}
+			})
+			.then(() =>{
+				browserHistory.push('/sequencer');
 			})
 			.catch((error) =>{
 		    console.log(error);

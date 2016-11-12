@@ -1,5 +1,4 @@
-export default (index, sequence) =>{
-	console.log(sequence, ' inside action')
+export default (index, sequence, sound, sampleIndex) =>{
 	if(sequence !== undefined){
 		const matrix = JSON.parse(sequence.matrix);
 		//set the matrix on the matrix
@@ -9,6 +8,8 @@ export default (index, sequence) =>{
 	}
 	return{
 		type: 'TOGGLE_SAMPLE',
-		payload: [index, sequence]
+		payload: [index, sequence],
+		sound: sound,
+		sampleIndex: sampleIndex
 	};
 };
