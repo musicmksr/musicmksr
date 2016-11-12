@@ -1,6 +1,7 @@
 'use strict';
 
 require('dotenv').config();
+
 const Sequelize = require('sequelize');
 
 const app = require('../../server');
@@ -24,7 +25,7 @@ beforeAll(function(done) {
 	    done();
 	  })
 	  .catch(function (err) {
-	    console.error.bind(console, 'Sequelize connection error: ')
+	    console.error.bind(console, 'Sequelize connection error: ');
 	  });
 });
 

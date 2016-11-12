@@ -9,7 +9,6 @@ const User = require('../db/schema').User;
 const Sequence = require('../db/schema').Sequence;
 const Sample = require('../db/schema').Sample;
 
-
 module.exports = {
   newUser(req, res, next) {
     let emailOrId;
