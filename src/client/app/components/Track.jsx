@@ -11,7 +11,6 @@ let lastId = 0;
 let lastWrapId = 0;
 let steps = [];
 
-
 class Track extends React.Component {
   constructor(props){
     super(props);
@@ -117,9 +116,7 @@ class Track extends React.Component {
     this.props.toggleMatrix(null, undefined, event.target.value, this.props.index);
   }
 
-
   render() {
-    let slide = document.getElementById('slide')
     // deprecated vol controls this.props.playSequence[this.props.index]._volume
     //     <button className='btn' onClick={this.volDown.bind(this)}>-</button>
     //    <button className='btn' onClick={this.volUp.bind(this)}>+</button>
