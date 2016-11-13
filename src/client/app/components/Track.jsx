@@ -130,8 +130,7 @@ class Track extends React.Component {
                 stepIndex={this.setStepIndex()}
                 step={step}
                 index={[this.props.index, index]}
-                sound={new Howl( {
-                  src: `/api/sample/${this.state.sound}`} )}
+                sound={this.props.newTestSound}
                 toggleMatrix={this.props.toggleMatrix}
               />
             </div>
