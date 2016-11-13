@@ -44,6 +44,14 @@ class Track extends React.Component {
     });
     console.log('matrix:', this.props.playSequence);
   }
+  volChange(){
+    let slider = document.getElementById('slider'+this.props.index);
+    this.props.playSequence[this.props.index].forEach(function(sample, index){
+      sample.props.sound._volume = slider.value/100;
+      console.log('VOLUME:', sample.props.sound._volume)
+    })
+  }
+
   volUp(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume<1){
@@ -109,7 +117,9 @@ class Track extends React.Component {
   }
 
   render() {
-    // what was inside volume this.props.playSequence[this.props.index]._volume
+    // deprecated vol controls this.props.playSequence[this.props.index]._volume
+    //     <button className='btn' onClick={this.volDown.bind(this)}>-</button>
+    //    <button className='btn' onClick={this.volUp.bind(this)}>+</button>
     return(
       <div>
         {this.props.track.map((step, index) =>
@@ -128,9 +138,7 @@ class Track extends React.Component {
         )}
         <div className='buttons'>
           <button className='btn' data-toggle="button" onClick={this.mute.bind(this)}>MUTE</button>
-          <button className='btn' onClick={this.volDown.bind(this)}>-</button>
-            volume
-          <button className='btn' onClick={this.volUp.bind(this)}>+</button>
+          <input id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
         </div>
         <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
           {this.state.samples.map((sound, index) =>
