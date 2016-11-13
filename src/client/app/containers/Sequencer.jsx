@@ -19,11 +19,40 @@ class Sequencer extends React.Component {
       message: '',
       messageCl: 'hidden',
       title: this.props.sequence.name || '',
-      titleWarning: ''
+      titleWarning: '',
+      test: {}
     };
   }
   componentDidMount(){
     clearInterval(window.innerPlay);
+    this.tryIndividualRequest((data) =>{
+      console.log(data);
+      // HOW DO I MAKE THIS DATA THINGY ACCESSABLE BY HOWLERS
+      this.setState({
+        test: data
+      });
+    });
+  }
+  tryIndividualRequest(cb) {
+    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var source = audioCtx.createBufferSource();
+    const newRequest = new XMLHttpRequest();
+
+    newRequest.open('GET', '/api/sample/bigkik.wav', true);
+    newRequest.responseType = 'arraybuffer';
+
+    newRequest.onload = () =>{
+      audioCtx.decodeAudioData(newRequest.response, (buffer) =>{
+        source.buffer = buffer;
+        source.connect(audioCtx.destination);
+
+        if(cb) cb(source);
+      }, (error) =>{
+          console.error("decodeAudioData error", error);
+      });
+    };
+
+    newRequest.send();//start doing something async
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -134,9 +163,15 @@ class Sequencer extends React.Component {
     } else {
       play = 'Stop';
     }
-    
+    console.log(this.state.test)
     return(
       <div className="sequence">
+        <audio controls>
+            <source 
+              src={this.state.test} 
+              type={`audio/wav`}>
+            </source>
+        </audio>
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>
