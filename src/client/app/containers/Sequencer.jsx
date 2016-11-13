@@ -76,7 +76,7 @@ class Sequencer extends React.Component {
               });
 
           }
-
+          console.log(step.props);
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !step.props.sound._muted
             )
@@ -106,7 +106,11 @@ class Sequencer extends React.Component {
           messageCl: 'show'
         });
 
-        const sendObj = { sequence: sequence, title: this.state.title, userId: window.newCookie.user.mainId };
+        const sendObj = { 
+          sequence: sequence, 
+          title: this.state.title, 
+          userId: window.newCookie.user.mainId 
+        };
 
         request.post('/api/save', sendObj)
           .then((response) =>{
@@ -178,6 +182,7 @@ class Sequencer extends React.Component {
               key={index}
               track={track}
               index={index}
+              newTestSound={this.state.test[index]}
               matrix={this.props.sequence.matrix}
               samples={this.props.sequence.samples}
               sound={this.props.sequence.samples[index]}
