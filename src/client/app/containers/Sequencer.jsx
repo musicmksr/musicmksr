@@ -25,34 +25,19 @@ class Sequencer extends React.Component {
   }
   componentDidMount(){
     clearInterval(window.innerPlay);
-    this.tryIndividualRequest((data) =>{
-      console.log(data);
-      // HOW DO I MAKE THIS DATA THINGY ACCESSABLE BY HOWLERS
-      this.setState({
-        test: data
-      });
-    });
+    this.tryRequest(this.props.sequence.samples);
   }
-  tryIndividualRequest(cb) {
-    var audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    var source = audioCtx.createBufferSource();
-    const newRequest = new XMLHttpRequest();
+  tryRequest(samplesObj) {
+    let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
+    const testObj = {};
 
-    newRequest.open('GET', '/api/sample/bigkik.wav', true);
-    newRequest.responseType = 'arraybuffer';
+    samplesArr.forEach((sample, index) =>{
+      testObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+    });
 
-    newRequest.onload = () =>{
-      audioCtx.decodeAudioData(newRequest.response, (buffer) =>{
-        source.buffer = buffer;
-        source.connect(audioCtx.destination);
-
-        if(cb) cb(source);
-      }, (error) =>{
-          console.error("decodeAudioData error", error);
-      });
-    };
-
-    newRequest.send();//start doing something async
+    this.setState({
+      test: testObj
+    });
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -163,15 +148,9 @@ class Sequencer extends React.Component {
     } else {
       play = 'Stop';
     }
-    console.log(this.state.test)
+    console.log('test object for howls ', this.state.test)
     return(
       <div className="sequence">
-        <audio controls>
-            <source 
-              src={this.state.test} 
-              type={`audio/wav`}>
-            </source>
-        </audio>
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>
