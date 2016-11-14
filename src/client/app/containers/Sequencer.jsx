@@ -28,20 +28,14 @@ class Sequencer extends React.Component {
     clearInterval(window.innerPlay);
   }
   howlObjRequest(samplesObj) {
-    // this works to load all the samples correctly but does not refire when i change samples from the options
-    // i need this to fire on change of object from store, i need it to fire like render fires
-    // if this can fire like render fires than i can use its info to effect the sounds on the playsequence
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
     const sampObj = {};
-
+    // console.log(typeof window.howlObj[0]._src === undefined)
     samplesArr.forEach((sample, index) =>{
       sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
     });
 
     window.howlObj = sampObj;
-    // this.setState({
-    //   test: testObj
-    // });
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -85,7 +79,6 @@ class Sequencer extends React.Component {
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
           {
-
             step.props.sound.play();
           }
         });
