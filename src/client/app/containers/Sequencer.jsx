@@ -35,7 +35,6 @@ class Sequencer extends React.Component {
     const testObj = {};
 
     samplesArr.forEach((sample, index) =>{
-      console.log('get request for sounds')
       testObj[index] = new Howl( {src: `/api/sample/${sample}`} );
     });
 
@@ -81,7 +80,7 @@ class Sequencer extends React.Component {
               });
 
           }
-          console.log(step.props);
+
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !step.props.sound._muted
             )
