@@ -10,6 +10,7 @@ import request from 'axios';
 let currentCol = 1;
 
 window.innerPlay;
+window.howlObj = {};
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
@@ -19,11 +20,22 @@ class Sequencer extends React.Component {
       message: '',
       messageCl: 'hidden',
       title: this.props.sequence.name || '',
-      titleWarning: ''
+      titleWarning: '',
+      test: {}
     };
   }
   componentDidMount(){
     clearInterval(window.innerPlay);
+  }
+  howlObjRequest(samplesObj) {
+    let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
+    const sampObj = {};
+    // console.log(typeof window.howlObj[0]._src === undefined)
+    samplesArr.forEach((sample, index) =>{
+      sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+    });
+
+    window.howlObj = sampObj;
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -64,7 +76,7 @@ class Sequencer extends React.Component {
           }
 
           if(step.props.stepIndex === currentCol &&
-              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !step.props.sound._muted
+              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
           {
             step.props.sound.play();
@@ -92,7 +104,11 @@ class Sequencer extends React.Component {
           messageCl: 'show'
         });
 
-        const sendObj = { sequence: sequence, title: this.state.title, userId: window.newCookie.user.mainId };
+        const sendObj = { 
+          sequence: sequence, 
+          title: this.state.title, 
+          userId: window.newCookie.user.mainId 
+        };
 
         request.post('/api/save', sendObj)
           .then((response) =>{
@@ -126,6 +142,8 @@ class Sequencer extends React.Component {
     });
   }
   render() {
+    this.howlObjRequest(this.props.sequence.samples);
+
     let message = this.state.message;
     let play = '';
 
@@ -134,7 +152,7 @@ class Sequencer extends React.Component {
     } else {
       play = 'Stop';
     }
-    
+
     return(
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
@@ -164,6 +182,7 @@ class Sequencer extends React.Component {
               key={index}
               track={track}
               index={index}
+              newTestSound={window.howlObj[index]}
               matrix={this.props.sequence.matrix}
               samples={this.props.sequence.samples}
               sound={this.props.sequence.samples[index]}
