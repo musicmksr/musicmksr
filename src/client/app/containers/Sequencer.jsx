@@ -10,7 +10,7 @@ import request from 'axios';
 let currentCol = 1;
 
 window.innerPlay;
-window.test = {};
+window.howlObj = {};
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
@@ -27,18 +27,18 @@ class Sequencer extends React.Component {
   componentDidMount(){
     clearInterval(window.innerPlay);
   }
-  tryRequest(samplesObj) {
+  howlObjRequest(samplesObj) {
     // this works to load all the samples correctly but does not refire when i change samples from the options
     // i need this to fire on change of object from store, i need it to fire like render fires
     // if this can fire like render fires than i can use its info to effect the sounds on the playsequence
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
-    const testObj = {};
+    const sampObj = {};
 
     samplesArr.forEach((sample, index) =>{
-      testObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+      sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
     });
 
-    window.test = testObj;
+    window.howlObj = sampObj;
     // this.setState({
     //   test: testObj
     // });
@@ -148,7 +148,7 @@ class Sequencer extends React.Component {
     });
   }
   render() {
-    this.tryRequest(this.props.sequence.samples);
+    this.howlObjRequest(this.props.sequence.samples);
 
     let message = this.state.message;
     let play = '';
@@ -188,7 +188,7 @@ class Sequencer extends React.Component {
               key={index}
               track={track}
               index={index}
-              newTestSound={window.test[index]}
+              newTestSound={window.howlObj[index]}
               matrix={this.props.sequence.matrix}
               samples={this.props.sequence.samples}
               sound={this.props.sequence.samples[index]}
