@@ -37,11 +37,8 @@ class Track extends React.Component {
     return lastWrapId;
   }
   mute(){
-    this.props.playSequence[this.props.index].forEach(function(sample, index){
-      // console.log(sample.props.sound._muted, index);
-      sample.props.sound._muted = !sample.props.sound._muted;
-    });
-    console.log('matrix:', this.props.playSequence);
+    this.props.newTestSound._muted = !this.props.newTestSound._muted; 
+    // console.log('matrix:', this.props.playSequence);
   }
   volUp(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){

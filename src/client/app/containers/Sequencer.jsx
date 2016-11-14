@@ -82,9 +82,10 @@ class Sequencer extends React.Component {
           }
 
           if(step.props.stepIndex === currentCol &&
-              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !step.props.sound._muted
+              context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
           {
+
             step.props.sound.play();
           }
         });
