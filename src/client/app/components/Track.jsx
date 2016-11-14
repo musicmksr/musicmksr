@@ -73,7 +73,6 @@ class Track extends React.Component {
     //   console.log('new');
     //   src = this.props.newTestSound;
     // }
-    console.log(this.props.newTestSound)
 
     let ps = this.props.track.map((step, index) =>
       {
