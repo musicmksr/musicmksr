@@ -29,21 +29,21 @@ class Sequencer extends React.Component {
   }
   howlObjRequest(samplesObj) {
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
-    const sampObj = {};
+    const newSampObj = {};
 
     samplesArr.forEach((sample, index) =>{
       if(window.howlObj[index]){
         if(`/api/sample/${samplesArr[index]}` === window.howlObj[index]._src){
-          sampObj[index] = window.howlObj[index];
+          newSampObj[index] = window.howlObj[index];
         }else {
-          sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+          newSampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
         }
       } else {
-        sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+        newSampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
       }
     });
 
-    window.howlObj = sampObj;
+    window.howlObj = newSampObj;
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -190,7 +190,7 @@ class Sequencer extends React.Component {
               key={index}
               track={track}
               index={index}
-              newTestSound={window.howlObj[index]}
+              howlerObject={window.howlObj[index]}
               matrix={this.props.sequence.matrix}
               samples={this.props.sequence.samples}
               sound={this.props.sequence.samples[index]}

@@ -37,7 +37,7 @@ class Track extends React.Component {
     return lastWrapId;
   }
   mute(){
-    this.props.newTestSound._muted = !this.props.newTestSound._muted; 
+    this.props.howlerObject._muted = !this.props.howlerObject._muted; 
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
@@ -74,7 +74,7 @@ class Track extends React.Component {
                 index={[this.props.index, index]}
                 key={[this.props.index, index]}
                 stepIndex={this.setStepIndex()}
-                sound={this.props.newTestSound}
+                sound={this.props.howlerObject}
                />
       }
     );
@@ -130,7 +130,7 @@ class Track extends React.Component {
                 stepIndex={this.setStepIndex()}
                 step={step}
                 index={[this.props.index, index]}
-                sound={this.props.newTestSound}
+                sound={this.props.howlerObject}
                 toggleMatrix={this.props.toggleMatrix}
               />
             </div>
