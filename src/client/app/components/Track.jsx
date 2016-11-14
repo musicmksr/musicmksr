@@ -38,7 +38,6 @@ class Track extends React.Component {
   }
   mute(){
     this.props.newTestSound._muted = !this.props.newTestSound._muted; 
-    // console.log('matrix:', this.props.playSequence);
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);

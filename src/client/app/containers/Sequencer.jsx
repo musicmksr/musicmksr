@@ -44,8 +44,6 @@ class Sequencer extends React.Component {
     });
 
     window.howlObj = sampObj;
-
-    console.log(window.howlObj);
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
