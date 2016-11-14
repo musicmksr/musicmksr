@@ -38,7 +38,7 @@ class Track extends React.Component {
   }
   mute(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
-      console.log(sample.props.sound._muted, index);
+      // console.log(sample.props.sound._muted, index);
       sample.props.sound._muted = !sample.props.sound._muted;
     });
     console.log('matrix:', this.props.playSequence);
@@ -63,17 +63,7 @@ class Track extends React.Component {
       }
     });
   }
-  createPlaySequence(sound){
-    // let src;
-
-    // if(sound !== undefined){
-    //   console.log('old');
-    //   src = new Howl({ src: `/api/sample/${sound}` });
-    // }else{
-    //   console.log('new');
-    //   src = this.props.newTestSound;
-    // }
-
+  createPlaySequence(){
     let ps = this.props.track.map((step, index) =>
       {
         return <Sample
