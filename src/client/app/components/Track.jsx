@@ -20,7 +20,6 @@ class Track extends React.Component {
     };
   }
   componentDidMount() {
-    this.createPlaySequence.call(this);
     this.getOptionSamples.call(this);
   }
   setStepIndex() {
@@ -65,13 +64,24 @@ class Track extends React.Component {
     });
   }
   createPlaySequence(sound){
+    // let src;
+
+    // if(sound !== undefined){
+    //   console.log('old');
+    //   src = new Howl({ src: `/api/sample/${sound}` });
+    // }else{
+    //   console.log('new');
+    //   src = this.props.newTestSound;
+    // }
+    console.log(this.props.newTestSound)
+
     let ps = this.props.track.map((step, index) =>
       {
         return <Sample
                 index={[this.props.index, index]}
                 key={[this.props.index, index]}
                 stepIndex={this.setStepIndex()}
-                sound={new Howl( { src: `/api/sample/${sound || this.state.sound}`} )}
+                sound={this.props.newTestSound}
                />
       }
     );
@@ -110,6 +120,7 @@ class Track extends React.Component {
 
   render() {
     // what was inside volume this.props.playSequence[this.props.index]._volume
+    this.createPlaySequence.call(this);
     return(
       <div>
         {this.props.track.map((step, index) =>

@@ -10,6 +10,7 @@ import request from 'axios';
 let currentCol = 1;
 
 window.innerPlay;
+window.test = {};
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
@@ -25,9 +26,12 @@ class Sequencer extends React.Component {
   }
   componentDidMount(){
     clearInterval(window.innerPlay);
-    this.tryRequest(this.props.sequence.samples);
   }
   tryRequest(samplesObj) {
+    // this works to load all the samples correctly but does not refire when i change samples from the options
+    // i need this to fire on change of object from store, i need it to fire like render fires
+    // if this can fire like render fires than i can use its info to effect the sounds on the playsequence
+
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
     const testObj = {};
 
@@ -35,9 +39,10 @@ class Sequencer extends React.Component {
       testObj[index] = new Howl( {src: `/api/sample/${sample}`} );
     });
 
-    this.setState({
-      test: testObj
-    });
+    window.test = testObj;
+    // this.setState({
+    //   test: testObj
+    // });
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
@@ -144,6 +149,8 @@ class Sequencer extends React.Component {
     });
   }
   render() {
+    this.tryRequest(this.props.sequence.samples);
+
     let message = this.state.message;
     let play = '';
 
@@ -152,7 +159,7 @@ class Sequencer extends React.Component {
     } else {
       play = 'Stop';
     }
-    console.log('test object for howls ', this.state.test)
+
     return(
       <div className="sequence">
         <Alert className={this.state.messageCl} bsStyle="info">
@@ -182,7 +189,7 @@ class Sequencer extends React.Component {
               key={index}
               track={track}
               index={index}
-              newTestSound={this.state.test[index]}
+              newTestSound={window.test[index]}
               matrix={this.props.sequence.matrix}
               samples={this.props.sequence.samples}
               sound={this.props.sequence.samples[index]}
