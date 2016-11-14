@@ -31,11 +31,11 @@ class Sequencer extends React.Component {
     // this works to load all the samples correctly but does not refire when i change samples from the options
     // i need this to fire on change of object from store, i need it to fire like render fires
     // if this can fire like render fires than i can use its info to effect the sounds on the playsequence
-
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
     const testObj = {};
 
     samplesArr.forEach((sample, index) =>{
+      console.log('get request for sounds')
       testObj[index] = new Howl( {src: `/api/sample/${sample}`} );
     });
 
