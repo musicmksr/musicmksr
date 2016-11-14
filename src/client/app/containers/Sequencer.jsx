@@ -30,12 +30,22 @@ class Sequencer extends React.Component {
   howlObjRequest(samplesObj) {
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
     const sampObj = {};
-    // console.log(typeof window.howlObj[0]._src === undefined)
+
     samplesArr.forEach((sample, index) =>{
-      sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+      if(window.howlObj[index]){
+        if(`/api/sample/${samplesArr[index]}` === window.howlObj[index]._src){
+          sampObj[index] = window.howlObj[index];
+        }else {
+          sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+        }
+      } else {
+        sampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
+      }
     });
 
     window.howlObj = sampObj;
+
+    console.log(window.howlObj);
   }
   mute(){
     const steps = _.flatten(this.props.playSequence);
