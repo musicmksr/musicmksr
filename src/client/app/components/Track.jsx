@@ -120,7 +120,7 @@ class Track extends React.Component {
 
     // what was inside volume this.props.playSequence[this.props.index]._volume
     this.createPlaySequence.call(this);
-    
+
     return(
       <div>
         {this.props.track.map((step, index) =>
