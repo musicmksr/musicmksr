@@ -111,7 +111,7 @@ class Track extends React.Component {
     this.props.toggleMatrix(null, undefined, event.target.value, this.props.index);
   }
   deleteTrack(index) {
-    console.log('delete a track at index of:', index);
+    this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, undefined, true, index);
   }
   render() {
 
