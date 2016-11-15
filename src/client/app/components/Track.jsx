@@ -37,7 +37,7 @@ class Track extends React.Component {
     return lastWrapId;
   }
   mute(){
-    this.props.howlerObject._muted = !this.props.howlerObject._muted; 
+    this.props.howlerObject._muted = !this.props.howlerObject._muted;
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
@@ -91,7 +91,7 @@ class Track extends React.Component {
             if(samplesArr.indexOf(sound.name) === -1){
               samplesArr.push(sound.name);
             }
-          }); 
+          });
 
           this.setState({
             samples: samplesArr
@@ -113,6 +113,11 @@ class Track extends React.Component {
   deleteTrack(index) {
     this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, undefined, true, index);
   }
+  syncScroll() {
+    $('.stepsWrapper').scroll((e) => {
+      $('.stepsWrapper').scrollLeft(e.target.scrollLeft);
+    });
+  }
   render() {
 
     // deprecated vol controls this.props.playSequence[this.props.index]._volume
@@ -121,32 +126,34 @@ class Track extends React.Component {
 
     // what was inside volume this.props.playSequence[this.props.index]._volume
     this.createPlaySequence.call(this);
-    
+
     return(
       <div>
-        {this.props.track.map((step, index) =>
-            <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
-              <Sample
-                playState={this.props.playState}
-                key={[this.props.index, index]}
-                stepIndex={this.setStepIndex()}
-                step={step}
-                index={[this.props.index, index]}
-                sound={this.props.howlerObject}
-                toggleMatrix={this.props.toggleMatrix}
-              />
-            </div>
-        )}
-        <div className='buttons'>
+        <div className='stepsWrapper col-md-9' onScroll={_.debounce(this.syncScroll, 1000)}>
+          {this.props.track.map((step, index) =>
+              <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
+                <Sample
+                  playState={this.props.playState}
+                  key={[this.props.index, index]}
+                  stepIndex={this.setStepIndex()}
+                  step={step}
+                  index={[this.props.index, index]}
+                  sound={this.props.howlerObject}
+                  toggleMatrix={this.props.toggleMatrix}
+                />
+              </div>
+          )}
+        </div>
+        <div className='buttons col-md-3'>
           <button className='btn' data-toggle="button" onClick={this.mute.bind(this)}>MUTE</button>
           <input id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
+          <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
+            {this.state.samples.map((sound, index) =>
+              <Options key={[sound, index]} sound={sound} />
+            )}
+          </select>
+          <button onClick={this.deleteTrack.bind(this, this.props.index)}>Delete Track</button>
         </div>
-        <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
-          {this.state.samples.map((sound, index) =>
-            <Options key={[sound, index]} sound={sound} />
-          )}
-        </select>
-        <button onClick={this.deleteTrack.bind(this, this.props.index)}>Delete Track</button>
       </div>
     )
   }
@@ -154,7 +161,7 @@ class Track extends React.Component {
 function mapStateToProps(state) {
   return { playSequence: state.playSequence }
 }
-export default connect(mapStateToProps, 
-  { setPlaySequence: setPlaySequence, 
-    toggleMatrix: toggleMatrix 
+export default connect(mapStateToProps,
+  { setPlaySequence: setPlaySequence,
+    toggleMatrix: toggleMatrix
   })(Track);

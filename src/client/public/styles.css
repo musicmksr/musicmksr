@@ -48,6 +48,10 @@ body{
     vertical-align: middle;
     margin-bottom: 19px;
 }
+.stepsWrapper{
+	overflow: auto;
+  white-space:nowrap;
+}
 /*SEQUENCER*/
 
 /*PROFILE*/
