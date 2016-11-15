@@ -146,7 +146,6 @@ class Track extends React.Component {
             <Options key={[sound, index]} sound={sound} />
           )}
         </select>
-        <button onClick={this.deleteTrack.bind(this, this.props.index)}>Delete Track</button>
       </div>
     )
   }
