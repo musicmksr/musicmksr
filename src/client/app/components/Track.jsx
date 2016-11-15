@@ -21,6 +21,7 @@ class Track extends React.Component {
   }
   componentDidMount() {
     this.getOptionSamples.call(this);
+    this.syncScroll();
   }
   setStepIndex() {
     if (lastId === 16){

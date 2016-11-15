@@ -52,6 +52,9 @@ body{
 	overflow: auto;
   white-space:nowrap;
 }
+.stepsWrapper::-webkit-scrollbar {
+   display: none; 
+}
 /*SEQUENCER*/
 
 /*PROFILE*/
