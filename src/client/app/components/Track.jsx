@@ -110,7 +110,9 @@ class Track extends React.Component {
     this.createPlaySequence.call(this, event.target.value);
     this.props.toggleMatrix(null, undefined, event.target.value, this.props.index);
   }
-
+  deleteTrack(index) {
+    this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, undefined, true, index);
+  }
   render() {
 
     // deprecated vol controls this.props.playSequence[this.props.index]._volume
@@ -119,7 +121,7 @@ class Track extends React.Component {
 
     // what was inside volume this.props.playSequence[this.props.index]._volume
     this.createPlaySequence.call(this);
-
+    
     return(
       <div>
         {this.props.track.map((step, index) =>
@@ -144,6 +146,7 @@ class Track extends React.Component {
             <Options key={[sound, index]} sound={sound} />
           )}
         </select>
+        <button onClick={this.deleteTrack.bind(this, this.props.index)}>Delete Track</button>
       </div>
     )
   }

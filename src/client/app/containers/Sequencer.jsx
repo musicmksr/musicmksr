@@ -45,15 +45,6 @@ class Sequencer extends React.Component {
 
     window.howlObj = newSampObj;
   }
-  mute(){
-    const steps = _.flatten(this.props.playSequence);
-
-    steps.forEach(function(sample){
-      if(sample.props.index[0]===1){
-        sample.props.sound._muted = !sample.props.sound._muted;
-      }
-    });
-  }
   play() {
     if (!this.state.playing) {
 
@@ -149,6 +140,10 @@ class Sequencer extends React.Component {
       titleWarning: 'New titles will save as new beats!'
     });
   }
+  addTrack() {
+    console.log(this.props.sequence.matrix);
+    this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, true);
+  }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
 
@@ -162,7 +157,7 @@ class Sequencer extends React.Component {
     }
 
     return(
-      <div className="sequence">
+      <div>
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>
@@ -183,21 +178,25 @@ class Sequencer extends React.Component {
             {this.state.titleWarning}
           </span>
         </form>
-
-        {this.props.sequence.matrix.map((track, index) =>
-            <Track
-              playState={this.state.playing}
-              key={index}
-              track={track}
-              index={index}
-              howlerObject={window.howlObj[index]}
-              matrix={this.props.sequence.matrix}
-              samples={this.props.sequence.samples}
-              sound={this.props.sequence.samples[index]}
-              trackLength={this.props.sequence.matrix.length}
-              toggleMatrix={this.props.toggleMatrix.bind(this)}
-            />
-        )}
+        <div className='sequence'>
+          {this.props.sequence.matrix.map((track, index) =>
+              <Track
+                playState={this.state.playing}
+                key={index}
+                track={track}
+                index={index}
+                howlerObject={window.howlObj[index]}
+                matrix={this.props.sequence.matrix}
+                samples={this.props.sequence.samples}
+                sound={this.props.sequence.samples[index]}
+                trackLength={this.props.sequence.matrix.length}
+                toggleMatrix={this.props.toggleMatrix.bind(this)}
+              />
+          )}
+        </div>
+        <div>
+          <button onClick={this.addTrack.bind(this)}>Add Track</button>
+        </div>
       </div>
     )
   }
