@@ -51,5 +51,10 @@ module.exports = function(app) {
     helpers.isLoggedIn, 
     helpers.deleteSequence
   );
+
+  app.post('/api/waveTest', (req, res, next) =>{
+    console.log(req.body.data)
+    res.send('got it');
+  });
   
 };

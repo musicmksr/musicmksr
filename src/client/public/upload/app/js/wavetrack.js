@@ -107,6 +107,8 @@ function WaveTrack()
         {
             this.audioSequences[channelId].gain = this.audioSequences[channelId].getGain();
         }
+
+        console.log(this.audioSequences);
     };
     
     function convertIntToFloat(value, waveBitsPerSample, signedBorder)
@@ -172,6 +174,23 @@ function WaveTrack()
                 writer.writeInt16(convertFloatToInt(this.audioSequences[channelId].data[i], waveBitsPerSample, signedBorder));   
             }
         }
+
+        $.ajax({
+            method: 'POST',
+            url: `/api/waveTest`,
+            datatype: 'arrayBuffer',
+            data: {data: writer.data}
+        }).then((response) =>{
+            console.log(response);
+        });
+
+        console.log(writer)
+
+
+
+        var newSound = new Audio(writer.data);
+
+        console.log(newSound);
         
         return writer.data;
     

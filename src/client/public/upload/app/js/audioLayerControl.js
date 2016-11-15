@@ -312,6 +312,8 @@ function audioLayerControl(elementContext)
         }
         
         wave.fromAudioSequences(sequenceList);
+
+        console.log(wave, ' im here')
         return wave;
     };
     
@@ -351,6 +353,7 @@ function audioLayerControl(elementContext)
                                                   this.audioLayerControl.listOfSequenceEditors[0].audioSequenceReference.sampleRate, this.playLoop);
         }
         
+        console.log(audioDataRefs);
         
         /* slow version
         this.toWave().toBlobUrlAsync("audio/wav", function(url, host)
@@ -379,6 +382,8 @@ function audioLayerControl(elementContext)
         var url = this.toWave().toBlobUrlAsync("application/octet-stream");
         saveLink.href = url;
         saveLink.className = "btn btn-large btn-success";
+
+        console.log(url, ' asodihfnaoisnviaubdsvpi')
         /*this.toWave().toBlobUrlAsync(function(url, host)
                                 {
                                     saveLink.href = url;
