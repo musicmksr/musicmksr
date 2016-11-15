@@ -8,6 +8,9 @@ body{
 /*MAIN*/
 
 /*SEQUENCER*/
+.sequence{
+	height:100%;
+}
 .track{
 	display: inline-block;
 }
@@ -43,18 +46,35 @@ body{
 	margin: 15px;
 	display: inline-block;
 }
-.buttons{
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 19px;
-}
 .stepsWrapper{
 	overflow: auto;
   white-space:nowrap;
 }
 .stepsWrapper::-webkit-scrollbar {
-   display: none; 
+   display: none;
 }
+	/*TRACK CONTROLS*/
+	input[type=range] {
+		display: inline-block !important;
+	}
+	.trackControls{
+		display: inline-block;
+		/*vertical-align: middle;*/
+		margin-top:25px;
+	}
+	.sampleSelect{
+  	display: inline-block;
+	}
+	.volSlider{
+		width: 30% !important;
+		display: inline-block;
+	}
+	/*TRACK CONTROLS*/
+
+	.addTrack{
+		position: relative;
+	}
+
 /*SEQUENCER*/
 
 /*PROFILE*/

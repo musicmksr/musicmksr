@@ -103,10 +103,10 @@ class Sequencer extends React.Component {
           messageCl: 'show'
         });
 
-        const sendObj = { 
-          sequence: sequence, 
-          title: this.state.title, 
-          userId: window.newCookie.user.mainId 
+        const sendObj = {
+          sequence: sequence,
+          title: this.state.title,
+          userId: window.newCookie.user.mainId
         };
 
         request.post('/api/save', sendObj)
@@ -164,21 +164,21 @@ class Sequencer extends React.Component {
         <button onClick={this.play.bind(this, null)}>{play}</button>
 
         <form action='javascript:void(0)'>
-          <input 
-            type='text' 
-            name='title' 
-            value={this.state.title || this.props.sequence.name} 
-            onChange={this.setTitle.bind(this)} 
+          <input
+            type='text'
+            name='title'
+            value={this.state.title || this.props.sequence.name}
+            onChange={this.setTitle.bind(this)}
             required
           />
           <button onClick={this.save.bind(this, this.props.sequence)}>
             Save
-          </button> 
+          </button>
           <span>
             {this.state.titleWarning}
           </span>
         </form>
-        <div className='sequence'>
+        <div className='sequence container-fluid col-md-12'>
           {this.props.sequence.matrix.map((track, index) =>
               <Track
                 playState={this.state.playing}
@@ -194,7 +194,7 @@ class Sequencer extends React.Component {
               />
           )}
         </div>
-        <div>
+        <div className='addTrack'>
           <button onClick={this.addTrack.bind(this)}>Add Track</button>
         </div>
       </div>
