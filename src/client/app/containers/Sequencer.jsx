@@ -157,7 +157,7 @@ class Sequencer extends React.Component {
     }
 
     return(
-      <div>
+      <div className='outer container-fluid'>
         <Alert className={this.state.messageCl} bsStyle="info">
           {message}
         </Alert>

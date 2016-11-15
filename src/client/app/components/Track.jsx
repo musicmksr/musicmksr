@@ -129,7 +129,7 @@ class Track extends React.Component {
     this.createPlaySequence.call(this);
 
     return(
-      <div className='col-md-12'>
+      <div className='tracksWrapper'>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 1000)}>
           {this.props.track.map((step, index) =>
               <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
