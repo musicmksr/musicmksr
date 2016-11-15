@@ -48,6 +48,13 @@ body{
     vertical-align: middle;
     margin-bottom: 19px;
 }
+.stepsWrapper{
+	overflow: auto;
+  white-space:nowrap;
+}
+.stepsWrapper::-webkit-scrollbar {
+   display: none; 
+}
 /*SEQUENCER*/
 
 /*PROFILE*/
