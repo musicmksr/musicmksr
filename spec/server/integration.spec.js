@@ -1,10 +1,11 @@
 'use strict';
 
-const request = require('supertest-as-promised');
+const request = require('supertest');
 
 // test headers
 describe('/*', function() {
 	it('should have access control headers', function(done) {
+		done.fail();
 		request(this.app)
 			.get('/*')
 			.then((res) =>{
@@ -13,7 +14,8 @@ describe('/*', function() {
 				expect(res.header['access-control-allow-credentials'])
 					.toEqual('true');
 				done();
-			});
+			})
+			.catch(done.fail);
 	});
 });
 
@@ -27,6 +29,7 @@ describe('/api/song/bigkik.wav', function() {
 				expect(res.header['content-type']).toEqual('audio/wav');
 				expect(res.buffered).toEqual(true);
 				done();
-			});
+			})
+			.catch(done.fail);
 	});
 });
