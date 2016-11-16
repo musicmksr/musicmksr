@@ -146,11 +146,13 @@ class Track extends React.Component {
           )}
         </div>
         <div className='trackControls col-md-3 container-fluid'>
-          <select className='sampleSelect' value={this.state.sound} onChange={this.changeSample.bind(this)}>
-            {this.state.samples.map((sound, index) =>
-              <Options key={[sound, index]} sound={sound} />
-            )}
-          </select>
+          <div className='col-md-6'>
+            <select className='sampleSelect form-control' value={this.state.sound} onChange={this.changeSample.bind(this)}>
+              {this.state.samples.map((sound, index) =>
+                <Options key={[sound, index]} sound={sound} />
+              )}
+            </select>
+          </div>
           <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this)}/>
           <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
           <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
