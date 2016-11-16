@@ -151,8 +151,8 @@ class Track extends React.Component {
               <Options key={[sound, index]} sound={sound} />
             )}
           </select>
-          <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
           <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this)}/>
+          <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
           <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
         </div>
       </div>

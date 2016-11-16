@@ -22,33 +22,33 @@ body{
 }
 .step-tf{
 	background-color: #DFE1E2;
-	height: 40px;
-	width: 40px;
+	height: 34px;
+	width: 34px;
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
 }
 .step-tt{
-	background-color: #4A69BF;
-	height: 40px;
-	width: 40px;
+	background-color: #99DFCA;
+	height: 34px;
+	width: 34px;
 	margin: 0px;
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
 }
 #step-wrapper{
-	background-color: #EEE;
-	height: 50px;
-	width: 50px;
+	background-color: #DFE1E2;
+	height: 44px;
+	width: 44px;
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
 }
 #step-wrapper-active{
-	background-color: #C91625;
-	height: 50px;
-	width: 50px;
+	background-color: #F66662;
+	height: 44px;
+	width: 44px;
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
@@ -57,6 +57,7 @@ body{
 	overflow: auto;
   white-space:nowrap !important;
 	padding-left: 0px !important;
+	padding-right: 0px !important;
 }
 .stepsWrapper::-webkit-scrollbar {
    display: none;
@@ -68,13 +69,19 @@ body{
 	.trackControls{
 		display: inline-block;
 		margin-top:20px;
+		padding-left: 0px !important;
 	}
 	.sampleSelect{
   	display: inline-block;
+		margin-right: 10px;
+	}
+	.glyphicon{
+		margin-right: 10px;
 	}
 	.volSlider{
-		width: 30% !important;
+		width: 40px !important;
 		display: inline-block;
+		margin-right: 10px;
 	}
 	/*TRACK CONTROLS*/
 
