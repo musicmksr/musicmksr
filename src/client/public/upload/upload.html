@@ -94,8 +94,7 @@
                 <a id="btn_loop" class="btn btn-warning btn-large" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"><i class="icon-repeat icon-white"></i></a>
               </div>
               <div class="btn-group">
-                <a class="btn btn-large btn-primary" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);"><i class="icon-fire"></i> Render</a>
-                <a class="btn btn-large btn-success disabled" id="savelink"><i class="icon-download"></i> Save</a>
+                <a class="btn btn-large btn-primary" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);"><i class="icon-fire"></i> Save</a>
               </div>
             </div>
           </center>
@@ -261,5 +260,18 @@
     <script type="text/javascript" src="app/js/recorder.js"></script>
     <script type="text/javascript" src="app/js/recorderWorker.js"></script>
     <script type="text/javascript" src="app/js/editorapp.js"></script>
+    <script>
+      $(document).ready(function() {
+        axios.get('/api/session')
+          .then((response) =>{
+            console.log(response);
+            if(response.data.passport !== undefined){
+              window.userID = response.data.passport.user.mainId
+            }else {
+              window.location.replace("/");
+            }
+          });
+      });
+    </script>
   </body>
 </html>

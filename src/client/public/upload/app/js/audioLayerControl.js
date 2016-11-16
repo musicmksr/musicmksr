@@ -399,14 +399,18 @@ function audioLayerControl(elementContext)
 
         let fileUploadInfo = new FormData();
 
+        // grab the form data for the file info and the window id
         fileUploadInfo.append('name', 'newFile');
-        fileUploadInfo.append('id', 2);
+        fileUploadInfo.append('id', window.userID);
         fileUploadInfo.append('file', blob);
 
         axios.post('/api/wavetest', fileUploadInfo, 
           {headers: {'Content-Type': 'multipart/form-data'}})
           .then((response) =>{
             console.log(response);
+            if(response === 'refresh'){
+                window.location.replace("/upload/upload.html");
+            }
           })
           .catch((err) =>{
             console.log(err);

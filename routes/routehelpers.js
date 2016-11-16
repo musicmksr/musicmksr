@@ -75,6 +75,8 @@ module.exports = {
   },
 
   getSong(req, res, next) {
+      // I need to look up the hash for a file and use that hash to put into the path
+
       const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
@@ -174,7 +176,11 @@ module.exports = {
     console.log(req.body.name, req.file)
     // const stream = fs.createWriteStream(`${__dirname}/../samples/${req.body.name}.wav`);
     fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
-      if(err) console.log(err);
+      if(err) {
+        console.log(err);
+      }else{
+        res.send('refresh');
+      }
     });
   }
 
