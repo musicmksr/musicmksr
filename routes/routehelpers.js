@@ -75,10 +75,16 @@ module.exports = {
   },
 
   getSong(req, res, next) {
-      // I need to look up the hash for a file and use that hash to put into the path
 
-      const filePath = path.join(`${__dirname}/../samples/${req.params.songTitle}`);
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
+
+      // take file name at fileInfo[0] and find the hash from the database, use that hash to put into the bellwo file path
+      // that way i can use the file name hash pluse the .wave to grab it from the samples
+
+      // the front end is always asking for a file that is FILENAME.wav so i can always split it correctly, and when i send the names
+      // to the front end in the sample i will mutate the file name and add a .wav to it
+
+      const filePath = path.join(`${__dirname}/../samples/${fileInfo[0]}.wav`);
 
       fs.stat(filePath, (err, stat) =>{
         if(err) {
@@ -175,13 +181,13 @@ module.exports = {
   uploadAudio(req, res, next) {
     console.log(req.body.name, req.file)
     // const stream = fs.createWriteStream(`${__dirname}/../samples/${req.body.name}.wav`);
-    fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
-      if(err) {
-        console.log(err);
-      }else{
-        res.send('refresh');
-      }
-    });
+    // fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
+    //   if(err) {
+    //     console.log(err);
+    //   }else{
+    //     res.send('refresh');
+    //   }
+    // });
   }
 
 };

@@ -84,7 +84,6 @@ class Track extends React.Component {
     let samplesArr = this.state.samples.slice();
 
     if(window.newCookie){
-      console.log('inside if statement before get request in track')
       request.get(`/api/options/${window.newCookie.user.mainId}`)
         .then((response) =>{
           response.data.samples.forEach((sound, index) =>{
