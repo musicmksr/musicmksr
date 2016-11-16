@@ -21,35 +21,36 @@ body{
 }
 .step-tf{
 	background-color: #DFE1E2;
-	height: 30px;
-	width: 30px;
-	padding: 1px;
+	height: 40px;
+	width: 40px;
 	display: inline-block;
-	margin: 4px;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 .step-tt{
 	background-color: #4A69BF;
-	height: 30px;
-	width: 30px;
-	padding: 1px;
-	margin: 4px;
+	height: 40px;
+	width: 40px;
+	margin: 0px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 #step-wrapper{
 	background-color: #EEE;
-	height: 40px;
-	width: 40px;
-	padding: 1px;
-	margin: 15px;
+	height: 50px;
+	width: 50px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 #step-wrapper-active{
 	background-color: #C91625;
-	height: 40px;
-	width: 40px;
-	padding: 1px;
-	margin: 15px;
+	height: 50px;
+	width: 50px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
 }
 .stepsWrapper{
 	overflow: auto;

@@ -130,7 +130,7 @@ class Track extends React.Component {
 
     return(
       <div className='tracksWrapper'>
-        <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 1000)}>
+        <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
               <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
                 <Sample
