@@ -1,6 +1,7 @@
 const passport = require('passport');
 const helpers = require('./routehelpers');
-
+const multer = require('multer');
+const upload = multer();
 
 module.exports = function(app) {
 
@@ -54,6 +55,7 @@ module.exports = function(app) {
   );
 
   app.post('/api/waveTest', 
+    upload.single('file'),
     helpers.uploadAudio
   );
   

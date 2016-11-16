@@ -313,8 +313,6 @@ function audioLayerControl(elementContext)
         
         wave.fromAudioSequences(sequenceList);
 
-        console.log(wave.audioSequences[0], wave.audioSequences[1]);
-
         function mergeBuffers(channelBuffer, recordingLength){
           console.log(recordingLength, 'length')
           let result = new Float32Array(recordingLength);
@@ -358,9 +356,12 @@ function audioLayerControl(elementContext)
         let rightBuffer = mergeBuffers ( rightAudio, rightArr );
         // we interleave both channels together
         let interleaved = interleave ( leftBuffer, rightBuffer );
+
+        console.log(interleaved)
          
         // create the buffer and view to create the .WAV file
         let buffer = new ArrayBuffer(44 + interleaved.length * 2);
+        console.log(buffer)
         let view = new DataView(buffer);
          
         // write the WAV container, check spec at: https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
@@ -391,13 +392,19 @@ function audioLayerControl(elementContext)
             index += 2;
         }
 
-        console.log(view, ' view')
         // our final binary blob that we can hand off
         let blob = new Blob( [ view ], { type : 'audio/wav' } );
 
-        console.log(blob, ' blob')
+        console.log(blob, ' blob');
 
-        axios.post('/api/wavetest', {blob: blob})
+        let fileUploadInfo = new FormData();
+
+        fileUploadInfo.append('name', 'newFile');
+        fileUploadInfo.append('id', 2);
+        fileUploadInfo.append('file', blob);
+
+        axios.post('/api/wavetest', fileUploadInfo, 
+          {headers: {'Content-Type': 'multipart/form-data'}})
           .then((response) =>{
             console.log(response);
           })
