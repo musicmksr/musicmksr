@@ -158,26 +158,28 @@ class Sequencer extends React.Component {
 
     return(
       <div className='outer container-fluid'>
-        <Alert className={this.state.messageCl} bsStyle="info">
-          {message}
-        </Alert>
-        <button onClick={this.play.bind(this, null)}>{play}</button>
-
-        <form action='javascript:void(0)'>
-          <input
-            type='text'
-            name='title'
-            value={this.state.title || this.props.sequence.name}
-            onChange={this.setTitle.bind(this)}
-            required
-          />
-          <button onClick={this.save.bind(this, this.props.sequence)}>
-            Save
-          </button>
-          <span>
-            {this.state.titleWarning}
-          </span>
-        </form>
+        <div className='sequencerHeader'>
+            <Alert className={this.state.messageCl} bsStyle="info">
+              {message}
+            </Alert>
+            <form className='saveForm' action='javascript:void(0)'>
+              <input
+                type='text'
+                name='title'
+                className='titleInput'
+                value={this.state.title || this.props.sequence.name}
+                onChange={this.setTitle.bind(this)}
+                required
+              />
+              <button className='btn'onClick={this.save.bind(this, this.props.sequence)}>
+                Save
+              </button>
+              <span className='saveAlert'>
+                {this.state.titleWarning}
+              </span>
+            </form>
+            <button id='playButton' className='btn' onClick={this.play.bind(this, null)}>{play}</button>
+        </div>
         <div className='sequence container-fluid col-md-12'>
           {this.props.sequence.matrix.map((track, index) =>
               <Track
@@ -195,7 +197,7 @@ class Sequencer extends React.Component {
           )}
         </div>
         <div className='addTrack'>
-          <button onClick={this.addTrack.bind(this)}>Add Track</button>
+          <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
         </div>
       </div>
     )
