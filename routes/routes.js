@@ -1,6 +1,7 @@
 const passport = require('passport');
 const helpers = require('./routehelpers');
 
+
 module.exports = function(app) {
 
   app.use((req, res, next) => {
@@ -52,9 +53,8 @@ module.exports = function(app) {
     helpers.deleteSequence
   );
 
-  app.post('/api/waveTest', (req, res, next) =>{
-    console.log(req.body.data)
-    res.send('got it');
-  });
+  app.post('/api/waveTest', 
+    helpers.uploadAudio
+  );
   
 };

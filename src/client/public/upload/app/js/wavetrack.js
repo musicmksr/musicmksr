@@ -108,7 +108,6 @@ function WaveTrack()
             this.audioSequences[channelId].gain = this.audioSequences[channelId].getGain();
         }
 
-        console.log(this.audioSequences);
     };
     
     function convertIntToFloat(value, waveBitsPerSample, signedBorder)
@@ -175,22 +174,16 @@ function WaveTrack()
             }
         }
 
-        $.ajax({
-            method: 'POST',
-            url: `/api/waveTest`,
-            datatype: 'arrayBuffer',
-            data: {data: writer.data}
-        }).then((response) =>{
-            console.log(response);
-        });
+        console.log(writer);
 
-        console.log(writer)
-
-
-
-        var newSound = new Audio(writer.data);
-
-        console.log(newSound);
+        // axios.post('/api/wavetest', 
+        //   {wave1: writer.data})
+        //   .then((response) =>{
+        //     console.log(response);
+        //   })
+        //   .catch((err) =>{
+        //     console.log(err);
+        //   });
         
         return writer.data;
     

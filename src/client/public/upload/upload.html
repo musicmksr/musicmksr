@@ -220,47 +220,13 @@
 	<p>The project is available at github: <a href="https://github.com/plucked/html5-audio-editor">html5-audio-editor</a></p>
       </blockquote>
       </footer>
- 
-     
-    <!-- Le Help
-    ================================================== -->  
-    <div class="modal hide" id="helpAsModal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Help</h3>
-      </div>
-      <div class="modal-body">
-        <p>Help text … TODO</p>
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-      </div>
-    </div>
 
-     <!-- Le Startup
-    ================================================== -->  
-    <div class="modal hide" id="welcomeAsModal">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Information</h3>
-      </div>
-      <div class="modal-body">
-        <p>Welcome to my HTML 5 Audio Editor. You can edit WAVE, OGG and MP3 files and export them as WAVE. This application uses no extra plugins like Flash or Silverlight, it's written in JavaScript and HTML.</p>
-        <p>I used some of the implementations given the design draft of the HTML5 and Web Audio APIs. It is currently supported in all the major browsers except Internet Explorer.</p>
-        <p>Your browser support is: <span id="browser_support" class="label">Unknown</span></p>
-        <p>Have fun, this is a prototype and my first web project.</p>
-
-        
-      </div>
-      <div class="modal-footer">
-        <a href="#" class="btn" data-dismiss="modal">Close</a>
-      </div>
-    </div>
 
 
     <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.min.js"></script>
     <script src="jquery/js/jquery-1.7.2.js"></script>
     <script src="bootstrap/js/bootstrap-transition.js"></script>
     <script src="bootstrap/js/bootstrap-alert.js"></script>
@@ -295,25 +261,5 @@
     <script type="text/javascript" src="app/js/recorder.js"></script>
     <script type="text/javascript" src="app/js/recorderWorker.js"></script>
     <script type="text/javascript" src="app/js/editorapp.js"></script>
-
-    <script type="text/javascript">
-      $(window).load(function()
-      {
-        var supportLabel =  $('#browser_support')[0];
-
-        if (typeof(window.AudioContext || window.webkitAudioContext) === 'undefined')
-        {
-          supportLabel.className = "label label-important";
-          supportLabel.innerHTML = 'no web audio API support. try the latest Google Chrome build.';
-        }
-        else
-        {
-          supportLabel.className = "label label-success";
-          supportLabel.innerHTML = 'you have web audio API support.';
-        }
-
-        $('#welcomeAsModal').modal('show');
-      });
-    </script>
   </body>
 </html>

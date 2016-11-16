@@ -313,7 +313,18 @@ function audioLayerControl(elementContext)
         
         wave.fromAudioSequences(sequenceList);
 
-        console.log(wave, ' im here')
+        console.log(wave.audioSequences[0].data, wave.audioSequences[1].data);
+
+        axios.post('/api/wavetest', 
+          {wave1: wave.audioSequences[0].data, 
+          wave2: wave.audioSequences[1].data})
+          .then((response) =>{
+            console.log(response);
+          })
+          .catch((err) =>{
+            console.log(err);
+          });
+
         return wave;
     };
     
