@@ -8,53 +8,93 @@ body{
 /*MAIN*/
 
 /*SEQUENCER*/
+.outer{
+	position:relative;
+}
+.sequence{
+	position: relative;
+	margin-bottom: 50px;
+	padding-left: 0px !important;
+}
+
 .track{
 	display: inline-block;
 }
 .step-tf{
 	background-color: #DFE1E2;
-	height: 30px;
-	width: 30px;
-	padding: 1px;
+	height: 34px;
+	width: 34px;
 	display: inline-block;
-	margin: 4px;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;
 }
 .step-tt{
-	background-color: #4A69BF;
-	height: 30px;
-	width: 30px;
-	padding: 1px;
-	margin: 4px;
+	background-color: #99DFCA;
+	height: 34px;
+	width: 34px;
+	margin: 0px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;
 }
 #step-wrapper{
-	background-color: #EEE;
-	height: 40px;
-	width: 40px;
-	padding: 1px;
-	margin: 15px;
+	background-color: #DFE1E2;
+	height: 44px;
+	width: 44px;
 	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+  border-radius: 5px;
 }
 #step-wrapper-active{
-	background-color: #C91625;
-	height: 40px;
-	width: 40px;
-	padding: 1px;
-	margin: 15px;
+	background-color: #F66662;
+	height: 44px;
+	width: 44px;
 	display: inline-block;
-}
-.buttons{
-    display: inline-block;
-    vertical-align: middle;
-    margin-bottom: 19px;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;
 }
 .stepsWrapper{
 	overflow: auto;
-  white-space:nowrap;
+  white-space:nowrap !important;
+	padding-left: 0px !important;
+	padding-right: 0px !important;
 }
 .stepsWrapper::-webkit-scrollbar {
-   display: none; 
+   display: none;
 }
+	/*TRACK CONTROLS*/
+	input[type=range] {
+		display: inline-block !important;
+	}
+	.trackControls{
+		display: inline-block;
+		margin-top:20px;
+		padding-left: 0px !important;
+	}
+	.sampleSelect{
+  	display: inline-block;
+		margin-right: 10px;
+	}
+	.glyphicon{
+		margin-right: 10px;
+	}
+	.volSlider{
+		width: 40px !important;
+		display: inline-block;
+		margin-right: 10px;
+	}
+	/*TRACK CONTROLS*/
+
+	.addTrack{
+		position: absolute;
+		bottom: 0px;
+		left: 20px;
+	}
+
 /*SEQUENCER*/
 
 /*PROFILE*/

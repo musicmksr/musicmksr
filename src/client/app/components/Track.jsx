@@ -129,8 +129,8 @@ class Track extends React.Component {
     this.createPlaySequence.call(this);
 
     return(
-      <div>
-        <div className='stepsWrapper col-md-9' onScroll={_.debounce(this.syncScroll, 1000)}>
+      <div className='tracksWrapper'>
+        <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
               <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
                 <Sample
@@ -145,15 +145,15 @@ class Track extends React.Component {
               </div>
           )}
         </div>
-        <div className='buttons col-md-3'>
-          <button className='btn' data-toggle="button" onClick={this.mute.bind(this)}>MUTE</button>
-          <input id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
-          <select value={this.state.sound} onChange={this.changeSample.bind(this)}>
+        <div className='trackControls col-md-3 container-fluid'>
+          <select className='sampleSelect' value={this.state.sound} onChange={this.changeSample.bind(this)}>
             {this.state.samples.map((sound, index) =>
               <Options key={[sound, index]} sound={sound} />
             )}
           </select>
-          <button onClick={this.deleteTrack.bind(this, this.props.index)}>Delete Track</button>
+          <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this)}/>
+          <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
+          <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
         </div>
       </div>
     )
