@@ -27,6 +27,7 @@ body{
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
+	border-radius: 5px;
 }
 .step-tt{
 	background-color: #99DFCA;
@@ -36,6 +37,7 @@ body{
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
+	border-radius: 5px;
 }
 #step-wrapper{
 	background-color: #DFE1E2;
@@ -44,6 +46,7 @@ body{
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
+  border-radius: 5px;
 }
 #step-wrapper-active{
 	background-color: #F66662;
@@ -52,6 +55,7 @@ body{
 	display: inline-block;
 	margin-left: 5px;
 	margin-top: 5px;
+	border-radius: 5px;
 }
 .stepsWrapper{
 	overflow: auto;
