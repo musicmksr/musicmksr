@@ -173,15 +173,16 @@ module.exports = {
   mergeBuffers(channelBuffer, recordingLength){
     let result = new Float32Array(recordingLength);
     let offset = 0;
-    let lng = channelBuffer.length;
+    let lng = recordingLength;
+    console.log(lng)
     for (let i = 0; i < lng; i++){
       let buffer = channelBuffer[i];
-      result.set(buffer, offset);
+      result.set([buffer], offset);
       offset += buffer.length;
     }
     return result;
   },
-
+  // everything bellow has to do with uploading audio
   interleave(leftChannel, rightChannel){
     let length = leftChannel.length + rightChannel.length;
     let result = new Float32Array(length);
@@ -204,50 +205,55 @@ module.exports = {
   },
 
   uploadAudio(req, res, next) {
-    let leftAudio = req.body.wave1;
-    let rightAudio = req.body.wave2;
+    console.log(req.body.blob)
+    // let leftArr = Object.keys(req.body.wave1).map(function (key) { return req.body.wave1[key]; });
+    // let rightArr = Object.keys(req.body.wave2).map(function (key) { return req.body.wave2[key]; });
+    // let leftAudio = req.body.wave1;
+    // let rightAudio = req.body.wave2;
 
-    let leftBuffer = module.exports.mergeBuffers ( leftAudio, leftAudio.length );
-    let rightBuffer = module.exports.mergeBuffers ( rightAudio, rightAudio.length );
-    // we interleave both channels together
-    let interleaved = module.exports.interleave ( leftBuffer, rightBuffer );
+    // let leftBuffer = module.exports.mergeBuffers ( leftAudio, leftArr.length );
+    // let rightBuffer = module.exports.mergeBuffers ( rightAudio, rightArr.length );
+    // // we interleave both channels together
+    // let interleaved = module.exports.interleave ( leftBuffer, rightBuffer );
      
-    // create the buffer and view to create the .WAV file
-    let buffer = new ArrayBuffer(44 + interleaved.length * 2);
-    let view = new DataView(buffer);
+    // // create the buffer and view to create the .WAV file
+    // let buffer = new ArrayBuffer(44 + interleaved.length * 2);
+    // let view = new DataView(buffer);
      
-    // write the WAV container, check spec at: https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
-    // RIFF chunk descriptor
-    module.exports.writeUTFBytes(view, 0, 'RIFF');
-    view.setUint32(4, 44 + interleaved.length * 2, true);
-    module.exports.writeUTFBytes(view, 8, 'WAVE');
-    // FMT sub-chunk
-    module.exports.writeUTFBytes(view, 12, 'fmt ');
-    view.setUint32(16, 16, true);
-    view.setUint16(20, 1, true);
-    // stereo (2 channels)
-    view.setUint16(22, 2, true);
-    view.setUint32(24, 44100, true);
-    view.setUint32(28, 44100 * 4, true);
-    view.setUint16(32, 4, true);
-    view.setUint16(34, 16, true);
-    // data sub-chunk
-    module.exports.writeUTFBytes(view, 36, 'data');
-    view.setUint32(40, interleaved.length * 2, true);
+    // // write the WAV container, check spec at: https://ccrma.stanford.edu/courses/422/projects/WaveFormat/
+    // // RIFF chunk descriptor
+    // module.exports.writeUTFBytes(view, 0, 'RIFF');
+    // view.setUint32(4, 44 + interleaved.length * 2, true);
+    // module.exports.writeUTFBytes(view, 8, 'WAVE');
+    // // FMT sub-chunk
+    // module.exports.writeUTFBytes(view, 12, 'fmt ');
+    // view.setUint32(16, 16, true);
+    // view.setUint16(20, 1, true);
+    // // stereo (2 channels)
+    // view.setUint16(22, 2, true);
+    // view.setUint32(24, 44100, true);
+    // view.setUint32(28, 44100 * 4, true);
+    // view.setUint16(32, 4, true);
+    // view.setUint16(34, 16, true);
+    // // data sub-chunk
+    // module.exports.writeUTFBytes(view, 36, 'data');
+    // view.setUint32(40, interleaved.length * 2, true);
      
-    // write the PCM samples
-    let lng = interleaved.length;
-    let index = 44;
-    let volume = 1;
-    for (let i = 0; i < lng; i++){
-        view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
-        index += 2;
-    }
+    // // write the PCM samples
+    // let lng = interleaved.length;
+    // let index = 44;
+    // let volume = 1;
+    // for (let i = 0; i < lng; i++){
+    //     view.setInt16(index, interleaved[i] * (0x7FFF * volume), true);
+    //     index += 2;
+    // }
+
+    // console.log(view)
 
     // our final binary blob that we can hand off
-    let blob = new Blob( [ view ], { type : 'audio/wav' } );
+    // let blob = new Blob( [ view ], { type : 'audio/wav' } );
       
-    console.log(blob)
+    // console.log(blob)
   }
 
 };

@@ -29,7 +29,9 @@ function WaveTrack()
         
         var encodedWave = this.encodeWaveFile();
         
+
         var blob = new Blob([encodedWave], {type: encoding});
+
 
         if (asyncMethod !== undefined)
         {
@@ -174,7 +176,6 @@ function WaveTrack()
             }
         }
 
-        console.log(writer);
 
         // axios.post('/api/wavetest', 
         //   {wave1: writer.data})
