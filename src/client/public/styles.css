@@ -16,7 +16,19 @@ body{
 	margin-bottom: 50px;
 	padding-left: 0px !important;
 }
-
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+/*.saveForm{
+	display:inline-block;
+}*/
+#playButton{
+	display:inline-block;
+	position: relative;
+}
 .track{
 	display: inline-block;
 }
