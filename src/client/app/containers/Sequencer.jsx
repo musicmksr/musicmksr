@@ -183,6 +183,7 @@ class Sequencer extends React.Component {
               />
             <button className='btn' onClick={this.props.saveBPM(this.state.bpm)}>Save BPM</button>
             </form>
+
             <form className='saveForm' action='javascript:void(0)'>
               <input
                 type='text'
@@ -199,11 +200,13 @@ class Sequencer extends React.Component {
                 {this.state.titleWarning}
               </span>
             </form>
+
           </div>
           <div className='col-md-3'>
             <button id='playButton' className='btn' onClick={this.play.bind(this, null)}>{play}</button>
           </div>
       </div>
+
         <div className='sequence container-fluid col-md-12'>
           {this.props.sequence.matrix.map((track, index) =>
               <Track

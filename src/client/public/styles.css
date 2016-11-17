@@ -48,6 +48,20 @@ body{
 	display:inline-block;
 	position: relative;
 }
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+/*.saveForm{
+	display:inline-block;
+}*/
+#playButton{
+	display:inline-block;
+	position: relative;
+}
+>>>>>>> {styling} began styling sequencer form and buttons.
 .track{
 	display: inline-block;
 }
