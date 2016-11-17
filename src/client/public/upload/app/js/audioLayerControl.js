@@ -376,8 +376,8 @@ function audioLayerControl(elementContext)
         view.setUint16(20, 1, true);
         // stereo (2 channels)
         view.setUint16(22, 2, true);
-        view.setUint32(24, 44100, true);
-        view.setUint32(28, 44100 * 4, true);
+        view.setUint32(24, 48000, true);
+        view.setUint32(28, 48000 * 4, true);
         view.setUint16(32, 4, true);
         view.setUint16(34, 16, true);
         // data sub-chunk
@@ -517,8 +517,8 @@ function audioLayerControl(elementContext)
         for (var i = 0; i < numChannels; ++i)
         {
             var editor = this.createSequenceEditor("Test Channel " + i);
-            var sequence = CreateNewAudioSequence(44100);
-            sequence.createTestTone(44100 / 1024 * 10, 44100 * 10);
+            var sequence = CreateNewAudioSequence(48000);
+            sequence.createTestTone(48000 / 1024 * 10, 48000 * 10);
             editor.setAudioSequence(sequence);
             editor.zoomToFit();
         }   
