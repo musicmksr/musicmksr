@@ -70,7 +70,6 @@ class Track extends React.Component {
     });
   }
   createPlaySequence(){
-    console.log('check');
     let ps = this.props.track.map((step, index) =>
       {
         return <Sample
