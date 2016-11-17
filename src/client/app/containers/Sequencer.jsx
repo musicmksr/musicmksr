@@ -42,7 +42,7 @@ class Sequencer extends React.Component {
         newSampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
       }
     });
-
+    console.log(window.howlObj)
     window.howlObj = newSampObj;
   }
   play() {

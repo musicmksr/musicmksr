@@ -51,6 +51,7 @@
     "redux": "^3.6.0",
     "redux-devtools": "^3.3.1",
     "sequelize": "^3.24.8",
+    "sha1": "^1.1.1",
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-dev-server": "^1.16.2",
