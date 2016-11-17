@@ -3,13 +3,14 @@ import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import toggleMatrix from '../actions/toggleMatrix';
+import profileSequence from '../actions/profileSequence';
 import request from 'axios';
 
 class UserSequence extends React.Component {
 
 	chooseSequence() {
     // right now we are not able to set the store sequence to the new sequence becasue of some parsing error in json
-    this.props.toggleMatrix(null, this.props.newSequence);
+    this.props.profileSequence(this.props.newSequence);
     browserHistory.push('/sequencer');
 	}
 
@@ -45,4 +46,9 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { toggleMatrix: toggleMatrix })(UserSequence);
+export default connect(mapStateToProps, 
+  { 
+    toggleMatrix: toggleMatrix,
+    profileSequence: profileSequence
+  }
+)(UserSequence);

@@ -5,6 +5,7 @@ import { Alert } from 'react-bootstrap';
 import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
+import addTrack from '../actions/addTrack';
 import request from 'axios';
 
 let currentCol = 1;
@@ -141,8 +142,7 @@ class Sequencer extends React.Component {
     });
   }
   addTrack() {
-    console.log(this.props.sequence.matrix);
-    this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, true);
+    this.props.addTrack(true);
   }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
@@ -210,4 +210,5 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence,
+  addTrack: addTrack
 })(Sequencer);
