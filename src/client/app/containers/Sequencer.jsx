@@ -49,7 +49,7 @@ class Sequencer extends React.Component {
         newSampObj[index] = new Howl( {src: `/api/sample/${sample}`} );
       }
     });
-    console.log(window.howlObj)
+
     window.howlObj = newSampObj;
   }
   play() {
@@ -59,6 +59,7 @@ class Sequencer extends React.Component {
         playing: true
       });
 
+      console.log(this.props.playSequence);
       currentCol = 1;
       const context = this;
       const steps = _.flatten(this.props.playSequence);
@@ -80,6 +81,8 @@ class Sequencer extends React.Component {
               });
 
           }
+
+          // console.log(context.props.sequence.matrix[step.props.index[0]][step.props.index[1]], step.props.index);
 
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted

@@ -70,6 +70,7 @@ class Track extends React.Component {
     });
   }
   createPlaySequence(){
+    console.log('check');
     let ps = this.props.track.map((step, index) =>
       {
         return <Sample
@@ -119,12 +120,6 @@ class Track extends React.Component {
     });
   }
   render() {
-
-    // deprecated vol controls this.props.playSequence[this.props.index]._volume
-    //     <button className='btn' onClick={this.volDown.bind(this)}>-</button>
-    //    <button className='btn' onClick={this.volUp.bind(this)}>+</button>
-
-    // what was inside volume this.props.playSequence[this.props.index]._volume
     this.createPlaySequence.call(this);
 
     return(
@@ -154,7 +149,7 @@ class Track extends React.Component {
           </div>
           <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this)}/>
           <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
-          {/*<span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>*/}
+          <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
         </div>
       </div>
     )
