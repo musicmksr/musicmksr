@@ -6,12 +6,12 @@ class UserSamples extends React.Component {
     return(
       <div className='col-md-3 userSample-container'>
         <div className='userSample'>
-          <h3>{this.props.sample.name}</h3>
+          <h3>{this.props.sample.name}.wav</h3>
          <center><img src='imgs/sample.jpg' /></center>
           <audio controls>
             <source 
-              src={`/api/sample/${this.props.sample.name}`} 
-              type={`audio/${this.props.sample.name.split('\.')[1]}`}>
+              src={`/api/sample/${this.props.sample.name}.wav`} 
+              type={`audio/wav}`}>
             </source>
           </audio>
         </div>
