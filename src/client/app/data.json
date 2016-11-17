@@ -1,4 +1,5 @@
 {
+    "bpm": 120,
     "samples": {
         "0" : "bigkik.wav",
         "1" : "Clap.wav",

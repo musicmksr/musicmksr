@@ -10,7 +10,7 @@ export default (state = initialMatrix, action) => {
 
     	if(index !== null){
 
-				// mutate toggle 
+				// mutate toggle
 				newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
 
 				// mutate class
@@ -34,7 +34,7 @@ export default (state = initialMatrix, action) => {
         });
 
         newSequence.matrix.push(newTrack);
-        
+
         let sampleLength = newSequence.matrix.length - 1;
 
         newSequence.samples[sampleLength] = 'bigkik.wav';
@@ -62,6 +62,15 @@ export default (state = initialMatrix, action) => {
    	 		return action.payload[1].matrix;
    	 	}
    	 	break;
+
+    case 'SAVE_BPM':
+      const bpm = Number(action.payload);
+      console.log('before: ', state);
+      state.bpm = bpm;
+      console.log('after: ', state);
+
+      return state;
+
     default:
       return state;
   }
