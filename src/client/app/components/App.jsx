@@ -48,7 +48,7 @@ class App extends React.Component {
 		    console.log(error);
 		  });
 	}
-	
+
 	notLoggedIn() {
 		alert('Login to upload your beats');
 	}
@@ -72,6 +72,7 @@ class App extends React.Component {
 			<div>
 				<nav className="navbar navbar-default">
 	        <div className="container-fluid">
+						<Link id='logo' className="navbar-brand navbar-right" to='/sequencer'>STEP{<br/>}{<br/>}S160</Link>
 	          <div className="navbar-header">
 	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	              <span className="sr-only">Toggle navigation</span>
@@ -79,10 +80,9 @@ class App extends React.Component {
 	              <span className="icon-bar"></span>
 	              <span className="icon-bar"></span>
 	            </button>
-	            <Link className="navbar-brand" to='/sequencer'>Steps 160</Link>
 	          </div>
 	          <div id="navbar" className="navbar-collapse collapse">
-	            <ul className="nav navbar-nav navbar-right">
+	            <ul className="nav navbar-nav navbar-left">
 	              <li><Link to='/sequencer'>Sequencer</Link></li>
 	              <li>{profileLink}</li>
 	              <li>{upload}</li>
