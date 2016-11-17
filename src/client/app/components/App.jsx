@@ -61,7 +61,7 @@ class App extends React.Component {
 		if(this.state.loggedIn){
 			profileLink = <Link to ='/profile'>Profile</Link>;
 			login = 'Logout';
-			upload = <Link to ='/upload'>Upload</Link>;
+			upload = <a href ='/upload/upload.html'>Upload</a>;
 		}else{
 			profileLink = '';
 			login = 'Login';

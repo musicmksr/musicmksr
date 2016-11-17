@@ -1,5 +1,7 @@
 const passport = require('passport');
 const helpers = require('./routehelpers');
+const multer = require('multer');
+const upload = multer();
 
 module.exports = function(app) {
 
@@ -50,6 +52,11 @@ module.exports = function(app) {
   app.delete('/api/deleteSequence/:sequenceName/:userId', 
     helpers.isLoggedIn, 
     helpers.deleteSequence
+  );
+
+  app.post('/api/waveTest', 
+    upload.single('file'),
+    helpers.uploadAudio
   );
   
 };
