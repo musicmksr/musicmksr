@@ -27,9 +27,14 @@ class App extends React.Component {
 	getCookie() {
 		request.get('/api/session')
 			.then((response) =>{
+				console.log('response in getCookie', response);
 				if(response.data.userID === undefined){
 					console.log('not logged in');
 					window.newCookie = undefined;
+					
+					this.setState({
+						showModal: true
+					});
 				} else {
 					window.newCookie = response.data.passport;
 					console.log('logged in', window.newCookie);
