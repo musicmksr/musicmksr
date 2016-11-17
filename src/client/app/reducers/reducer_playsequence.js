@@ -3,8 +3,6 @@ export default (state = null, action) => {
     case "SET_PLAY_SEQUENCE":
     	state = state || [];
 
-      console.log(state.length, action.trackLength);
-
     	if(state.length !== action.trackLength){
         if(state.length > action.trackLength){
           state = [];
