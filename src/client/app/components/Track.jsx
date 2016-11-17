@@ -87,11 +87,11 @@ class Track extends React.Component {
       request.get(`/api/options/${window.newCookie.user.mainId}`)
         .then((response) =>{
           response.data.samples.forEach((sound, index) =>{
-            if(samplesArr.indexOf(sound.name) === -1){
-              samplesArr.push(sound.name);
+            if(samplesArr.indexOf(`${sound.name}.wav`) === -1){
+              samplesArr.push(`${sound.name}.wav`);
             }
           }); 
-
+          console.log(samplesArr);
           this.setState({
             samples: samplesArr
           });

@@ -53,7 +53,8 @@ const Sample = db.define('sample', {
     primaryKey: true,
     autoIncrement: true
   },
-  name: Sequelize.STRING
+  name: Sequelize.STRING,
+  hash: Sequelize.STRING
 });
 
 User.hasMany(Sequence);

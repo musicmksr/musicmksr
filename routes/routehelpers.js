@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const fs = require('fs');
 const path = require('path');
+const sha1 = require('sha1');
 const Sequelize = require('sequelize');
 
 const db = require('../db/schema').db;
@@ -78,28 +79,34 @@ module.exports = {
 
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
-      // take file name at fileInfo[0] and find the hash from the database, use that hash to put into the bellwo file path
-      // that way i can use the file name hash pluse the .wave to grab it from the samples
+      Sample.find({where: {name: fileInfo[0] }})
+        .then((response) =>{
+          const sampleHash = response.dataValues.hash;
 
-      // the front end is always asking for a file that is FILENAME.wav so i can always split it correctly, and when i send the names
-      // to the front end in the sample i will mutate the file name and add a .wav to it
+          return sampleHash;
+        })
+        .then((sampleHash) =>{
+          console.log(sampleHash)
+          const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
 
-      const filePath = path.join(`${__dirname}/../samples/${fileInfo[0]}.wav`);
+          fs.stat(filePath, (err, stat) =>{
+            if(err) {
+              console.log(err);
+            }
 
-      fs.stat(filePath, (err, stat) =>{
-        if(err) {
+            res.writeHead(200, {
+              'Content-Type': `audio/${fileInfo[1]}`,
+              'Content-Length': stat.size
+            });
+
+            const rs = fs.createReadStream(filePath);
+
+            rs.pipe(res);
+          });
+        })
+        .catch((err) =>{
           console.log(err);
-        }
-
-        res.writeHead(200, {
-          'Content-Type': `audio/${fileInfo[1]}`,
-          'Content-Length': stat.size
         });
-
-        const rs = fs.createReadStream(filePath);
-
-        rs.pipe(res);
-      });
   },
 
   getSampleOptions(req, res, next) {
@@ -179,15 +186,16 @@ module.exports = {
   },
 
   uploadAudio(req, res, next) {
-    console.log(req.body.name, req.file)
-    // const stream = fs.createWriteStream(`${__dirname}/../samples/${req.body.name}.wav`);
-    // fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
-    //   if(err) {
-    //     console.log(err);
-    //   }else{
-    //     res.send('refresh');
-    //   }
-    // });
+    const fileNameHash = sha1(`${req.body.name}${req.body.id}`);
+
+    const stream = fs.createWriteStream(`${__dirname}/../samples/${fileNameHash}.wav`);
+    fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
+      if(err) {
+        console.log(err);
+      }else{
+        res.send('refresh');
+      }
+    });
   }
 
 };
