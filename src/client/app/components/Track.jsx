@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Sample from './Sample.jsx';
 import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
-import toggleMatrix from '../actions/toggleMatrix';
 import changeSample from '../actions/changeSample';
 import deleteTrack from '../actions/deleteTrack';
 import Options from './SampleOptions.jsx';
@@ -112,7 +111,6 @@ class Track extends React.Component {
     this.props.changeSample(event.target.value, this.props.index);
   }
   deleteTrack(index) {
-    // this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, undefined, true, index);
     this.props.deleteTrack(index);
   }
   syncScroll() {
@@ -167,7 +165,6 @@ function mapStateToProps(state) {
 }
 export default connect(mapStateToProps,
   { setPlaySequence: setPlaySequence,
-    toggleMatrix: toggleMatrix,
     changeSample: changeSample,
     deleteTrack: deleteTrack
   })(Track);

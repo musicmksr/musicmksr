@@ -6,7 +6,7 @@ export default (state = initialMatrix, action) => {
 
   switch (action.type){
     case "TOGGLE_SAMPLE":
-    	const index = action.payload[0];
+    	const index = action.payload;
 
 			// mutate toggle 
 			newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
@@ -64,7 +64,7 @@ export default (state = initialMatrix, action) => {
       }
 
       console.log(newSequence)
-      
+
     default:
       return state;
   }

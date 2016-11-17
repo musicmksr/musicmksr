@@ -2,7 +2,6 @@ import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import toggleMatrix from '../actions/toggleMatrix';
 import profileSequence from '../actions/profileSequence';
 import request from 'axios';
 
@@ -48,7 +47,6 @@ function mapStateToProps(state) {
 
 export default connect(mapStateToProps, 
   { 
-    toggleMatrix: toggleMatrix,
     profileSequence: profileSequence
   }
 )(UserSequence);
