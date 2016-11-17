@@ -30,7 +30,8 @@ class Sequencer extends React.Component {
     clearInterval(window.innerPlay);
   }
   bpmConversion(bpm) {
-    return (1/(bpm)) * 15000;
+    let convertedBPM = (1/(bpm)) * 15000;
+    return convertedBPM;
   }
   howlObjRequest(samplesObj) {
     let samplesArr = Object.keys(samplesObj).map((key) => samplesObj[key]);
@@ -92,7 +93,7 @@ class Sequencer extends React.Component {
         } else {
           currentCol = 1;
         }
-      },125);
+      },this.bpmConversion(this.state.bpm));
     } else {
       clearInterval(window.innerPlay);
       this.setState({
@@ -151,6 +152,9 @@ class Sequencer extends React.Component {
       this.setState({ bpm: bpm });
     }
   }
+  saveBPM() {
+    this.props.saveBPM(this.state.bpm);
+  }
   addTrack() {
     this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, true);
   }
@@ -181,7 +185,7 @@ class Sequencer extends React.Component {
                 onChange={this.setBPM.bind(this)}
                 required
               />
-            <button className='btn' onClick={this.props.saveBPM(this.state.bpm)}>Save BPM</button>
+            <button className='btn' onClick={this.saveBPM.bind(this)}>Save BPM</button>
             </form>
 
             <form className='saveForm' action='javascript:void(0)'>
