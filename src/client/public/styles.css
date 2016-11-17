@@ -7,6 +7,28 @@ body{
 }
 /*MAIN*/
 
+/*NAVBAR*/
+@font-face {
+  font-family: Tracks;
+  src: url(/fonts/track/TTF/Track.ttf);
+}
+#logo{
+  font-family: Tracks;
+	font-size: 40px;
+	color: #F66662;
+}
+.navbar{
+  height: 120px;
+	padding-top: 20px;
+	padding-right: 20px;
+}
+#navbar{
+	position: absolute;
+	bottom: 0;
+}
+/*NAVBAR*/
+
+
 /*SEQUENCER*/
 .outer{
 	position:relative;
@@ -14,9 +36,54 @@ body{
 .sequence{
 	position: relative;
 	margin-bottom: 50px;
-	padding-left: 0px !important;
+	/*padding-left: 0px !important;*/
 }
-
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+#playButton{
+	display:inline-block;
+	position: relative;
+}
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+/*.saveForm{
+	display:inline-block;
+}*/
+#playButton{
+	display:inline-block;
+	position: relative;
+}
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+#playButton{
+	display:inline-block;
+	position: relative;
+}
+.titleInput{
+	margin-right: 5px;
+}
+.saveAlert{
+  margin-left: 5px;
+}
+/*.saveForm{
+	display:inline-block;
+}*/
+#playButton{
+	display:inline-block;
+	position: relative;
+}
 .track{
 	display: inline-block;
 }
@@ -60,8 +127,8 @@ body{
 .stepsWrapper{
 	overflow: auto;
   white-space:nowrap !important;
-	padding-left: 0px !important;
-	padding-right: 0px !important;
+	/*padding-left: 0px !important;
+	padding-right: 0px !important;*/
 }
 .stepsWrapper::-webkit-scrollbar {
    display: none;
@@ -72,8 +139,8 @@ body{
 	}
 	.trackControls{
 		display: inline-block;
-		margin-top: 10px;
-		padding-left: 0px !important;
+		margin-top:20px;
+		/*padding-left: 0px !important;*/
 	}
 	.sampleSelect{
   	display: inline-block;
