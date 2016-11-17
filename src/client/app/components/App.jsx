@@ -27,7 +27,6 @@ class App extends React.Component {
 	getCookie() {
 		request.get('/api/session')
 			.then((response) =>{
-				console.log('response in getCookie', response);
 				if(response.data.userID === undefined){
 					console.log('not logged in');
 					window.newCookie = undefined;
@@ -98,11 +97,15 @@ class App extends React.Component {
 	            </ul>
 	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
 	            	<Modal.Header closeButton>
-            			<Modal.Title>Log In with Facebook</Modal.Title>
+            			<Modal.Title>Title for Modal goes here</Modal.Title>
           			</Modal.Header>
           			<Modal.Body>
-          				<span>{fbLogin}</span>
+          				<p>Bacon ipsum dolor amet pig fatback andouille, chicken prosciutto boudin cow short loin jowl. Shankle shank short ribs frankfurter beef ribs. Ham fatback pork flank ball tip porchetta pork loin sirloin shankle bresaola beef ribs landjaeger cupim bacon. Shoulder tenderloin pork alcatra brisket turducken cupim pastrami hamburger tri-tip rump chuck spare ribs kevin pig. Beef ribs pork loin chicken bresaola, capicola pastrami filet mignon boudin t-bone.</p>
+          				<p>Ham bacon biltong sirloin, beef ribs venison jowl short ribs tri-tip sausage drumstick bresaola chicken. Filet mignon jerky fatback pastrami burgdoggen turducken rump. Filet mignon sirloin doner alcatra, pork loin short ribs pastrami leberkas shankle picanha. Fatback sausage cupim beef ribs, meatloaf flank jowl rump ham hock pastrami andouille ball tip cow pork chop. Boudin chuck pancetta pork loin.</p>
           			</Modal.Body>
+          			<Modal.Footer>
+          				<span>{fbLogin}</span>
+          			</Modal.Footer>
 	            </Modal>
 	          </div>
 	        </div>
