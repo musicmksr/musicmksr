@@ -401,7 +401,8 @@ function audioLayerControl(elementContext)
         let fileUploadInfo = new FormData();
 
         // grab the form data for the file info and the window id
-        fileUploadInfo.append('name', 'newFile');
+
+        fileUploadInfo.append('name', $('input[name=fileTitle]').val());
         fileUploadInfo.append('id', window.userID);
         fileUploadInfo.append('file', blob);
 

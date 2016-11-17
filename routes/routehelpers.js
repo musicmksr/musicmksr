@@ -79,6 +79,8 @@ module.exports = {
 
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
+      console.log(fileInfo)
+
       Sample.find({where: {name: fileInfo[0] }})
         .then((response) =>{
           const sampleHash = response.dataValues.hash;
@@ -86,7 +88,6 @@ module.exports = {
           return sampleHash;
         })
         .then((sampleHash) =>{
-          console.log(sampleHash)
           const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
 
           fs.stat(filePath, (err, stat) =>{
@@ -140,7 +141,6 @@ module.exports = {
 
     Sequence.find({where: { name: title, userId: req.body.userId }})
       .then((foundItem) =>{
-        console.log(foundItem)
         if(!foundItem){
           // create
           Sequence.create({name: title, matrix: sequence, userId: req.body.userId})
@@ -186,17 +186,27 @@ module.exports = {
   },
 
   uploadAudio(req, res, next) {
-    console.log(req.body.name, req.body.id);
-    const fileNameHash = sha1(`${req.body.name}${req.body.id}`);
+    let fileName = req.body.name.replace(/(\.wav|\.mp3|\.ogg)/g, '');
+    fileName = fileName.replace(/<script.*>.*<\/script>/g, " ");
+    fileName = fileName.trim();
 
-    // const stream = fs.createWriteStream(`${__dirname}/../samples/${fileNameHash}.wav`);
-    // fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
-    //   if(err) {
-    //     console.log(err);
-    //   }else{
-    //     res.send('refresh');
-    //   }
-    // });
+    const fileNameHash = sha1(`${fileName}${req.body.id}`);
+
+    Sample.create({name: fileName, hash: fileNameHash, userId: req.body.id})
+      .then((response) =>{
+        if(response){   
+          fs.writeFile(`${__dirname}/../samples/${fileNameHash}.wav`, req.file.buffer, (err) =>{
+            if(err) {
+              console.log(err);
+            }else{
+              res.send('refresh');
+            }
+          });
+        }
+      })
+      .catch((err) =>{
+        console.log(err);
+      });    
   }
 
 };

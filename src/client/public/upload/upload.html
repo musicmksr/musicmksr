@@ -94,7 +94,10 @@
                 <a id="btn_loop" class="btn btn-warning btn-large" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"><i class="icon-repeat icon-white"></i></a>
               </div>
               <div class="btn-group">
-                <a class="btn btn-large btn-primary" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);"><i class="icon-fire"></i> Render</a>
+                <form action='javascript:void(0)'>
+                  <input type='text' name='fileTitle' value='NO FILE EXTENSIONS JUST NAMES' required/>
+                  <button class="btn btn-large btn-primary" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);"><i class="icon-fire"></i> Render</button>
+                </form>
               </div>
             </div>
           </center>
