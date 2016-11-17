@@ -103,6 +103,7 @@ class Sequencer extends React.Component {
     }
   }
   save(sequence){
+    this.saveBPM();
     if(window.newCookie){
       if(this.state.title !== ''){
         this.setState({
@@ -186,7 +187,6 @@ class Sequencer extends React.Component {
                 onChange={this.setBPM.bind(this)}
                 required
               />
-            <button className='btn' onClick={this.saveBPM.bind(this)}>Save BPM</button>
             </form>
 
             <form className='saveForm' action='javascript:void(0)'>
