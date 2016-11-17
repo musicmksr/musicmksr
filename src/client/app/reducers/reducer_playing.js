@@ -50,8 +50,6 @@ export default (state = initialMatrix, action) => {
     case "DELETE_TRACK":
       console.log('delete track');
 
-      console.log(deleteTrackIndex);
-
       newSequence.matrix.splice(action.deleteTrackIndex, 1);
 
       delete newSequence.samples[action.deleteTrackIndex];
@@ -63,7 +61,7 @@ export default (state = initialMatrix, action) => {
         newSequence.samples[i] = newSequenceArr[i];
       }
 
-      console.log(newSequence)
+      return newSequence;
 
     case 'SAVE_BPM':
       const bpm = Number(action.payload);
