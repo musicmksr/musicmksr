@@ -186,16 +186,17 @@ module.exports = {
   },
 
   uploadAudio(req, res, next) {
+    console.log(req.body.name, req.body.id);
     const fileNameHash = sha1(`${req.body.name}${req.body.id}`);
 
-    const stream = fs.createWriteStream(`${__dirname}/../samples/${fileNameHash}.wav`);
-    fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
-      if(err) {
-        console.log(err);
-      }else{
-        res.send('refresh');
-      }
-    });
+    // const stream = fs.createWriteStream(`${__dirname}/../samples/${fileNameHash}.wav`);
+    // fs.writeFile(`${__dirname}/../samples/${req.body.name}.wav`, req.file.buffer, (err) =>{
+    //   if(err) {
+    //     console.log(err);
+    //   }else{
+    //     res.send('refresh');
+    //   }
+    // });
   }
 
 };
