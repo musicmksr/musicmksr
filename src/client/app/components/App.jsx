@@ -62,15 +62,18 @@ class App extends React.Component {
 		let profileLink;
 		let login;
 		let upload;
+		let fbLogin;
 
 		if(this.state.loggedIn){
 			profileLink = <Link to ='/profile'>Profile</Link>;
 			login = 'Logout';
 			upload = <a href ='/upload/upload.html'>Upload</a>;
+			fbLogin = <a href='/logout'><Button>Sign Out</Button></a>;
 		}else{
 			profileLink = '';
 			login = 'Login';
 			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
+			fbLogin = <a href='auth/facebook'><Button>Sign In</Button></a>;
 		}
 
 		return(
@@ -98,8 +101,7 @@ class App extends React.Component {
             			<Modal.Title>Log In with Facebook</Modal.Title>
           			</Modal.Header>
           			<Modal.Body>
-          				<a href="auth/facebook"><Button>Sign In</Button></a>
-          				<a href="/logout"><Button>Sign Out</Button></a>
+          				<span>{fbLogin}</span>
           			</Modal.Body>
 	            </Modal>
 	          </div>
