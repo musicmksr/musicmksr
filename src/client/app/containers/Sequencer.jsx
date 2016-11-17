@@ -6,6 +6,7 @@ import Track from '../components/Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
 import saveBPM from '../actions/saveBPM';
+import addTrack from '../actions/addTrack';
 import request from 'axios';
 
 let currentCol = 1;
@@ -156,7 +157,7 @@ class Sequencer extends React.Component {
     this.props.saveBPM(this.state.bpm);
   }
   addTrack() {
-    this.props.toggleMatrix(null, this.props.sequence, undefined, undefined, true);
+    this.props.addTrack(true);
   }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
@@ -244,4 +245,5 @@ export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence,
   saveBPM: saveBPM,
+  addTrack: addTrack
 })(Sequencer);
