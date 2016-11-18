@@ -72,7 +72,7 @@ class App extends React.Component {
 			profileLink = '';
 			login = 'Login';
 			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
-			fbLogin = <a href='auth/facebook'><Button>Sign In</Button></a>;
+			fbLogin = <a href='auth/facebook'><img src="/imgs/login.png"/></a>;
 		}
 
 		return(
@@ -100,12 +100,15 @@ class App extends React.Component {
             			<Modal.Title>Title for Modal goes here</Modal.Title>
           			</Modal.Header>
           			<Modal.Body>
-          				<p>Bacon ipsum dolor amet pig fatback andouille, chicken prosciutto boudin cow short loin jowl. Shankle shank short ribs frankfurter beef ribs. Ham fatback pork flank ball tip porchetta pork loin sirloin shankle bresaola beef ribs landjaeger cupim bacon. Shoulder tenderloin pork alcatra brisket turducken cupim pastrami hamburger tri-tip rump chuck spare ribs kevin pig. Beef ribs pork loin chicken bresaola, capicola pastrami filet mignon boudin t-bone.</p>
-          				<p>Ham bacon biltong sirloin, beef ribs venison jowl short ribs tri-tip sausage drumstick bresaola chicken. Filet mignon jerky fatback pastrami burgdoggen turducken rump. Filet mignon sirloin doner alcatra, pork loin short ribs pastrami leberkas shankle picanha. Fatback sausage cupim beef ribs, meatloaf flank jowl rump ham hock pastrami andouille ball tip cow pork chop. Boudin chuck pancetta pork loin.</p>
+          				<span>
+          					<p id='loginLogo'>STEP{<br/>}S160</p>
+          					<br/>
+          					<p id='loginBody'>Your Personal Sequencer</p>
+          				</span>
           			</Modal.Body>
-          			<Modal.Footer>
+          			<div className='modal-footer' id='loginBtn'>
           				<span>{fbLogin}</span>
-          			</Modal.Footer>
+          			</div>
 	            </Modal>
 	          </div>
 	        </div>
