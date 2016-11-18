@@ -13,7 +13,7 @@ class UserSamples extends React.Component {
     this.getSongs();
   }
   getSongs() {
-    request.get(`/api/testSamples/${this.props.sample.name}.wav`)
+    request.get(`/api/samples/${this.props.sample.name}.wav`)
       .then((response) =>{
         this.setState({
           sound: response.data
@@ -21,6 +21,7 @@ class UserSamples extends React.Component {
       });
   }
   render() {
+    console.log(this.state.sound)
     return(
       <div className='col-md-3 userSample-container'>
         <div className='userSample'>
@@ -28,7 +29,7 @@ class UserSamples extends React.Component {
          <center><img src='imgs/sample.jpg' /></center>
           <audio controls>
             <source 
-              src={`/api/testSamples/${this.props.sample.name}.wav`} 
+              src={`/api/samples/${this.props.sample.name}.wav`} 
               type={`audio/wav}`}>
             </source>
           </audio>
