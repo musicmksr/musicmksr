@@ -72,7 +72,7 @@ class App extends React.Component {
 			profileLink = '';
 			login = 'Login';
 			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
-			fbLogin = <a href='auth/facebook'><img src="/imgs/login.png"/></a>;
+			fbLogin = <a href='auth/facebook'><img id='loginImg' src="/imgs/login.png"/></a>;
 		}
 
 		return(
@@ -101,7 +101,9 @@ class App extends React.Component {
           			</Modal.Header>
           			<Modal.Body>
           				<span>
-          					<p id='loginLogo'>STEP{<br/>}S160</p>
+          					<br/>
+          					<p id='loginLogo'>STEP</p>
+          					<p id='loginLogo'>S160</p>
           					<br/>
           					<p id='loginBody'>Your Personal Sequencer</p>
           				</span>
