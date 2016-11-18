@@ -16,8 +16,7 @@ class Track extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      samples: Object.keys(this.props.samples).map(key => this.props.samples[key]),
-      sound: this.props.samples[this.props.index]
+      samples: Object.keys(this.props.samples).map(key => this.props.samples[key])
     };
   }
   componentDidMount() {
@@ -80,12 +79,13 @@ class Track extends React.Component {
                />
       }
     );
+
     this.props.setPlaySequence.call(null, ps, this.props.trackLength, this.props.index);
   }
   getOptionSamples() {
     let samplesArr = this.state.samples.slice();
 
-    if(window.newCookie){
+    if(this.props.loggedIn){
       request.get(`/api/options/${window.newCookie.user.mainId}`)
         .then((response) =>{
           response.data.samples.forEach((sound, index) =>{
@@ -120,7 +120,7 @@ class Track extends React.Component {
   }
   render() {
     this.createPlaySequence.call(this);
-
+    
     return(
       <div className='tracksWrapper'>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
@@ -140,7 +140,7 @@ class Track extends React.Component {
         </div>
         <div className='trackControls col-md-3 container-fluid'>
           <div className='col-md-6'>
-            <select className='sampleSelect form-control' value={this.state.sound} onChange={this.changeSample.bind(this)}>
+            <select className='sampleSelect form-control' value={this.props.sample} onChange={this.changeSample.bind(this)}>
               {this.state.samples.map((sound, index) =>
                 <Options key={[sound, index]} sound={sound} />
               )}

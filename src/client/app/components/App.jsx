@@ -101,7 +101,9 @@ class App extends React.Component {
 	        </div>
 	      </nav>
 	      <div className="scrollbox container-fluid">
-				 {this.props.children}
+				 {this.props.children && React.cloneElement(this.props.children, {
+            loggedIn: this.state.loggedIn
+          })}
 				</div>
 			</div>
 		)

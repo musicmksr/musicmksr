@@ -1,7 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
+import request from 'axios';
 
 class UserSamples extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      sound: ''
+    }
+  }
+  componentDidMount(){
+    this.getSongs();
+  }
+  getSongs() {
+    request.get(`/api/testSamples/${this.props.sample.name}.wav`)
+      .then((response) =>{
+        this.setState({
+          sound: response.data
+        });
+      });
+  }
   render() {
     return(
       <div className='col-md-3 userSample-container'>
@@ -10,7 +28,7 @@ class UserSamples extends React.Component {
          <center><img src='imgs/sample.jpg' /></center>
           <audio controls>
             <source 
-              src={`/api/sample/${this.props.sample.name}.wav`} 
+              src={`/api/testSamples/${this.props.sample.name}.wav`} 
               type={`audio/wav}`}>
             </source>
           </audio>

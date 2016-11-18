@@ -31,6 +31,8 @@ module.exports = function(app) {
   // get songs for sequencer
   app.get('/api/sample/:songTitle', helpers.getSong);
 
+  app.get('/api/testSamples/:songTitle', helpers.getSongTest);
+
   // get sound options for each track in sequencer
   app.get('/api/options/:userId', helpers.getSampleOptions);
 

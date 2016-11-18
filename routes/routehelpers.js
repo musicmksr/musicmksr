@@ -79,7 +79,38 @@ module.exports = {
 
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
-      console.log(fileInfo)
+      Sample.find({where: {name: fileInfo[0] }})
+        .then((response) =>{
+          const sampleHash = response.dataValues.hash;
+
+          return sampleHash;
+        })
+        .then((sampleHash) =>{
+          const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
+
+          fs.stat(filePath, (err, stat) =>{
+            if(err) {
+              console.log(err);
+            }
+
+            res.writeHead(200, {
+              'Content-Type': `audio/${fileInfo[1]}`,
+              'Content-Length': stat.size
+            });
+
+            const rs = fs.createReadStream(filePath);
+
+            rs.pipe(res);
+          });
+        })
+        .catch((err) =>{
+          console.log(err);
+        });
+  },
+
+  getSongTest(req, res, next) {
+
+      const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
       Sample.find({where: {name: fileInfo[0] }})
         .then((response) =>{
@@ -89,6 +120,8 @@ module.exports = {
         })
         .then((sampleHash) =>{
           const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
+
+          console.log(sampleHash);
 
           fs.stat(filePath, (err, stat) =>{
             if(err) {

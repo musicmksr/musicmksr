@@ -24,7 +24,7 @@ class Sequencer extends React.Component {
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
-      bpm: this.props.sequence.bpm || 120,
+      bpm: this.props.sequence.bpm || 120
     };
   }
   componentDidMount() {
@@ -222,9 +222,11 @@ class Sequencer extends React.Component {
                 howlerObject={window.howlObj[index]}
                 matrix={this.props.sequence.matrix}
                 samples={this.props.sequence.samples}
+                sample={this.props.sequence.samples[index]}
                 sound={this.props.sequence.samples[index]}
                 trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
+                loggedIn={this.props.loggedIn}
               />
           )}
         </div>
