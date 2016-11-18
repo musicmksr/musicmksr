@@ -234,6 +234,7 @@ class Sequencer extends React.Component {
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
                 loggedIn={this.props.loggedIn}
                 numOfSteps={this.state.numOfSteps}
+                playing={this.state.playing}
               />
           )}
         </div>

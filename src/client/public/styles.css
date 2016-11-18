@@ -213,3 +213,23 @@ body{
 	text-align: center;
 }
 /*LOGIN*/
+
+/*FOOTER*/
+footer {
+	text-align: center;
+	padding-top: 2%;
+	bottom: 0;
+	height:60px;
+	width:100%;
+	background-color: #f5f5f5;
+}
+
+footer span {
+	margin-right: 1%;
+	margin-left:1%;
+}
+
+footer a:hover, footer a {
+	text-decoration: none;
+}
+/*FOOTER*/
