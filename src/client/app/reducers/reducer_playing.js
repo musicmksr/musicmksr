@@ -7,7 +7,6 @@ export default (state = initialMatrix, action) => {
   switch (action.type){
     case "TOGGLE_SAMPLE":
     	const index = action.payload;
-
 			// mutate toggle 
 			newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
 
@@ -63,6 +62,8 @@ export default (state = initialMatrix, action) => {
 
       return newSequence;
 
+
+
     case 'SAVE_BPM':
       const bpm = Number(action.payload);
       console.log('before: ', state);
@@ -70,6 +71,33 @@ export default (state = initialMatrix, action) => {
       console.log('after: ', state);
 
       return state;
+
+    case "ADD_BAR":
+
+      let numOfSteps = action.payload;
+      let currentLength = state.matrix[0].length
+      var difference = currentLength - numOfSteps
+      if(numOfSteps > currentLength){
+        state.matrix.map((track,index) => {
+          let newBar = _.clone(track);
+          newBar = newBar.map((step) => {
+            step.class = 'step-tf';
+            step.toggled = false;
+            return step
+          });
+          newBar.forEach((step)=>{
+            newSequence.matrix[index].push(step);
+          })
+
+        });  
+      } else if (numOfSteps < currentLength) {
+        state.matrix.map((track, index) => {
+          let newBar = track.splice(0, difference)
+          newSequence.matrix[index] = newBar;
+        })
+
+      }
+      return newSequence;  
 
     default:
       return state;
