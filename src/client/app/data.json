@@ -1,4 +1,5 @@
 {
+    "numOfSteps": 16,
     "bpm": 120,
     "samples": {
         "0" : "bigkik.wav",

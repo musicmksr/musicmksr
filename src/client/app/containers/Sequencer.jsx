@@ -7,6 +7,7 @@ import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
 import saveBPM from '../actions/saveBPM';
 import addTrack from '../actions/addTrack';
+import addBar from '../actions/addBar';
 import request from 'axios';
 
 let currentCol = 1;
@@ -16,7 +17,6 @@ window.howlObj = {};
 class Sequencer extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       playing: false,
       message: '',
@@ -24,7 +24,8 @@ class Sequencer extends React.Component {
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
-      bpm: this.props.sequence.bpm || 120
+      bpm: this.props.sequence.bpm || 120,
+      numOfSteps: 16
     };
   }
   componentDidMount() {
@@ -54,13 +55,14 @@ class Sequencer extends React.Component {
   }
   play() {
     if (!this.state.playing) {
-
+      console.log('numofsteps in play', this.state.numOfSteps)
       this.setState({
         playing: true
       });
 
       currentCol = 1;
       const context = this;
+      console.log(this.props.playSequence);
       const steps = _.flatten(this.props.playSequence);
 
       window.innerPlay = setInterval(() =>{
@@ -78,9 +80,7 @@ class Sequencer extends React.Component {
             elements.forEach((element)=>{
                 element.id='step-wrapper';
               });
-
           }
-
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
@@ -89,7 +89,7 @@ class Sequencer extends React.Component {
           }
         });
 
-        if (currentCol < 16){
+        if (currentCol < this.state.numOfSteps){
           currentCol++;
         } else {
           currentCol = 1;
@@ -160,6 +160,12 @@ class Sequencer extends React.Component {
   addTrack() {
     this.props.addTrack(true);
   }
+  addBar(e) {
+    window.lastId = 0;
+    window.lastWrapId = 0;
+    this.setState({numOfSteps:e.target.value });
+    this.props.addBar(e.target.value);
+  }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
 
@@ -227,11 +233,19 @@ class Sequencer extends React.Component {
                 trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
                 loggedIn={this.props.loggedIn}
+                numOfSteps={this.state.numOfSteps}
               />
           )}
         </div>
         <div className='addTrack'>
           <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
+          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>          
+              <option value='16'  >16 </option>
+              <option value='32'  >32 </option>           
+          </select>
+        </div>
+        <div>
+
         </div>
       </div>
     )
@@ -247,5 +261,6 @@ export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence,
   saveBPM: saveBPM,
-  addTrack: addTrack
+  addTrack: addTrack,
+  addBar: addBar
 })(Sequencer);
