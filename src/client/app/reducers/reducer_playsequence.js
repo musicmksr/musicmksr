@@ -4,6 +4,9 @@ export default (state = null, action) => {
     	state = state || [];
 
     	if(state.length !== action.trackLength){
+        if(state.length > action.trackLength){
+          state = [];
+        }
     		state.push(action.payload);
     	}else {
         state[action.index] = action.payload;

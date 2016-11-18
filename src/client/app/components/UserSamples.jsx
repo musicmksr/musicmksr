@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import request from 'axios';
 
 class UserSamples extends React.Component {
   render() {
@@ -11,7 +12,7 @@ class UserSamples extends React.Component {
           <audio controls>
             <source 
               src={`/api/sample/${this.props.sample.name}.wav`} 
-              type={`audio/wav}`}>
+              type={`audio/wav`}>
             </source>
           </audio>
         </div>
@@ -20,5 +21,9 @@ class UserSamples extends React.Component {
   }
 
 }
+
+/*
+            
+*/
 
 export default UserSamples;

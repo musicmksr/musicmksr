@@ -27,17 +27,19 @@ class Profile extends React.Component {
 	}
 
   getUserInfo() {
-    request.get(`/api/profile/${window.newCookie.user.mainId}`)
-      .then((response) =>{
-        this.setState({
-          loading: '',
-          sequences: response.data.sequences,
-          samples: response.data.samples
+    if(this.props.loggedIn){
+      request.get(`/api/profile/${window.newCookie.user.mainId}`)
+        .then((response) =>{
+          this.setState({
+            loading: '',
+            sequences: response.data.sequences,
+            samples: response.data.samples
+          });
+        })
+        .catch((err) =>{
+          console.log(err);
         });
-      })
-      .catch((err) =>{
-        console.log(err);
-      });
+    }
   }
 
   render() {
