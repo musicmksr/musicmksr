@@ -7,6 +7,7 @@ import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';
 import saveBPM from '../actions/saveBPM';
 import addTrack from '../actions/addTrack';
+import addBar from '../actions/addBar';
 import request from 'axios';
 
 let currentCol = 1;
@@ -25,6 +26,8 @@ class Sequencer extends React.Component {
       titleWarning: '',
       test: {},
       bpm: this.props.sequence.bpm || 120,
+      numOfSteps: 16,
+      poop: 1
     };
   }
   componentDidMount() {
@@ -54,13 +57,14 @@ class Sequencer extends React.Component {
   }
   play() {
     if (!this.state.playing) {
-
+      console.log('numofsteps in play', this.state.numOfSteps)
       this.setState({
         playing: true
       });
 
       currentCol = 1;
       const context = this;
+      console.log(this.props.playSequence);
       const steps = _.flatten(this.props.playSequence);
 
       window.innerPlay = setInterval(() =>{
@@ -89,7 +93,7 @@ class Sequencer extends React.Component {
           }
         });
 
-        if (currentCol < 16){
+        if (currentCol < this.state.numOfSteps){
           currentCol++;
         } else {
           currentCol = 1;
@@ -160,6 +164,14 @@ class Sequencer extends React.Component {
   addTrack() {
     this.props.addTrack(true);
   }
+  addBar(e) {
+    window.lastId = 0;
+    window.lastWrapId = 0;
+    this.setState({numOfSteps:e.target.value });
+    this.setState({poop: 5});
+    this.props.addBar(e.target.value);
+    console.log('after barSet', this.state)
+  }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
 
@@ -225,11 +237,19 @@ class Sequencer extends React.Component {
                 sound={this.props.sequence.samples[index]}
                 trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
+                numOfSteps={this.state.numOfSteps}
               />
           )}
         </div>
         <div className='addTrack'>
           <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
+          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>          
+              <option value='16'  >16 </option>
+              <option value='32'  >32 </option>           
+          </select>
+        </div>
+        <div>
+
         </div>
       </div>
     )
@@ -245,5 +265,6 @@ export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence,
   saveBPM: saveBPM,
-  addTrack: addTrack
+  addTrack: addTrack,
+  addBar: addBar
 })(Sequencer);

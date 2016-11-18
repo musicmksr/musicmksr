@@ -8,10 +8,10 @@ import deleteTrack from '../actions/deleteTrack';
 import Options from './SampleOptions.jsx';
 import request from 'axios';
 
-let lastId = 0;
-let lastWrapId = 0;
+window.lastId = 0;
+window.lastWrapId = 0;
 let steps = [];
-
+let counter = 0;
 class Track extends React.Component {
   constructor(props){
     super(props);
@@ -25,21 +25,22 @@ class Track extends React.Component {
     this.syncScroll();
   }
   setStepIndex() {
-    if (lastId === 16){
-      lastId = 0;
+    if (window.lastId >= this.props.numOfSteps){
+      window.lastId = 0;
     }
-    lastId++;
-    return lastId;
+    window.lastId++;
+    return window.lastId;
   }
   setWrapIndex() {
-    if (lastWrapId === 16){
-      lastWrapId = 0;
+    if (window.lastWrapId >= this.props.numOfSteps){
+      window.lastWrapId = 0;
     }
-    lastWrapId++;
-    return lastWrapId;
+    window.lastWrapId++;
+    return window.lastWrapId;
   }
   mute(){
     this.props.howlerObject._muted = !this.props.howlerObject._muted;
+    console.log(this.props.numOfSteps)
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
