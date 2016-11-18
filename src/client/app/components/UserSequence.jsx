@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import profileSequence from '../actions/profileSequence';
