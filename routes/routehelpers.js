@@ -79,8 +79,6 @@ module.exports = {
 
       const fileInfo = req.params.songTitle.split('\.'); // grab the file extension for use in writeHead
 
-      console.log(fileInfo)
-
       Sample.find({where: {name: fileInfo[0] }})
         .then((response) =>{
           const sampleHash = response.dataValues.hash;

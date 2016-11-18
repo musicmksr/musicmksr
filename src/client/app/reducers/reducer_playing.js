@@ -61,6 +61,11 @@ export default (state = initialMatrix, action) => {
         newSequence.samples[i] = newSequenceArr[i];
       }
 
+<<<<<<< HEAD
+=======
+      console.log(newSequence.samples);
+
+>>>>>>> fixprofsamples
       return newSequence;
 
     case 'SAVE_BPM':
