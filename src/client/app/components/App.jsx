@@ -97,7 +97,7 @@ class App extends React.Component {
 	            </ul>
 	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
 	            	<Modal.Header closeButton>
-            			<Modal.Title>Title for Modal goes here</Modal.Title>
+            			<Modal.Title>Welcome</Modal.Title>
           			</Modal.Header>
           			<Modal.Body>
           				<span>
