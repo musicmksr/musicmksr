@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 const BUILD_DIR = path.resolve(__dirname, 'src/client/public');
 const APP_DIR = path.resolve(__dirname, 'src/client/app');
+
 const config = {
   devtool: 'source-map',
   entry: [
@@ -13,9 +14,6 @@ const config = {
     path: BUILD_DIR,
     filename: 'bundle.js'
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
   devServer: {
     inline: true,
     port: 3000,
@@ -33,6 +31,9 @@ const config = {
         loader: 'json-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
 };
 module.exports = config;

@@ -232,7 +232,7 @@ class Sequencer extends React.Component {
                 sound={this.props.sequence.samples[index]}
                 trackLength={this.props.sequence.matrix.length}
                 toggleMatrix={this.props.toggleMatrix.bind(this)}
-                loggedIn={this.props.loggedIn},
+                loggedIn={this.props.loggedIn}
                 numOfSteps={this.state.numOfSteps}
               />
           )}
