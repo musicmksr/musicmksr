@@ -112,7 +112,9 @@ class Track extends React.Component {
     this.props.changeSample(event.target.value, this.props.index);
   }
   deleteTrack(index) {
-    this.props.deleteTrack(index);
+    if(!this.props.playing){
+      this.props.deleteTrack(index);
+    }
   }
   syncScroll() {
     $('.stepsWrapper').scroll((e) => {

@@ -29,7 +29,12 @@ export default (state = initialMatrix, action) => {
       return action.payload.matrix;
 
     case "ADD_TRACK":
+      if(newSequence.matrix.length === 50){
+        return newSequence;
+      }
+
       console.log('add track');
+
       let newTrack = _.clone(state.matrix[0]);
 
       newTrack = newTrack.map((step) =>{
@@ -47,6 +52,10 @@ export default (state = initialMatrix, action) => {
       return newSequence;
 
     case "DELETE_TRACK":
+      if(newSequence.matrix.length === 1){
+        return newSequence;
+      }
+
       console.log('delete track');
 
       newSequence.matrix.splice(action.deleteTrackIndex, 1);
@@ -61,8 +70,6 @@ export default (state = initialMatrix, action) => {
       }
 
       return newSequence;
-
-
 
     case 'SAVE_BPM':
       const bpm = Number(action.payload);
