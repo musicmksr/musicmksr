@@ -192,3 +192,24 @@ body{
 	width: 50%;
 }
 /*PROFILE**/
+
+/*LOGIN*/
+#loginBtn {
+	text-align: center;
+}
+#loginImg {
+	height: 35px;
+	width: auto;
+}
+
+#loginLogo {
+  font-family: Tracks;
+	font-size: 40px;
+	color: #F66662;
+	text-align: center;
+	line-height: 25px;
+}
+#loginBody {
+	text-align: center;
+}
+/*LOGIN*/
