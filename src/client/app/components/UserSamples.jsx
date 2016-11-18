@@ -1,5 +1,4 @@
 import React from 'react';
-import { render } from 'react-dom';
 import request from 'axios';
 
 class UserSamples extends React.Component {
