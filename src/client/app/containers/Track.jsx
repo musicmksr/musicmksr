@@ -20,6 +20,7 @@ class Track extends React.Component {
     this.state = {
       message: '',
       messageCl: 'hidden',
+      bsStyle: 'danger',
       samples: Object.keys(this.props.samples).map(key => this.props.samples[key])
     };
   }

@@ -21,6 +21,7 @@ class Sequencer extends React.Component {
       playing: false,
       message: '',
       messageCl: 'hidden',
+      bsStyle: 'info',
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
@@ -128,14 +129,16 @@ class Sequencer extends React.Component {
             console.log(error);
             this.setState({
               message: 'An Error Occured, please try refreshing the page or logging back in.',
-              messageCl: 'show'
+              messageCl: 'show',
+              bsStyle: 'danger'
             });
           });
 
         setTimeout(() =>{
           this.setState({
             message: '',
-            messageCl: 'hidden'
+            messageCl: 'hidden',
+            bsStyle: 'info'
           });
         }, 3000);
       }
@@ -188,7 +191,7 @@ class Sequencer extends React.Component {
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='col-md-9'>
-            <Alert className={this.state.messageCl} bsStyle="info">
+            <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
               {message}
             </Alert>
             <form id='bpmForm' action='javascript:void(0)'>

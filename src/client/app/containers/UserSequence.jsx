@@ -11,12 +11,12 @@ class UserSequence extends React.Component {
 
     this.state = {
       message: '',
-      messageCl: 'hidden'
+      messageCl: 'hidden',
+      bsStyle: 'danger'
     };
   }
 
 	chooseSequence() {
-    // right now we are not able to set the store sequence to the new sequence becasue of some parsing error in json
     this.props.profileSequence(this.props.newSequence);
     browserHistory.push('/sequencer');
 	}
@@ -38,7 +38,7 @@ class UserSequence extends React.Component {
   render() {
     return(
       <div  className='col-md-2 userSequence-container'>
-        <Alert className={this.state.messageCl} bsStyle="info">
+        <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
           {this.state.message}
         </Alert>
         <div onClick={this.chooseSequence.bind(this)}>
