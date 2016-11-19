@@ -1,4 +1,8 @@
 /*MAIN*/
+.glyphicon{
+	margin-right: 0px !important;
+	top: 0px !important;
+}
 @font-face {
 	font-family: DS-DIGITAL;
 	src: url(/fonts/ds_digital/DS-DIGI.TTF) format('truetype');
@@ -48,52 +52,64 @@ body{
 	margin-bottom: 50px;
 	/*padding-left: 0px !important;*/
 }
-.titleInput{
-	margin-right: 5px;
-}
-.saveAlert{
-  margin-left: 5px;
-}
-#playButton{
-	display:inline-block;
-	position: relative;
-}
-.titleInput{
-	margin-right: 5px;
-}
-.saveAlert{
-  margin-left: 5px;
-}
-/*.saveForm{
-	display:inline-block;
-}*/
-#playButton{
-	display:inline-block;
-	position: relative;
-}
-.titleInput{
-	margin-right: 5px;
-}
-.saveAlert{
-  margin-left: 5px;
-}
-#playButton{
-	display:inline-block;
-	position: relative;
-}
-.titleInput{
-	margin-right: 5px;
-}
-.saveAlert{
-  margin-left: 5px;
-}
-/*.saveForm{
-	display:inline-block;
-}*/
-#playButton{
-	display:inline-block;
-	position: relative;
-}
+	/*SEQUENCER HEADER*/
+	#bpmForm{
+		display: inline-block;
+		border-width: 2px;
+		border-style: inset;
+		border-color: #979797;
+		margin-left: 15px;
+		background-color: #2F3434;
+	}
+	#bpmInput{
+		width: 50%;
+		border-width: 0px;
+		font-size: 30px;
+		color: #DFE1E2;
+		background-color: #2F3434;
+	}
+	#bpmInput:focus{
+		outline:none;
+	}
+	#bpmText{
+		font-size: 30px;
+		color: #DFE1E2;
+		background-color: #2F3434;
+	}
+	.titleInput{
+		padding-left: 15px;
+		height: 48px;
+		margin-right: 15px;
+		width: 35%;
+		font-size: 20px;
+	}
+	#saveBtn{
+		margin-bottom: 2px;
+		height: 45px;
+		font-size: 20px;
+	}
+	.saveAlert{
+	  margin-left: 15px;
+	}
+	#playButton{
+		display:inline-block;
+		position: relative;
+		height: 48px;
+		width: 48px;
+		margin-top: 5px;
+		margin-left: 10px;
+		background-color: #2F3434;
+		border-width: 1px;
+		border-style:solid;
+		border-color: #979797;
+	}
+	span.glyphicon-play{
+		font-size: 1.4em;
+		color: #F66662
+	}
+	/*SEQUENCER HEADER*/
+
+
 .track{
 	display: inline-block;
 }
@@ -168,20 +184,32 @@ body{
 	padding-right: 0px !important;*/
 }
 .stepsWrapper::-webkit-scrollbar {
-   display: none;
+  display: none;
 }
+#addTrackBtn{
+  display: inline-block !important;
+	margin-right: 15px;
+}
+#addSamples{
+  display: inline-block !important;
+	width: 100px !important;
+}
+.addTrack{
+	position: absolute;
+	bottom: -20px;
+	left: 20px;
+	width: 100%;
+	padding-left: 45px;
+}
+
 	/*TRACK CONTROLS*/
 	input[type=range] {
 		display: inline-block !important;
 	}
 	.trackControls{
 		display: inline-block;
-		margin-top:20px;
+		margin-top:8px;
 		/*padding-left: 0px !important;*/
-	}
-	.sampleSelect{
-  	display: inline-block;
-		margin-right: 10px;
 	}
 	.glyphicon{
 		margin-right: 10px;
@@ -194,11 +222,6 @@ body{
 	}
 	/*TRACK CONTROLS*/
 
-	.addTrack{
-		position: absolute;
-		bottom: 0px;
-		left: 20px;
-	}
 
 /*SEQUENCER*/
 

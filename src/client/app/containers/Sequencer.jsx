@@ -181,40 +181,42 @@ class Sequencer extends React.Component {
     return(
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
-          <div className='col-md-9'>
+          <div className='save_bpm col-md-9'>
             <Alert className={this.state.messageCl} bsStyle="info">
               {message}
             </Alert>
-            <form id='bpmForm' action='javascript:void(0)'>
+            <form id='bpmForm' className='col-md-2'action='javascript:void(0)'>
               <input
+                id='bpmInput'
                 name='bpm'
                 type='number'
                 defaultValue={this.state.bpm || this.props.sequence.bpm}
                 onChange={this.setBPM.bind(this)}
                 required
               />
+              <span id='bpmText'>BPM</span>
             </form>
-
-            <form className='saveForm' action='javascript:void(0)'>
+            <form className='saveForm col-md-7' action='javascript:void(0)'>
               <input
                 type='text'
                 name='title'
                 className='titleInput'
                 value={this.state.title || this.props.sequence.name}
                 onChange={this.setTitle.bind(this)}
+                placeholder='sequence title'
                 required
               />
-              <button className='btn'onClick={this.save.bind(this, this.props.sequence)}>
+              <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
                 Save
               </button>
               <span className='saveAlert'>
                 {this.state.titleWarning}
               </span>
             </form>
-
           </div>
-          <div className='col-md-3'>
-            <button id='playButton' className='btn' onClick={this.play.bind(this, null)}>{play}</button>
+
+          <div className='playCtrl col-md-3'>
+            <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className='glyphicon glyphicon-play'></span></button>
           </div>
       </div>
 
@@ -238,16 +240,17 @@ class Sequencer extends React.Component {
               />
           )}
         </div>
-        <div className='addTrack'>
-          <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
-          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>          
-              <option value='16'  >16 </option>
-              <option value='32'  >32 </option>           
-          </select>
-        </div>
-        <div>
 
+        <div className='row addTrack'>
+          <div className='btn-toolbar'>
+            <button id='addTrackBtn' className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
+            <select id='addSamples' ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>
+              <option value='16'>16 Steps</option>
+              <option value='32'>32 Steps</option>
+            </select>
+          </div>
         </div>
+
       </div>
     )
   }
