@@ -66,10 +66,14 @@ module.exports = {
   },
 
   isLoggedIn(req, res, next) {
-    if(req.session.passport.user.displayName && req.session.passport.user.provider === 'facebook'){
-      next();
+    if(req.session.passport !== undefined){
+      if(req.session.passport.user.displayName && req.session.passport.user.provider === 'facebook'){
+        next();
+      }else{
+        res.status(401).send({ error: 'Error authenticating' });
+      }
     }else{
-      res.end('failed');
+      res.status(400).send({ error: 'Not Logged In' });
     }
   },
 
