@@ -1,4 +1,4 @@
-export default (index, sequence) =>{
+export default (index) =>{
 	return{
 		type: 'MUTE_TOGGLE',
 		payload: index

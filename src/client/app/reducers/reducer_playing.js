@@ -109,9 +109,15 @@ export default (state = initialMatrix, action) => {
         state.matrix.map((track,index) => {
           let newBar = _.clone(track);
           newBar = newBar.map((step) => {
-            step.class = 'step-tf';
-            step.toggled = false;
-            return step
+            if(step.class === 'step-mtf' || step.class === 'step-mtt'){
+              step.class = 'step-mtf';
+              step.toggled = false;
+              return step
+            } else {
+              step.class = 'step-tf';
+              step.toggled = false;
+              return step
+            }
           });
           newBar.forEach((step)=>{
             newSequence.matrix[index].push(step);
