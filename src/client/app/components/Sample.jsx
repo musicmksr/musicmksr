@@ -13,7 +13,7 @@ class Sample extends React.Component{
           }
         }
         onDragEnter={()=>{
-          _.once(this.props.toggleMatrix.call(null, this.props.index))
+         this.props.toggleMatrix.call(null, this.props.index)
         }}
         >
         </div>
