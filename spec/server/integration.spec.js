@@ -34,11 +34,11 @@ describe('/api/sample/bigkik.wav', function() {
 	});
 });
 
-// test that user data can be grabed from database
+// test that user data cannot be grabbed from DB when not logged in
 describe('/api/profile/:userId', function() {
 	it('should stop user info lookup if not loggedIn', function(done) {
 		request(this.app)
-			.get(`/api/profile/${1}`)
+			.get(`/api/profile/1`)
 			.then((res) =>{
 				expect(res.statusCode).toEqual(500);
 				done();

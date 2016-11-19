@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Sample from './Sample.jsx';
 import Howler from 'react-howler';
+import request from 'axios';
+import Sample from '../components/Sample.jsx';
+import Options from '../components/SampleOptions.jsx';
 import setPlaySequence from '../actions/setPlaySequence';
 import changeSample from '../actions/changeSample';
 import deleteTrack from '../actions/deleteTrack';
 import toggleMuteStyle from '../actions/toggleMuteStyle';
-import Options from './SampleOptions.jsx';
-import request from 'axios';
 
 window.lastId = 0;
 window.lastWrapId = 0;
