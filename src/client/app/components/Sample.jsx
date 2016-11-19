@@ -11,7 +11,11 @@ class Sample extends React.Component{
             console.log(this.props.index)
             this.props.toggleMatrix.call(null, this.props.index);
           }
-        }>
+        }
+        onDragEnter={()=>{
+         this.props.toggleMatrix.call(null, this.props.index)
+        }}
+        >
         </div>
       </div>
     )
