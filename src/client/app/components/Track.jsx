@@ -5,6 +5,7 @@ import Howler from 'react-howler';
 import setPlaySequence from '../actions/setPlaySequence';
 import changeSample from '../actions/changeSample';
 import deleteTrack from '../actions/deleteTrack';
+import toggleMuteStyle from '../actions/toggleMuteStyle';
 import Options from './SampleOptions.jsx';
 import request from 'axios';
 
@@ -38,8 +39,10 @@ class Track extends React.Component {
     return window.lastWrapId;
   }
   mute(){
+    this.props.toggleMuteStyle(this.props.index)
     this.props.howlerObject._muted = !this.props.howlerObject._muted;
-    console.log(this.props.numOfSteps)
+    
+    let elements = document.getElementsByClassName(toString());
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
@@ -116,6 +119,9 @@ class Track extends React.Component {
       this.props.deleteTrack(index);
     }
   }
+  toggleMuteStyle(){
+    this.props.toggleMuteStyle(index)
+  }
   syncScroll() {
     $('.stepsWrapper').scroll((e) => {
       $('.stepsWrapper').scrollLeft(e.target.scrollLeft);
@@ -128,7 +134,7 @@ class Track extends React.Component {
       <div className='tracksWrapper'>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
-              <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
+              <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()} index={this.props.index}>
                 <Sample
                   playState={this.props.playState}
                   key={[this.props.index, index]}
@@ -149,7 +155,7 @@ class Track extends React.Component {
               )}
             </select>
           </div>
-          <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this)}/>
+          <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this, this.props.index)}/>
           <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
           <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
         </div>
@@ -163,5 +169,6 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps,
   { setPlaySequence: setPlaySequence,
     changeSample: changeSample,
-    deleteTrack: deleteTrack
+    deleteTrack: deleteTrack,
+    toggleMuteStyle: toggleMuteStyle,
   })(Track);

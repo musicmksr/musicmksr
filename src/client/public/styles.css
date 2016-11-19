@@ -106,8 +106,35 @@ body{
 	margin-top: 5px;
 	border-radius: 5px;
 }
+.step-mtf{
+	background-color: #868689;
+	height: 34px;
+	width: 34px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;
+}
+.step-mtt{
+	background-color: #3066BE;
+	height: 34px;
+	width: 34px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+	border-radius: 5px;
+}
 #step-wrapper{
 	background-color: #DFE1E2;
+	height: 44px;
+	width: 44px;
+	display: inline-block;
+	margin-left: 5px;
+	margin-top: 5px;
+  border-radius: 5px;
+}
+#step-wrapper-muted{
+	background-color: #201E1D;
 	height: 44px;
 	width: 44px;
 	display: inline-block;
