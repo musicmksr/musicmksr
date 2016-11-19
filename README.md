@@ -11,7 +11,7 @@ If you would like to fork this repository, please follow these steps to set up y
 3. NPM install in the root directory.
 4. Set up a .env file and add your local MySQL variables. Refer to db/schema.js where environment variables are being applied.
 5. Add a NODE_DEV variable to your .env for port number.
-6. Create facebook app and add keys to a config.js file in the root directory
+6. Create a facebook app and add keys to a config.js file in the root directory
 
 # Instructions
 
