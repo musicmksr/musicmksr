@@ -20,25 +20,27 @@ export default (state = initialMatrix, action) => {
       }  else if (newSequence.matrix[index[0]][index[1]].class === 'step-mtf'){
         newSequence.matrix[index[0]][index[1]].class = 'step-mtt';
       }
+
       return newSequence;
 
-  case "MUTE_TOGGLE":
-  const muteIndex = action.payload;
-  newSequence.matrix[muteIndex].forEach((step, index)=>{
-      if(step.class === 'step-tt'){
-        step.class = 'step-mtt';
-      }else if (step.class === 'step-tf'){
-        step.class = 'step-mtf';
-      } else if (step.class === 'step-mtt'){
-        step.class = 'step-tt'
-      } else if (step.class === 'step-mtf'){
-        step.class = 'step-tf'
-      }  
-      console.log(step.class)
-  })
+    case "MUTE_TOGGLE":
+      const muteIndex = action.payload;
+
+      newSequence.matrix[muteIndex].forEach((step, index)=>{
+        if(step.class === 'step-tt'){
+          step.class = 'step-mtt';
+        }else if (step.class === 'step-tf'){
+          step.class = 'step-mtf';
+        } else if (step.class === 'step-mtt'){
+          step.class = 'step-tt';
+        } else if (step.class === 'step-mtf'){
+          step.class = 'step-tf';
+        }  
+        console.log(step.class);
+      });
 
 
-   return newSequence; 
+     return newSequence; 
 
     case "CHANGE_SAMPLE":
       console.log('change sample');

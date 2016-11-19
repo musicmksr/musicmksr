@@ -46,3 +46,29 @@ describe('/api/profile/:userId', function() {
 			.catch(done.fail);
 	});
 });
+
+// test that sequence can preload with sample options
+describe('/api/options/:userId', function() {
+	it('should grab options for tracks sounds from database', function(done) {
+		request(this.app)
+			.get(`/api/options/1`)
+			.then((res) =>{
+				expect(res.statusCode).toEqual(200);
+				done();
+			})
+			.catch(done.fail);
+	});
+});
+
+// test that the session is sent on request
+describe('/api/session', function() {
+	it('should grab options for tracks sounds from database', function(done) {
+		request(this.app)
+			.get(`/api/session`)
+			.then((res) =>{
+				expect(res.statusCode).toEqual(200);
+				done();
+			})
+			.catch(done.fail);
+	});
+});
