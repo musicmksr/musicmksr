@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
+import { Alert } from 'react-bootstrap';
 import request from 'axios';
 import UserSequence from '../containers/UserSequence.jsx';
 import UserSamples from './UserSamples.jsx';
@@ -15,6 +16,7 @@ class Profile extends React.Component {
 
     this.state = {
       loading: 'Loading...',
+      loadingCL: 'show',
       sequences: [],
       samples: []
     };
@@ -32,22 +34,36 @@ class Profile extends React.Component {
         .then((response) =>{
           this.setState({
             loading: '',
+            loadingCL: 'hidden',
             sequences: response.data.sequences,
             samples: response.data.samples
           });
         })
         .catch((err) =>{
           console.log(err);
+          this.setState({
+            loading: 'An Error Occured, please try refreshing the page or logging back in.',
+            loadingCL: 'show'
+          });
         });
     }
   }
 
   render() {
+    let userName = '';
+    if(window.newCookie === undefined){
+      userName = '';
+    }else{
+      userName = window.newCookie.user.displayName;
+    }
+
     return(
       <div>
-      	<div>{this.state.loading}</div>
+        <Alert className={this.state.loadingCL} bsStyle="info">
+          {this.state.loading}
+        </Alert>
         <div className="container">
-          <h2>{window.newCookie.user.displayName}</h2>
+          <h2>{userName}</h2>
           <ul className="nav nav-tabs">
             <li className="active"><a data-toggle="tab" href="#home">Sequences</a></li>
             <li><a data-toggle="tab" href="#menu2">Samples</a></li>

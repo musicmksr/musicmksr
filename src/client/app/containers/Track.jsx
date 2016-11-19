@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-bootstrap';
 import Howler from 'react-howler';
 import request from 'axios';
 import Sample from '../components/Sample.jsx';
@@ -17,6 +18,8 @@ class Track extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      message: '',
+      messageCl: 'hidden',
       samples: Object.keys(this.props.samples).map(key => this.props.samples[key])
     };
   }
@@ -100,6 +103,10 @@ class Track extends React.Component {
         })
         .catch((err) =>{
           console.log(err);
+          this.setState({
+            message: 'An Error Occured, please try refreshing the page or logging back in.',
+            messageCl: 'show'
+          })
         });
     }
   }
@@ -126,6 +133,9 @@ class Track extends React.Component {
 
     return(
       <div className='tracksWrapper'>
+        <Alert className={this.state.messageCl} bsStyle="info">
+          {this.state.message}
+        </Alert>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
               <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>

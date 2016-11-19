@@ -126,6 +126,10 @@ class Sequencer extends React.Component {
           })
           .catch((error) =>{
             console.log(error);
+            this.setState({
+              message: 'An Error Occured, please try refreshing the page or logging back in.',
+              messageCl: 'show'
+            });
           });
 
         setTimeout(() =>{
@@ -171,11 +175,13 @@ class Sequencer extends React.Component {
 
     let message = this.state.message;
     let play = '';
+    let disabled = '';
 
     if(this.state.playing === false){
       play = 'Play';
     } else {
       play = 'Stop';
+      disabled = 'true';
     }
 
     return(
@@ -240,7 +246,7 @@ class Sequencer extends React.Component {
         </div>
         <div className='addTrack'>
           <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
-          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>          
+          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)} disabled={disabled}>          
               <option value='16'  >16 </option>
               <option value='32'  >32 </option>           
           </select>
