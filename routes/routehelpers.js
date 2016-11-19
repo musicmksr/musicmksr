@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const fs = require('fs');
 const path = require('path');
 const sha1 = require('sha1');
@@ -81,9 +79,13 @@ module.exports = {
 
       Sample.find({where: {name: fileInfo[0] }})
         .then((response) =>{
-          const sampleHash = response.dataValues.hash;
+          if(response !== null){
+            const sampleHash = response.dataValues.hash;
 
-          return sampleHash;
+            return sampleHash;
+          }else{
+            res.status(401).send({ error: 'Not Found' });
+          } 
         })
         .then((sampleHash) =>{
           const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
@@ -105,6 +107,7 @@ module.exports = {
         })
         .catch((err) =>{
           console.log(err);
+          res.status(400).send({ error: err });
         });
   },
 
@@ -121,12 +124,17 @@ module.exports = {
   getUserProfile(req, res, next) {
     Sequence.findAll({where: { userId: req.params.userId }})
       .then((sequences) =>{
-        module.exports.getUserSamples(req.params.userId, (samples) =>{
-          res.send({sequences: sequences, samples: samples});
-        });
+        if(sequences !== null){
+          module.exports.getUserSamples(req.params.userId, (samples) =>{
+            res.send({sequences: sequences, samples: samples});
+          });
+        }else {
+          res.status(401).send({ error: 'Not Found' });
+        }
       })
       .catch((err) =>{
         console.log(err);
+        res.status(400).send({ error: err });
       });
   },
 
@@ -176,10 +184,15 @@ module.exports = {
   getUserSamples(userId, cb) {
     Sample.findAll({where: { userId: { $or: [userId, null] } } })
       .then((samples) =>{
-        if(cb) cb(samples);
+        if(samples !== null){
+          if(cb) cb(samples);
+        }else {
+          res.status(401).send({ error: 'Not Found' });
+        }
       })
       .catch((err) => {
         console.log(err);
+        res.status(400).send({ error: err });
       });
   },
 

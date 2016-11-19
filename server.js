@@ -1,5 +1,11 @@
 'use strict';
+
 require('dotenv').config();
+
+if(process.env.NODE_ENV === 'test'){
+  process.env.DB_PASS = '';
+}
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const fallback = require('express-history-api-fallback');

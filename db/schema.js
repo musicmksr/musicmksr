@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const Sequelize = require('sequelize');
 
 // set up the database config
