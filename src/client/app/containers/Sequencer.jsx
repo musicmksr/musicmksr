@@ -30,7 +30,14 @@ class Sequencer extends React.Component {
     };
   }
   componentDidMount() {
+    let context = this;
     clearInterval(window.innerPlay);
+    document.body.onkeydown = function(e){
+    if(e.keyCode == 32){
+      e.preventDefault();
+      context.play();
+      }
+  }
   }
   bpmConversion(bpm) {
     let convertedBPM = (1/(bpm)) * 15000;
@@ -56,11 +63,10 @@ class Sequencer extends React.Component {
   }
   play() {
     if (!this.state.playing) {
-      console.log('numofsteps in play', this.state.numOfSteps)
       this.setState({
         playing: true
       });
-
+      
       currentCol = 1;
       const context = this;
       console.log(this.props.playSequence);
