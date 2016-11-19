@@ -40,7 +40,7 @@ class Track extends React.Component {
   }
   mute(){
     this.props.toggleMuteStyle(this.props.index)
-    this.props.howlerObject._muted = !this.props.howlerObject._muted;    
+    this.props.howlerObject._muted = !this.props.howlerObject._muted;
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
@@ -123,12 +123,12 @@ class Track extends React.Component {
   }
   render() {
     this.createPlaySequence.call(this);
-    
+
     return(
       <div className='tracksWrapper'>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
-              <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()} index={this.props.index}>
+              <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>
                 <Sample
                   playState={this.props.playState}
                   key={[this.props.index, index]}
