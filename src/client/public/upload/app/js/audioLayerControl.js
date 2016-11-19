@@ -406,7 +406,7 @@ function audioLayerControl(elementContext)
         fileUploadInfo.append('id', window.userID);
         fileUploadInfo.append('file', blob);
 
-        axios.post('/api/wavetest', fileUploadInfo, 
+        axios.post('/api/upload', fileUploadInfo, 
           {headers: {'Content-Type': 'multipart/form-data'}})
           .then((response) =>{
             console.log(response);

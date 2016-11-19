@@ -49,13 +49,16 @@ module.exports = function(app) {
     helpers.saveSequence
   );
 
+  // delete sequences from profile page
   app.delete('/api/deleteSequence/:sequenceName/:userId', 
     helpers.isLoggedIn, 
     helpers.deleteSequence
   );
 
-  app.post('/api/waveTest', 
+  // upload sounds and save them to the server
+  app.post('/api/upload', 
     upload.single('file'),
+    helpers.isLoggedIn,
     helpers.uploadAudio
   );
   

@@ -21,6 +21,7 @@ class Sequencer extends React.Component {
       playing: false,
       message: '',
       messageCl: 'hidden',
+      bsStyle: 'info',
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
@@ -126,12 +127,18 @@ class Sequencer extends React.Component {
           })
           .catch((error) =>{
             console.log(error);
+            this.setState({
+              message: 'An Error Occured, please try refreshing the page or logging back in.',
+              messageCl: 'show',
+              bsStyle: 'danger'
+            });
           });
 
         setTimeout(() =>{
           this.setState({
             message: '',
-            messageCl: 'hidden'
+            messageCl: 'hidden',
+            bsStyle: 'info'
           });
         }, 3000);
       }
@@ -171,18 +178,20 @@ class Sequencer extends React.Component {
 
     let message = this.state.message;
     let play = '';
+    let disabled = '';
 
     if(this.state.playing === false){
       play = 'Play';
     } else {
       play = 'Stop';
+      disabled = 'true';
     }
 
     return(
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='col-md-9'>
-            <Alert className={this.state.messageCl} bsStyle="info">
+            <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
               {message}
             </Alert>
             <form id='bpmForm' action='javascript:void(0)'>
@@ -240,7 +249,7 @@ class Sequencer extends React.Component {
         </div>
         <div className='addTrack'>
           <button className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
-          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>          
+          <select ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)} disabled={disabled}>          
               <option value='16'  >16 </option>
               <option value='32'  >32 </option>           
           </select>
