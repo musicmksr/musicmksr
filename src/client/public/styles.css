@@ -1,6 +1,11 @@
 /*MAIN*/
+@font-face {
+	font-family: DS-DIGITAL;
+	src: url(/fonts/ds_digital/DS-DIGI.ttf);
+}
 body{
 	background-color: white;
+	font-family: DS-DIGITAL;
 }
 .hidden{
 	display: none;
@@ -21,6 +26,7 @@ body{
   height: 120px;
 	padding-top: 20px;
 	padding-right: 20px;
+	font-size: 20px;
 }
 #navbar{
 	position: absolute;
@@ -28,7 +34,7 @@ body{
 }
 #uploadNav{
 	position: absolute;
-	bottom: 0;	
+	bottom: 0;
 }
 /*NAVBAR*/
 
@@ -217,3 +223,9 @@ body{
 	text-align: center;
 }
 /*LOGIN*/
+
+/*AUDIO UPLOAD*/
+#spectrum{
+  height:100px;
+}
+/*AUDIO UPLOAD*/

@@ -8,7 +8,7 @@ function AudioLayerSequenceEditor(elementContext)
     this.canvasReference = undefined;
     this.audioSequenceReference = undefined;
 
-    this.canvasHeight = 100;
+    this.canvasHeight = 60;
     this.canvasWidth = elementContext.parentNode.parentNode.clientWidth - 50;
 
     this.name = name;
@@ -39,8 +39,8 @@ function AudioLayerSequenceEditor(elementContext)
     // color states (gradient from top to bottom)
 
     // colors when the mouse is outside of the editor box
-    this.colorInactiveTop = "#d7e5c7";
-    this.colorInactiveBottom = "#d7e5c7";
+    this.colorInactiveTop = "#D6D6D6";
+    this.colorInactiveBottom = "#D6D6D6";
     // colors when the mouse is inside of the editor box
     this.colorActiveTop = "#EEE";
     this.colorActiveBottom = "#CCC";
@@ -111,7 +111,7 @@ function AudioLayerSequenceEditor(elementContext)
         this.canvasReference.setAttribute("class", "audioLayerEditor");
         this.canvasReference.width = this.canvasWidth;
         this.canvasReference.height = this.canvasHeight;
-        this.canvasReference.style['border'] = '1px solid #b8d599';
+        this.canvasReference.style['border'] = '1px solid #D6D6D6';
         this.elementContext.appendChild(this.canvasReference);
 
         // add the mouse listener to the canvas
