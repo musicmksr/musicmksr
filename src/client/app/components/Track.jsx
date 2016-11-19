@@ -40,8 +40,7 @@ class Track extends React.Component {
   }
   mute(){
     this.props.toggleMuteStyle(this.props.index)
-    this.props.howlerObject._muted = !this.props.howlerObject._muted;
-    
+    this.props.howlerObject._muted = !this.props.howlerObject._muted;    
     let elements = document.getElementsByClassName(toString());
   }
   volChange(){
@@ -51,7 +50,6 @@ class Track extends React.Component {
       console.log('VOLUME:', sample.props.sound._volume)
     })
   }
-
   volUp(){
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       if(sample.props.sound._volume<1){
@@ -118,9 +116,6 @@ class Track extends React.Component {
     if(!this.props.playing){
       this.props.deleteTrack(index);
     }
-  }
-  toggleMuteStyle(){
-    this.props.toggleMuteStyle(index)
   }
   syncScroll() {
     $('.stepsWrapper').scroll((e) => {
