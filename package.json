@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "NODE_ENV=test jasmine",
+    "test": "NODE_ENV=test DB_HOST=localhost DB_NAME=root DB_DB=music jasmine",
     "build": "webpack --watch"
   },
   "author": "Gery, Andrew, Chris, Alex",
