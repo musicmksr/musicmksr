@@ -41,7 +41,6 @@ class Track extends React.Component {
   mute(){
     this.props.toggleMuteStyle(this.props.index)
     this.props.howlerObject._muted = !this.props.howlerObject._muted;    
-    let elements = document.getElementsByClassName(toString());
   }
   volChange(){
     let slider = document.getElementById('slider'+this.props.index);
