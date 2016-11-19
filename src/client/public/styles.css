@@ -12,10 +12,10 @@ body{
   font-family: Tracks;
   src: url(/fonts/track/TTF/Track.ttf);
 }
-#logo{
+.logo{
   font-family: Tracks;
 	font-size: 40px;
-	color: #F66662;
+	color: #F66662 !important;
 }
 .navbar{
   height: 120px;
@@ -25,6 +25,10 @@ body{
 #navbar{
 	position: absolute;
 	bottom: 0;
+}
+#uploadNav{
+	position: absolute;
+	bottom: 0;	
 }
 /*NAVBAR*/
 

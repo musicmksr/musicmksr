@@ -9,13 +9,9 @@
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
-    <link href="bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/styles.css'>
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -31,17 +27,45 @@
   </head>
 
   <body onload="onDocumentLoaded()">
-    <div class="navbar navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container">
-          <a class="brand" href="#">HTML5 Audio Editor</a>
-          <ul class="nav pull-right">
-            <li><a data-toggle="modal" href="#helpAsModal">Help</a></li>
-          </ul>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="logo navbar-brand navbar-right" to='/sequencer'>STEP<br/><br/>S160</div>
+      </div>
+      <div className="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      </div>
+      <div id="uploadNav" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="/sequencer">Sequencer</a></li>
+          <li><a>Upload</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="span4">
+          <h6>Spectrum</h6>
+          <div class="well">
+            <div id="spectrum"></div>
+          </div>
+        </div>
+        <div class="span8">
+          <h6>Editor</h6>
+          <div class="well">
+             <audioLayerControl id="audioLayerControl" title="CloudCompany.mp3" />
+          </div>
+          <div id="editor">
+                <div id="editorbox">
+                    <audioLayerControl id="audioLayerControl" title="CloudCompany.mp3" />
+                </div>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="container">
       <div class="row">
         <div class="span12">
           <center>
@@ -58,28 +82,19 @@
               <a class="btn btn-success" onclick="$('#audioLayerControl')[0].zoomIntoSelection();"><i class="icon-plus-sign icon-white"></i> Zoom To Selection</a>
               <a class="btn btn-success" onclick="$('#audioLayerControl')[0].zoomToFit();"><i class="icon-fullscreen icon-white"></i> Zoom To Fit</a>
             </div>
+            <div class="btn-group">
+              <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterNormalize();">Normalize</a>
+              <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterSilence();">Silence</a>
+              <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterFadeIn();">Fade In</a>
+              <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterFadeOut();">Fade Out</a>
+            </div>
+            <div class="btn-group" >
+                <a class="btn btn-success glyphicon glyphicon-minus" onclick="decrease_db()"></a>
+                <a class="btn disabled" onclick="gain_btn_clicked()">0 db</a>
+                <a class="btn btn-success glyphicon glyphicon-plus" onclick="increase_db()"></a>
+            </div>
           </div>
         </center>
-        </div>
-      </div>
-      <hr />
-      <div class="row">
-        <div class="span4">
-          <h6>Spectrum</h6>
-          <div class="well">
-            <div id="spectrum"></div>
-          </div>
-        </div>
-        <div class="span8">
-          <h6>Editor</h6>
-          <div class="well">
-             <audioLayerControl id="audioLayerControl" title="CloudCompany.mp3" />
-          </div>
-          <!--<div id="editor">
-                <div id="editorbox">
-                    <audioLayerControl id="audioLayerControl" title="CloudCompany.mp3" />
-                </div>
-            </div>-->
         </div>
       </div>
       <hr>
@@ -88,131 +103,76 @@
           <center>
             <div class="btn-toolbar">
               <div class="btn-group">
-                <a id="btn_play" class="btn btn-success btn-large" onclick="$('#audioLayerControl')[0].play()" rel="tooltip" title="first tooltip"><i class="icon-play icon-white"></i></a>
-                <a id="btn_pause" class="btn btn-success btn-large disabled"><i class="icon-pause icon-white"></i></a>
-                <a id="btn_stop" class="btn btn-success btn-large" onclick="$('#audioLayerControl')[0].stop()"><i class="icon-stop icon-white"></i></a>
-                <a id="btn_loop" class="btn btn-warning btn-large" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"><i class="icon-repeat icon-white"></i></a>
+                <a class="btn btn-success glyphicon glyphicon-play" onclick="$('#audioLayerControl')[0].play()" rel="tooltip" title="first tooltip"></a>
+                <a class="btn btn-success glyphicon glyphicon-pause disabled"></a>
+                <a class="btn btn-success glyphicon glyphicon-stop" onclick="$('#audioLayerControl')[0].stop()"></a>
+                <a class="btn btn-warning glyphicon glyphicon-repeat" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"></a>
               </div>
               <div class="btn-group">
                 <form action='javascript:void(0)'>
-                  <input type='text' name='fileTitle' value='NO FILE EXTENSIONS JUST NAMES' required/>
-                  <button class="btn btn-large btn-primary" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);"><i class="icon-fire"></i> Render</button>
+                  <input style='width: 250px; margin-right: 15px; margin-top: 5px'type='text' name='fileTitle' placeholder='name without extension' required/>
+                  <a class="btn btn-large btn-primary pull-right" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);">Upload</a>
                 </form>
               </div>
             </div>
           </center>
         </div>
       </div>
+      <br>
       <div class="row">
         <div class="span4 offset4">
           <div class="progress progress-striped active">
             <div id="app-progress" class="bar" style="width: 0%;"></div>
           </div>
         </div>
-      </div>  
+      </div>
       <br>
-      <div class="row">
-        <div class="span1"><br></div>
-        <div class="span2">
-          <h6>Gain</h6>
-          <div class="well" style="height: 130px; position:relative">
-            <p>Change the volume of the selected audio sequence with the given gain multiplicator.</p>
-            
-              <div class="pull-right" style=" position:absolute; bottom: 5px; width: 100%;" >
-                <div class="btn-group" >
-                  
-                    <button class="btn btn-success" onclick="decrease_db()"><i class="icon-minus"></i></button>
-                    <button id="gain-db" class="btn disabled" onclick="gain_btn_clicked()">0 db</button>
-                    <button class="btn btn-success" onclick="increase_db()"><i class="icon-plus"></i></button> 
-                </div>
-              </div>
-            <script type="text/javascript">
-                var db_gain = 0;
 
-                function decrease_db()
+          <script type="text/javascript">
+              var db_gain = 0;
+
+              function decrease_db()
+              {
+                --db_gain;
+                update_db_gain_btn();
+              }
+
+              function increase_db()
+              {
+                ++db_gain;
+                update_db_gain_btn();
+              }
+
+              function update_db_gain_btn()
+              {
+                var gain_btn = $('#gain-db')[0];
+
+                gain_btn.innerHTML = db_gain + ' db';
+
+                if (db_gain === 0)
                 {
-                  --db_gain;
-                  update_db_gain_btn();
+                  gain_btn.className = 'btn disabled';
                 }
-
-                function increase_db()
+                else
                 {
-                  ++db_gain;
-                  update_db_gain_btn();
+                  gain_btn.className = 'btn btn-primary';
                 }
+              }
 
-                function update_db_gain_btn()
-                {
-                  var gain_btn = $('#gain-db')[0];
-
-                  gain_btn.innerHTML = db_gain + ' db'; 
-
-                  if (db_gain === 0)
-                  {
-                    gain_btn.className = 'btn disabled';
-                  }
-                  else
-                  {
-                    gain_btn.className = 'btn btn-primary';
-                  }
-                }
-
-                function gain_btn_clicked()
-                {
-                  $('#audioLayerControl')[0].filterGain(db_gain);
-                  db_gain = 0;
-                  update_db_gain_btn();
-                }
-                </script>
-          </div>
-        </div>
-        <div class="span2">
-          <h6>Normalize</h6>
-          <div class="well" style="height: 130px; position:relative">
-            <p>Adjust the volume to the maximum of the selected audio sequence.</p>
-            <a style="position:absolute; bottom: 5px; right: 5px"  class="btn btn-primary pull-right" onclick="$('#audioLayerControl')[0].filterNormalize();">Apply</a>
-            <br>
-          </div>
-        </div>
-        <div class="span2">
-          <h6>Silence</h6>
-          <div class="well" style="height: 130px; position:relative">
-            <p>Silence the selected audio sequence</p>
-            <a style="position:absolute; bottom: 5px; right: 5px"  class="btn btn-primary pull-right" onclick="$('#audioLayerControl')[0].filterSilence();">Apply</a>
-            <br>
-          </div>
-        </div>
-        <div class="span2">
-          <h6>Fade In</h6>
-          <div class="well" style="height: 130px; position:relative">
-            <p>Create a linear fade int of the selected audio sequence</p>
-            <a style="position:absolute; bottom: 5px; right: 5px"  class="btn btn-primary pull-right" onclick="$('#audioLayerControl')[0].filterFadeIn();">Apply</a>
-            <br>
-          </div>
-        </div>
-        <div class="span2">
-          <h6>Fade Out</h6>
-          <div class="well" style="height: 130px; position:relative">
-            <p>Create a linear fade out of the selected audio sequence</p>
-            <a style="position:absolute; bottom: 5px; right: 5px" class="btn btn-primary pull-right" onclick="$('#audioLayerControl')[0].filterFadeOut();">Apply</a>
-            <br>
-          </div>
-        </div>
-        <div class="span1">
-
-        </div>
+              function gain_btn_clicked()
+              {
+                $('#audioLayerControl')[0].filterGain(db_gain);
+                db_gain = 0;
+                update_db_gain_btn();
+              }
+          </script>
       </div>
-
-      <div class="row">
-        <div class="span8">
-        
-        </div>
-      </div>
+    </div>
 
       <!-- Le Footer
-    ================================================== --> 
-       <footer class="footer">
-        
+    ================================================== -->
+       <!-- <footer class="footer">
+
         <br>
         <p class="pull-left"><a href="#">Back to top</a></p>
         <blockquote class="pull-right">
@@ -221,7 +181,7 @@
         <p>Parts of the code were taken from the <a href="http://audacity.sourceforge.net/">Audacity</a> project and converted from C++ to JavaScript</p>
 	<p>The project is available at github: <a href="https://github.com/plucked/html5-audio-editor">html5-audio-editor</a></p>
       </blockquote>
-      </footer>
+      </footer> -->
 
 
     <!-- Le javascript
@@ -244,8 +204,8 @@
 
 
     <script type="text/javascript" src="app/js/ACFIRFilter.js"></script>
-    <script type="text/javascript" src="app/js/ACAAFilter.js"></script> 
-    <script type="text/javascript" src="app/js/ACSpectrum.js"></script>    
+    <script type="text/javascript" src="app/js/ACAAFilter.js"></script>
+    <script type="text/javascript" src="app/js/ACSpectrum.js"></script>
     <script type="text/javascript" src="app/js/ACFFT.js"></script>
     <script type="text/javascript" src="app/js/SpectrumWorker.js"></script>
     <script type="text/javascript" src="app/js/SpectrumDisplay.js"></script>
