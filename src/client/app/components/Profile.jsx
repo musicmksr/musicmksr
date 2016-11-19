@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { browserHistory } from 'react-router';
 import request from 'axios';
-import UserSequence from './UserSequence.jsx';
+import UserSequence from '../containers/UserSequence.jsx';
 import UserSamples from './UserSamples.jsx';
 
 class Profile extends React.Component {

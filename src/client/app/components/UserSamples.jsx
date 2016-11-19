@@ -21,8 +21,4 @@ class UserSamples extends React.Component {
 
 }
 
-/*
-            
-*/
-
 export default UserSamples;
