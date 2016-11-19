@@ -46,7 +46,6 @@ class Track extends React.Component {
     let slider = document.getElementById('slider'+this.props.index);
     this.props.playSequence[this.props.index].forEach(function(sample, index){
       sample.props.sound._volume = slider.value/100;
-      console.log('VOLUME:', sample.props.sound._volume)
     })
   }
   volUp(){
