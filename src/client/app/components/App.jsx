@@ -79,7 +79,7 @@ class App extends React.Component {
 			<div>
 				<nav className="navbar navbar-default">
 	        <div className="container-fluid">
-						<Link className="logo navbar-brand navbar-right" to='/sequencer'><span>STEP</span>{<br/>}{<br/>}<span>S160</span></Link>
+						<Link className="logo navbar-brand navbar-right" to='/sequencer'><p className='logo'>STEP</p>{<br/>}{<br/>}<p className='logo' id='s160'>S160</p></Link>
 	          <div className="navbar-header">
 	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	              <span className="sr-only">Toggle navigation</span>
@@ -89,7 +89,7 @@ class App extends React.Component {
 	            </button>
 	          </div>
 	          <div id="navbar" className="navbar-collapse collapse">
-	            <ul className="nav navbar-nav navbar-left">
+	            <ul className="nav navbar-nav">
 	              <li><Link to='/sequencer' activeClassName='active'>Sequencer</Link></li>
 	              <li>{profileLink}</li>
 	              <li>{upload}</li>

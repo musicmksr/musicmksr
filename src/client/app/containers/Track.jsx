@@ -165,12 +165,14 @@ class Track extends React.Component {
               )}
             </select>
           </div>
-          <div className='muteWrapper'>
-            <span className={this.state.volIcon} onClick={this.mute.bind(this, this.props.index)}></span>
-          </div>
-          <div className='sliderWrapper'>
-            <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" defaultValue="100" onChange={this.volChange.bind(this)} />
-            <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
+          <div className='col-md-6'>
+            <div className='muteWrapper'>
+              <span className={this.state.volIcon} onClick={this.mute.bind(this, this.props.index)}></span>
+            </div>
+            <div className='sliderWrapper'>
+              <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" defaultValue="100" onChange={this.volChange.bind(this)} />
+              <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
+            </div>
           </div>
         </div>
       </div>

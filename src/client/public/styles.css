@@ -1,7 +1,13 @@
 /*MAIN*/
 br {
    display: block;
-   margin: 0px;
+   margin: 50px;
+}
+p.logo{
+	line-height: 3%;
+}
+#s160{
+	letter-spacing: 1px;
 }
 .glyphicon{
 	margin-right: 0px !important;
@@ -14,6 +20,7 @@ br {
 body{
 	background-color: white;
 	font-family: DS-DIGITAL;
+	padding-bottom: 80px;
 }
 .scrollbox{
 	background-color: #2D2B30;
@@ -55,6 +62,11 @@ body{
 	position: absolute;
 	bottom: 0;
 }
+@media (max-width: 767px) {
+    .navbar-right {
+			float: left!important; 
+		}
+}
 /*NAVBAR*/
 
 
@@ -71,12 +83,16 @@ body{
 }
 	/*SEQUENCER HEADER*/
 	#bpmForm{
+		white-space: nowrap;
 		display: inline-block;
 		border-width: 2px;
 		border-style: inset;
 		border-color: #979797;
-		margin-left: 15px;
 		background-color: #2F3434;
+	}
+	input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 	}
 	#bpmInput{
 		width: 50%;

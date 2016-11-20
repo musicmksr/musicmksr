@@ -200,34 +200,38 @@ class Sequencer extends React.Component {
             <Alert className={this.state.messageCl} bsStyle="info">
               {message}
             </Alert>
-            <form id='bpmForm' className='col-md-2'action='javascript:void(0)'>
-              <input
-                id='bpmInput'
-                name='bpm'
-                type='number'
-                defaultValue={this.state.bpm || this.props.sequence.bpm}
-                onChange={this.setBPM.bind(this)}
-                required
-              />
-              <span id='bpmText'>BPM</span>
-            </form>
-            <form className='saveForm col-md-7' action='javascript:void(0)'>
-              <input
-                type='text'
-                name='title'
-                className='titleInput'
-                value={this.state.title || this.props.sequence.name}
-                onChange={this.setTitle.bind(this)}
-                placeholder='sequence title'
-                required
-              />
-              <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
-                Save
-              </button>
-              <span className='saveAlert'>
-                {this.state.titleWarning}
-              </span>
-            </form>
+            <div className='col-md-2'>
+              <form id='bpmForm' action='javascript:void(0)'>
+                <input
+                  id='bpmInput'
+                  name='bpm'
+                  type='number'
+                  defaultValue={this.state.bpm || this.props.sequence.bpm}
+                  onChange={this.setBPM.bind(this)}
+                  required
+                />
+                <span id='bpmText'>BPM</span>
+              </form>
+            </div>
+            <div className='col-md-7'>
+              <form className='saveForm' action='javascript:void(0)'>
+                <input
+                  type='text'
+                  name='title'
+                  className='titleInput'
+                  value={this.state.title || this.props.sequence.name}
+                  onChange={this.setTitle.bind(this)}
+                  placeholder='sequence title'
+                  required
+                />
+                <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
+                  Save
+                </button>
+                <span className='saveAlert'>
+                  {this.state.titleWarning}
+                </span>
+              </form>
+            </div>
           </div>
 
           <div className='playCtrl col-md-3'>
