@@ -1,4 +1,8 @@
 /*MAIN*/
+br {
+   display: block;
+   margin: 0px;
+}
 .glyphicon{
 	margin-right: 0px !important;
 	top: 0px !important;
@@ -11,26 +15,37 @@ body{
 	background-color: white;
 	font-family: DS-DIGITAL;
 }
+.scrollbox{
+	background-color: #2D2B30;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #A39B94;
+	padding-top: 50px;
+}
 .hidden{
 	display: none;
 }
 /*MAIN*/
 
 /*NAVBAR*/
+.active{
+  color: #F66662 !important;
+}
 @font-face {
   font-family: Tracks;
   src: url(/fonts/track/TTF/Track.ttf);
 }
 .logo{
   font-family: Tracks;
-	font-size: 40px;
+	font-size: 48px;
 	color: #F66662 !important;
 }
 .navbar{
-  height: 120px;
-	padding-top: 20px;
-	padding-right: 20px;
-	font-size: 20px;
+  height: 125px;
+	padding-top: 25px;
+	padding-right: 25px;
+	font-size: 25px;
+	margin-bottom: 0px;
 }
 #navbar{
 	position: absolute;
@@ -46,6 +61,7 @@ body{
 /*SEQUENCER*/
 .outer{
 	position:relative;
+	padding-bottom: 50px;
 }
 .sequence{
 	position: relative;
@@ -99,9 +115,9 @@ body{
 		margin-top: 5px;
 		margin-left: 10px;
 		background-color: #2F3434;
-		border-width: 1px;
-		border-style:solid;
-		border-color: #979797;
+		border-width: 2px;
+		border-style: solid;
+		border-color: #A39B94;
 	}
 	span.glyphicon-play{
 		font-size: 1.4em;
@@ -193,32 +209,75 @@ body{
 #addSamples{
   display: inline-block !important;
 	width: 100px !important;
+	border-width: 2px;
+	border-style: inset;
+	border-color: #979797;
 }
 .addTrack{
 	position: absolute;
-	bottom: -20px;
+	bottom: 50px;
 	left: 20px;
 	width: 100%;
 	padding-left: 45px;
 }
 
 	/*TRACK CONTROLS*/
+	.sampleSelect{
+		background-color: #2F3434;
+		color: #DFE1E2;
+		border-width: 2px;
+		border-style: inset;
+		border-color: #979797;
+	}
+	.sampleSelect:focus{
+		outline:none !important;
+	}
 	input[type=range] {
 		display: inline-block !important;
 	}
 	.trackControls{
 		display: inline-block;
 		margin-top:8px;
+		color: #DFE1E2;
+		white-space: nowrap;
 		/*padding-left: 0px !important;*/
 	}
 	.glyphicon{
 		margin-right: 10px;
 	}
 	.volSlider{
-		width: 40px !important;
+		width: 80px !important;
 		display: inline-block;
-		margin-right: 10px;
-		margin-top: 10px;
+		margin-left: 15px;
+		margin-right: 15px;
+	}
+	.muteBtn{
+		vertical-align: top;
+		background-color: #DFE1E2;
+		height: 44px;
+		width: 44px;
+		display: inline-block;
+		margin-left: 5px;
+		margin-top: 5px;
+	  border-radius: 5px;
+	}
+	.sliderWrapper{
+		display: inline-block;
+		position: absolute;
+		top: 10px;
+	}
+	.muteWrapper{
+		display: inline-block;
+	}
+	span.glyphicon-volume-up{
+		margin-top: 5px;
+		font-size: 2em;
+		color: #F66662;
+	}
+	span.glyphicon-volume-off{
+		margin-top: 5px;
+		font-size: 2em;
+		color: #DFE1E2;
 	}
 	/*TRACK CONTROLS*/
 

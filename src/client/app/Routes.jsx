@@ -15,9 +15,9 @@ const history = syncHistoryWithStore(browserHistory, store);
 render((
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/' component={App}>
-        <Route path='/sequencer' component={Sequencer}/>
-        <Route path='/profile' component={Profile}/>
+      <Route path='/' activeClassName="active" component={App}>
+        <Route path='/sequencer' activeClassName="active" component={Sequencer}/>
+        <Route path='/profile' activeClassName="active" component={Profile}/>
       </Route>
     </Router>
   </Provider>
