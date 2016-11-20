@@ -64,9 +64,9 @@ class App extends React.Component {
 		let fbLogin;
 
 		if(this.state.loggedIn){
-			profileLink = <Link to ='/profile'>Profile</Link>;
+			profileLink = <Link to='/profile' activeClassName='active'>Profile</Link>;
 			login = 'Logout';
-			upload = <a href ='/upload/upload.html'>Upload</a>;
+			upload = <a href='/upload/upload.html'>Upload</a>;
 			fbLogin = <a href='/logout'><Button>Sign Out</Button></a>;
 		}else{
 			profileLink = '';
@@ -79,7 +79,7 @@ class App extends React.Component {
 			<div>
 				<nav className="navbar navbar-default">
 	        <div className="container-fluid">
-						<Link className="logo navbar-brand navbar-right" to='/sequencer'>STEP{<br/>}{<br/>}S160</Link>
+						<Link className="logo navbar-brand navbar-right" to='/sequencer'><span>STEP</span>{<br/>}{<br/>}<span>S160</span></Link>
 	          <div className="navbar-header">
 	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
 	              <span className="sr-only">Toggle navigation</span>
@@ -90,10 +90,10 @@ class App extends React.Component {
 	          </div>
 	          <div id="navbar" className="navbar-collapse collapse">
 	            <ul className="nav navbar-nav navbar-left">
-	              <li><Link to='/sequencer'>Sequencer</Link></li>
+	              <li><Link to='/sequencer' activeClassName='active'>Sequencer</Link></li>
 	              <li>{profileLink}</li>
 	              <li>{upload}</li>
-	              <li onClick={this.open.bind(this)}><a href='javascript:void(0)'>{login}</a></li>
+	              <li onClick={this.open.bind(this)} activeClassName='active'><a href='javascript:void(0)'>{login}</a></li>
 	            </ul>
 	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
 	            	<Modal.Header closeButton>

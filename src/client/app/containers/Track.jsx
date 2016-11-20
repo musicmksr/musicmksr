@@ -21,7 +21,8 @@ class Track extends React.Component {
       message: '',
       messageCl: 'hidden',
       bsStyle: 'danger',
-      samples: Object.keys(this.props.samples).map(key => this.props.samples[key])
+      samples: Object.keys(this.props.samples).map(key => this.props.samples[key]),
+      volIcon: 'glyphicon glyphicon-volume-up'
     };
   }
   componentDidMount() {
@@ -43,6 +44,11 @@ class Track extends React.Component {
     return window.lastWrapId;
   }
   mute(){
+    if(this.state.volIcon === 'glyphicon glyphicon-volume-up') {
+      this.setState({volIcon: 'glyphicon glyphicon-volume-off'});
+    } else {
+      this.setState({volIcon: 'glyphicon glyphicon-volume-up'});
+    }
     this.props.toggleMuteStyle(this.props.index)
     this.props.howlerObject._muted = !this.props.howlerObject._muted;
   }
@@ -152,16 +158,20 @@ class Track extends React.Component {
           )}
         </div>
         <div className='trackControls col-md-3 container-fluid'>
-          <div className='col-md-6'>
+          <div id='sampleWrapper' className='col-md-6'>
             <select className='sampleSelect form-control' value={this.props.sample} onChange={this.changeSample.bind(this)}>
               {this.state.samples.map((sound, index) =>
                 <Options key={[sound, index]} sound={sound} />
               )}
             </select>
           </div>
-          <span className='glyphicon glyphicon-volume-off' onClick={this.mute.bind(this, this.props.index)}/>
-          <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" onChange={this.volChange.bind(this)} />
-          <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
+          <div className='muteWrapper'>
+            <span className={this.state.volIcon} onClick={this.mute.bind(this, this.props.index)}></span>
+          </div>
+          <div className='sliderWrapper'>
+            <input className='volSlider' id={`slider${this.props.index}`} type="range" min="0" max="100" step="1" defaultValue="100" onChange={this.volChange.bind(this)} />
+            <span className='glyphicon glyphicon-remove' onClick={this.deleteTrack.bind(this, this.props.index)}/>
+          </div>
         </div>
       </div>
     )
