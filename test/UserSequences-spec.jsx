@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import UserSequence from '../containers/UserSequence.jsx';
+import UserSequence from '../src/client/app/containers/UserSequence.jsx';
 
 describe('<UserSequence />', () =>{
 

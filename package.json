@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "NODE_ENV=test DB_HOST=localhost DB_NAME=root DB_DB=music jasmine",
-    "front": "NODE_ENV=development mocha src/client/app/test/.setup.js src/client/app/test/*-spec.jsx",
+    "front": "NODE_ENV=development mocha test/.setup.js test/*-spec.jsx",
     "build": "NODE_ENV=production webpack"
   },
   "author": "Gery, Andrew, Chris, Alex",
