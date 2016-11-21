@@ -4,10 +4,10 @@ Welcome to steps 160, a personal sequencer for uploading samples and mixing beat
 
 # Meet The Team
 
-* ![alt text](https://avatars2.githubusercontent.com/u/14987737?v=3&s=75) [Alex Ting](https://github.com/acting326)
-* ![alt text](https://avatars3.githubusercontent.com/u/13542220?v=3&s=75>) [Andrew Sherman](https://github.com/ashermanwmf)
-* ![alt text](https://avatars3.githubusercontent.com/u/19693600?v=3&s=75) [Chirs Doo](https://github.com/potatosfarmer)
-* ![alt text](https://avatars2.githubusercontent.com/u/15621349?v=3&s=75) [Gery Egan](https://github.com/geryegan)
+![alt text](https://avatars2.githubusercontent.com/u/14987737?v=3&s=75) [Alex Ting](https://github.com/acting326)
+![alt text](https://avatars3.githubusercontent.com/u/13542220?v=3&s=75>) [Andrew Sherman](https://github.com/ashermanwmf)
+![alt text](https://avatars3.githubusercontent.com/u/19693600?v=3&s=75) [Chirs Doo](https://github.com/potatosfarmer)
+![alt text](https://avatars2.githubusercontent.com/u/15621349?v=3&s=75) [Gery Egan](https://github.com/geryegan)
 
 # Getting Started
 
