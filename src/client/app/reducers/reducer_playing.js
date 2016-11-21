@@ -56,8 +56,6 @@ export default (state = initialMatrix, action) => {
         return newSequence;
       }
 
-      console.log('add track');
-
       let newTrack = _.clone(state.matrix[0]);
 
       newTrack = newTrack.map((step) =>{
@@ -72,6 +70,20 @@ export default (state = initialMatrix, action) => {
 
       newSequence.samples[sampleLength] = 'bigkik.wav';
 
+      return newSequence;
+
+     case "CLEAR_SEQUENCER":
+
+      state.matrix.forEach((track, index)=>{
+        let clearedTrack = _.clone(state.matrix[index]);
+        clearedTrack = clearedTrack.map((step) =>{
+          step.class = "step-tf";
+          step.toggled = false;
+          return step;
+        });
+        newSequence.matrix[index] = clearedTrack;
+      });    
+      
       return newSequence;
 
     case "DELETE_TRACK":
