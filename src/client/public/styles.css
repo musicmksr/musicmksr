@@ -64,7 +64,7 @@ body{
 }
 @media (max-width: 767px) {
     .navbar-right {
-			float: left!important; 
+			float: left!important;
 		}
 }
 /*NAVBAR*/
@@ -140,6 +140,10 @@ body{
 		font-size: 1.4em;
 		color: #F66662
 	}
+  span.glyphicon-stop{
+    font-size: 1.4em;
+    color: #F66662
+  }
 	/*SEQUENCER HEADER*/
 
 
