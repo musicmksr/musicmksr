@@ -79,11 +79,7 @@ class App extends React.Component {
 			<div>
 				<nav className="navbar navbar-default">
 	        <div className="container-fluid">
-<<<<<<< HEAD
 						<Link className="logo navbar-brand navbar-right" to='/sequencer'><p className='logo'>STEP</p>{<br/>}{<br/>}<p className='logo' id='s160'>S160</p></Link>
-=======
-            <Link className="logo navbar-brand navbar-right" to='/sequencer'>STEP<br/><br/>S160</Link>
->>>>>>> (refactor) Fixed some menu bar animations and still working on sizing
 	          <div className="navbar-header">
 	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
 	              <span className="sr-only">Toggle navigation</span>
