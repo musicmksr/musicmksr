@@ -9,6 +9,7 @@ import setPlaySequence from '../actions/setPlaySequence';
 import saveBPM from '../actions/saveBPM';
 import addTrack from '../actions/addTrack';
 import addBar from '../actions/addBar';
+import clearSequencer from '../actions/clearSequencer';
 import request from 'axios';
 
 let currentCol = 1;
@@ -178,6 +179,9 @@ class Sequencer extends React.Component {
   addTrack() {
     this.props.addTrack(true);
   }
+  clearSequencer(){
+    this.props.clearSequencer();
+  }
   addBar(e) {
     window.lastId = 0;
     window.lastWrapId = 0;
@@ -268,6 +272,7 @@ class Sequencer extends React.Component {
         <div className='row addTrack'>
           <div className='btn-toolbar'>
             <button id='addTrackBtn' className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
+            <button id='addTrackBtn' className='btn' onClick={this.clearSequencer.bind(this)}>Clear Sequence</button>
             <select id='addSamples' ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>
               <option value='16'>16 Steps</option>
               <option value='32'>32 Steps</option>
@@ -290,5 +295,6 @@ export default connect(mapStateToProps, {
   setPlaySequence: setPlaySequence,
   saveBPM: saveBPM,
   addTrack: addTrack,
+  clearSequencer: clearSequencer,
   addBar: addBar
 })(Sequencer);
