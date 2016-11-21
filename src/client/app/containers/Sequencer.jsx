@@ -26,7 +26,8 @@ class Sequencer extends React.Component {
       titleWarning: '',
       test: {},
       bpm: this.props.sequence.bpm || 120,
-      numOfSteps: 16
+      numOfSteps: 16,
+      playIcon: 'glyphicon glyphicon-play'
     };
   }
   componentDidMount() {
@@ -62,6 +63,12 @@ class Sequencer extends React.Component {
     window.howlObj = newSampObj;
   }
   play() {
+    if(this.state.playIcon === 'glyphicon glyphicon-play') {
+      this.setState({playIcon: 'glyphicon glyphicon-stop'});
+    } else {
+      this.setState({playIcon: 'glyphicon glyphicon-play'});
+    }
+
     if (!this.state.playing) {
       this.setState({
         playing: true
@@ -69,7 +76,6 @@ class Sequencer extends React.Component {
 
       currentCol = 1;
       const context = this;
-      console.log(this.props.playSequence);
       const steps = _.flatten(this.props.playSequence);
 
       window.innerPlay = setInterval(() =>{
@@ -235,7 +241,7 @@ class Sequencer extends React.Component {
           </div>
 
           <div className='playCtrl col-md-3'>
-            <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className='glyphicon glyphicon-play'></span></button>
+            <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className={this.state.playIcon}></span></button>
           </div>
       </div>
 
