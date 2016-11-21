@@ -144,6 +144,18 @@ body{
     font-size: 1.4em;
     color: #F66662
   }
+		/*MOBILE SEQUENCER HEADER*/
+	  @media (max-width: 700px){
+	  		.titleInput{
+	  			margin-top: 1%;
+					width: 72.5%;
+					margin-right: 10px;
+				}
+				#playButton{
+					margin-left: 5%;
+				}
+	  }
+	  /*MOBILE SEQUENCER HEADER*/
 	/*SEQUENCER HEADER*/
 
 
@@ -301,6 +313,14 @@ body{
 		color: #DFE1E2;
 	}
 	/*TRACK CONTROLS*/
+
+	/*MOBILE SEQUENCER*/
+	@media (max-width: 700px){
+		.tracksWrapper{
+			margin-left: -6%;
+		}
+	}
+	/*MOBILE SEQUENCER*/
 
 
 /*SEQUENCER*/
