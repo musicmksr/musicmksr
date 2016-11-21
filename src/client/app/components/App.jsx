@@ -96,16 +96,16 @@ class App extends React.Component {
 	              <li onClick={this.open.bind(this)} activeClassName='active'><a href='javascript:void(0)'>{login}</a></li>
 	            </ul>
               <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
-	            	<Modal.Header closeButton>
-            			<Modal.Title>Welcome</Modal.Title>
+	            	<Modal.Header id='modalHeader' closeButton>
+            			<Modal.Title id='modalTitle'>Welcome</Modal.Title>
           			</Modal.Header>
-          			<Modal.Body>
+          			<Modal.Body id='modalBody'>
           				<span>
           					<br/>
           					<p id='loginLogo'>STEP</p>
           					<p id='loginLogo'>S160</p>
           					<br/>
-          					<p id='loginBody'>Your Personal Sequencer</p>
+          					<p id='loginBody'>Your Personal Sequencer and Audio Sampler</p>
           				</span>
           			</Modal.Body>
           			<div className='modal-footer' id='loginBtn'>
