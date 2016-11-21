@@ -83,6 +83,7 @@ body{
 }
 	/*SEQUENCER HEADER*/
 	#bpmForm{
+		padding-left: 15px;
 		white-space: nowrap;
 		display: inline-block;
 		border-width: 2px;
@@ -354,6 +355,19 @@ body{
 /*PROFILE**/
 
 /*LOGIN*/
+#modalHeader {
+	background-color: #DFE1E2;
+}
+#modalTitle {
+	color: #2D2B30;
+}
+#modalBody {
+	background-color: #2D2B30;
+	color: white;
+}
+.modal-footer {
+	background-color: #DFE1E2;
+}
 #loginBtn {
 	text-align: center;
 }
