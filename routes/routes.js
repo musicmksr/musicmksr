@@ -29,15 +29,19 @@ module.exports = function(app) {
   );
 
   // get songs for sequencer
+  // tested
   app.get('/api/sample/:songTitle', helpers.getSong);
 
   // get sound options for each track in sequencer
+  // tested
   app.get('/api/options/:userId', helpers.getSampleOptions);
 
   // get session info for requests
+  // tested
   app.get('/api/session', helpers.getUserSession);
 
   // get profile info for user (sequences saved and samples uploaded)
+  // tested
   app.get('/api/profile/:userId', 
     helpers.isLoggedIn, 
     helpers.getUserProfile

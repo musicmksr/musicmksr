@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Alert } from 'react-bootstrap';
+import Howler from 'react-howler';
 import Track from './Track.jsx';
 import toggleMatrix from '../actions/toggleMatrix';
 import setPlaySequence from '../actions/setPlaySequence';

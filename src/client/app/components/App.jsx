@@ -81,7 +81,7 @@ class App extends React.Component {
 	        <div className="container-fluid">
 						<Link className="logo navbar-brand navbar-right" to='/sequencer'><p className='logo'>STEP</p>{<br/>}{<br/>}<p className='logo' id='s160'>S160</p></Link>
 	          <div className="navbar-header">
-	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	            <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse" aria-expanded="false" aria-controls="navbar">
 	              <span className="sr-only">Toggle navigation</span>
 	              <span className="icon-bar"></span>
 	              <span className="icon-bar"></span>
@@ -95,7 +95,7 @@ class App extends React.Component {
 	              <li>{upload}</li>
 	              <li onClick={this.open.bind(this)} activeClassName='active'><a href='javascript:void(0)'>{login}</a></li>
 	            </ul>
-	            <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
+              <Modal show={this.state.showModal} onHide={this.close.bind(this)}>
 	            	<Modal.Header closeButton>
             			<Modal.Title>Welcome</Modal.Title>
           			</Modal.Header>

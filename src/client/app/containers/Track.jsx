@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-bootstrap';
-import Howler from 'react-howler';
 import request from 'axios';
 import Sample from '../components/Sample.jsx';
 import Options from '../components/SampleOptions.jsx';

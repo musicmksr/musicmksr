@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server.js",
     "test": "NODE_ENV=test DB_HOST=localhost DB_NAME=root DB_DB=music jasmine",
-    "build": "webpack --watch"
+    "front": "NODE_ENV=development mocha test/.setup.js test/*-spec.jsx",
+    "build": "NODE_ENV=production webpack"
   },
   "author": "Gery, Andrew, Chris, Alex",
   "license": "MIT",
@@ -52,13 +53,21 @@
     "webpack-hot-middleware": "^2.13.2"
   },
   "devDependencies": {
+    "babel-preset-react-hmre": "^1.1.1",
     "babel-register": "^6.18.0",
+    "chai": "^3.5.0",
+    "enzyme": "^2.6.0",
     "eslint": "^3.9.1",
     "eslint-config-airbnb": "^12.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.5.0",
     "jasmine": "^2.5.2",
+    "jasmine-enzyme": "^2.0.0",
+    "jsdom": "^9.8.3",
+    "mocha": "^3.1.2",
+    "react-addons-test-utils": "^15.3.0",
+    "react-dom": "^15.4.0",
     "supertest": "^2.0.1",
     "supertest-as-promised": "^4.0.2"
   }

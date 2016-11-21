@@ -97,6 +97,7 @@ module.exports = {
           fs.stat(filePath, (err, stat) =>{
             if(err) {
               console.log(err);
+              res.status(400).send({ error: err });
             }
 
             res.writeHead(200, {

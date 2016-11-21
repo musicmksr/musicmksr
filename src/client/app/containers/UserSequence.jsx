@@ -61,7 +61,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, 
-  { 
-    profileSequence: profileSequence
-  }
-)(UserSequence);
+  { profileSequence: profileSequence
+  })(UserSequence);
