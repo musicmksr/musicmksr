@@ -37,7 +37,7 @@ If you would like to fork this repository, please follow these steps to set up y
 
 * [Node.js](https://nodejs.org/en/) with [Express](http://expressjs.com/): for serving pages and handling api requests.
 * [Multer](https://github.com/expressjs/multer): middleware for handling multipart/form-data.
-* [MySQL](https://www.mysql.com/: relational database.
+* [MySQL](https://www.mysql.com/): relational database.
 * [Sequelize](http://docs.sequelizejs.com/en/v3/): ORM for MySQL.
 
 ##Testing
