@@ -83,6 +83,7 @@ body{
 }
 	/*SEQUENCER HEADER*/
 	#bpmForm{
+		padding-left: 15px;
 		white-space: nowrap;
 		display: inline-block;
 		border-width: 2px;
