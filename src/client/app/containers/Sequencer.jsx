@@ -23,6 +23,7 @@ class Sequencer extends React.Component {
       message: '',
       messageCl: 'hidden',
       bsStyle: 'info',
+      originalTitle: this.props.sequence.name,
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
@@ -121,8 +122,7 @@ class Sequencer extends React.Component {
     if(window.newCookie){
       if(this.state.title !== ''){
         this.setState({
-          message: 'Saving Sequence...',
-          messageCl: 'show'
+          titleWarning: 'Saving Sequence...'
         });
 
         const sendObj = {
@@ -134,8 +134,7 @@ class Sequencer extends React.Component {
         request.post('/api/save', sendObj)
           .then((response) =>{
             this.setState({
-              message: 'Sequence Saved!',
-              messageCl: 'show'
+              titleWarning: 'Sequence Saved!',
             });
           })
           .catch((error) =>{
@@ -146,14 +145,6 @@ class Sequencer extends React.Component {
               bsStyle: 'danger'
             });
           });
-
-        setTimeout(() =>{
-          this.setState({
-            message: '',
-            messageCl: 'hidden',
-            bsStyle: 'info'
-          });
-        }, 3000);
       }
     }else {
       alert('Login to save your beats');
@@ -163,10 +154,17 @@ class Sequencer extends React.Component {
     this.props.sequence.name = '';
     let title = event.target.value;
 
-    this.setState({
-      title: title,
-      titleWarning: 'New titles will save as new beats!'
-    });
+    if(title === this.state.originalTitle){
+      this.setState({
+        title: title,
+        titleWarning: ''
+      });
+    }else {
+      this.setState({
+        title: title,
+        titleWarning: 'New titles will save as new beats!'
+      });
+    }
   }
   setBPM(event) {
     let bpm = event.target.value;
@@ -204,7 +202,7 @@ class Sequencer extends React.Component {
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
-            <Alert className={this.state.messageCl} bsStyle="info">
+            <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
               {message}
             </Alert>
             <div className='col-md-2'>
