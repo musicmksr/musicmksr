@@ -134,7 +134,7 @@ class Sequencer extends React.Component {
         request.post('/api/save', sendObj)
           .then((response) =>{
             this.setState({
-              titleWarning: 'Sequence Saved!',
+              titleWarning: 'Sequence Saved!'
             });
           })
           .catch((error) =>{
@@ -145,6 +145,14 @@ class Sequencer extends React.Component {
               bsStyle: 'danger'
             });
           });
+
+        setTimeout(() =>{
+          if(this.state.titleWarning === 'Sequence Saved!'){
+            this.setState({
+              titleWarning: ''
+            });
+          }
+        }, 3000);
       }
     }else {
       alert('Login to save your beats');
