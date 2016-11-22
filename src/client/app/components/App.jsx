@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Alert } from 'react-bootstrap';
 import { Link, browserHistory } from 'react-router';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import request from 'axios';
@@ -58,7 +60,6 @@ class App extends React.Component {
 		    console.log(error);
 		  });
 	}
-
 	notLoggedIn() {
 		swal('Login to upload your beats');
 	}
@@ -69,6 +70,11 @@ class App extends React.Component {
       messageCl: 'show'
     });
   }
+	saveToLocal() {
+		window.localStorage.setItem('loadSequence', JSON.stringify(this.props.sequence));
+		window.location.assign('auth/facebook');
+		console.log(window.localStorage['loadSequence']);
+	}
 
 	render() {
 		let profileLink;
@@ -85,7 +91,7 @@ class App extends React.Component {
 			profileLink = '';
 			login = 'Login';
 			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
-			fbLogin = <a href='auth/facebook'><img id='loginImg' src="/imgs/login.png"/></a>;
+			fbLogin = <a href='javascript:void(0)' onClick={this.saveToLocal.bind(this)}><img id='loginImg' src="/imgs/login.png"/></a>;
 		}
 
 		return(
@@ -142,4 +148,11 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    sequence: state.sequence,
+    playSequence: state.playSequence,
+  }
+}
+
+export default connect(mapStateToProps, {})(App);
