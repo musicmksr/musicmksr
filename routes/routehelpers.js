@@ -179,7 +179,7 @@ module.exports = {
   deleteSequence(req, res, next) {
     Sequence.destroy({where: { name: req.params.sequenceName, userId: req.params.userId}})
       .then((response) =>{
-        if(response === null) throw new Error();
+        console.log('delete track ', response)
         res.end();
       })
       .catch((err) =>{
