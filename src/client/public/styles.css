@@ -48,15 +48,16 @@ body{
 	color: #F66662 !important;
 }
 .navbar{
-  height: 125px;
+  height: 126px;
 	padding-top: 25px;
 	padding-right: 25px;
 	font-size: 25px;
 	margin-bottom: 0px;
+  border-style: none;
 }
 .navbar-collapse{
   position: absolute;
-  margin-top: 50px;
+  margin-top: 51px;
   background-color: #f8f8f8;
   z-index: 2;
 }
@@ -392,7 +393,7 @@ body{
 
 /*LOGIN*/
 #modalHeader {
-	background-color: #DFE1E2;
+	background-color: #f6f6f6;
 }
 #modalTitle {
 	color: #2D2B30;
@@ -402,7 +403,7 @@ body{
 	color: white;
 }
 .modal-footer {
-	background-color: #DFE1E2;
+	background-color: #f6f6f6;
 }
 #loginBtn {
 	text-align: center;
