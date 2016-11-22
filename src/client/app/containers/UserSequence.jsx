@@ -42,12 +42,12 @@ class UserSequence extends React.Component {
           {this.state.message}
         </Alert>
         <div onClick={this.chooseSequence.bind(this)}>
-          <h3>{this.props.name}</h3>
+          <h3 id='sampleTitle'>{this.props.name}</h3>
         	<div className='userSequence'>
         		<img src='imgs/sequence.jpg'/>
         	</div>
         </div>
-        <button className='btn' onClick={this.deleteSequence.bind(this)}>Delete</button>
+        <button id='deleteBtn' className='btn' onClick={this.deleteSequence.bind(this)}>Delete</button>
       </div>
     )
   }
@@ -60,6 +60,6 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, 
+export default connect(mapStateToProps,
   { profileSequence: profileSequence
   })(UserSequence);
