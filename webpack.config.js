@@ -33,13 +33,7 @@ const config = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
+    new webpack.HotModuleReplacementPlugin()
   ],
   externals: {
     'cheerio': 'window',
@@ -51,9 +45,9 @@ const config = {
 module.exports = config;
 
 // needed for production 
-    // new webpack.NoErrorsPlugin(),
-    // new webpack.DefinePlugin({
-    //   'process.env': {
-    //     'NODE_ENV': JSON.stringify('production')
-    //   }
-    // })
+//     new webpack.NoErrorsPlugin(),
+//     new webpack.DefinePlugin({
+//       'process.env': {
+//         'NODE_ENV': JSON.stringify('production')
+//       }
+//     })
