@@ -11,6 +11,7 @@ import addTrack from '../actions/addTrack';
 import addBar from '../actions/addBar';
 import clearSequencer from '../actions/clearSequencer';
 import request from 'axios';
+import swal from 'sweetalert';
 
 let currentCol = 1;
 
@@ -156,7 +157,7 @@ export class Sequencer extends React.Component {
         }, 3000);
       }
     }else {
-      alert('Login to save your beats');
+      swal('Login to save your beats');
     }
   }
   setTitle(event) {
