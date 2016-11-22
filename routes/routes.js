@@ -23,8 +23,8 @@ module.exports = function(app) {
     helpers.loginRedirect
   );
 
-  app.get('/logout', 
-    helpers.terminateSession, 
+  app.get('/logout',
+    helpers.terminateSession,
     helpers.loginRedirect
   );
 
@@ -42,28 +42,28 @@ module.exports = function(app) {
 
   // get profile info for user (sequences saved and samples uploaded)
   // tested
-  app.get('/api/profile/:userId', 
-    helpers.isLoggedIn, 
+  app.get('/api/profile/:userId',
+    helpers.isLoggedIn,
     helpers.getUserProfile
   );
 
   // save sequences when logged in as a user
-  app.post('/api/save', 
-    helpers.isLoggedIn, 
+  app.post('/api/save',
+    helpers.isLoggedIn,
     helpers.saveSequence
   );
 
   // delete sequences from profile page
-  app.delete('/api/deleteSequence/:sequenceName/:userId', 
-    helpers.isLoggedIn, 
+  app.delete('/api/deleteSequence/:sequenceName/:userId',
+    helpers.isLoggedIn,
     helpers.deleteSequence
   );
 
   // upload sounds and save them to the server
-  app.post('/api/upload', 
+  app.post('/api/upload',
     upload.single('file'),
     helpers.isLoggedIn,
     helpers.uploadAudio
   );
-  
+
 };
