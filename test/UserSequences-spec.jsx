@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
-import UserSequence from '../src/client/app/containers/UserSequence.jsx';
+import { UserSequence } from '../src/client/app/containers/UserSequence.jsx';
 
 describe('<UserSequence />', () =>{
 
@@ -9,14 +9,21 @@ describe('<UserSequence />', () =>{
     const minProps = {
       message: '',
       messageCl: '',
-      bsStyle: ''
-      
+      bsStyle: '',
+      store: {
+        getState: () => {},
+        sequence: {
+          matrix: [[]],
+          samples: {},
+          name: ''
+        }
+      }
     };
 
     expect(
       shallow(
         <UserSequence 
-          {...minProps} 
+          {...minProps}
         />
       ).length
     )
