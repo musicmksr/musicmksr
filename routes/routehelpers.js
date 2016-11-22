@@ -87,8 +87,8 @@ module.exports = {
             const sampleHash = response.dataValues.hash;
 
             return sampleHash;
-          }else{
-            res.status(401).send({ error: 'Not Found' });
+          }else {
+            throw new Error();
           }
         })
         .then((sampleHash) =>{
@@ -112,7 +112,7 @@ module.exports = {
         })
         .catch((err) =>{
           console.log(err);
-          res.status(400).send({ error: err });
+          res.status(400).send({ error: 'File Not Found' });
         });
   },
 
@@ -179,10 +179,12 @@ module.exports = {
   deleteSequence(req, res, next) {
     Sequence.destroy({where: { name: req.params.sequenceName, userId: req.params.userId}})
       .then((response) =>{
+        if(response === null) throw new Error();
         res.end();
       })
       .catch((err) =>{
         console.log(err);
+        res.status(400).send({ error: 'Sequence Could Not Be Deleted' });
       });
   },
 
@@ -192,12 +194,12 @@ module.exports = {
         if(samples !== null){
           if(cb) cb(samples);
         }else {
-          res.status(401).send({ error: 'Not Found' });
+          throw new Error();
         }
       })
       .catch((err) => {
         console.log(err);
-        res.status(400).send({ error: err });
+        res.status(400).send({ error: 'Sample Not Found' });
       });
   },
 
@@ -213,7 +215,7 @@ module.exports = {
         if(response){
           fs.writeFile(`${__dirname}/../samples/${fileNameHash}.wav`, req.file.buffer, (err) =>{
             if(err) {
-              console.log(err);
+              throw err;
             }else{
               res.send('refresh');
             }
