@@ -108,10 +108,7 @@ class Track extends React.Component {
         })
         .catch((err) =>{
           console.log(err);
-          this.setState({
-            message: 'An Error Occured, please try refreshing the page or logging back in.',
-            messageCl: 'show'
-          })
+          this.props.serverStopped();
         });
     }
   }
@@ -138,9 +135,6 @@ class Track extends React.Component {
 
     return(
       <div className='tracksWrapper'>
-        <Alert className={this.state.messageCl} bsStyle="info">
-          {this.state.message}
-        </Alert>
         <div className='stepsWrapper col-md-9 container-fluid' onScroll={_.debounce(this.syncScroll, 500)}>
           {this.props.track.map((step, index) =>
               <div id='step-wrapper' key={[step, index]} className={this.setWrapIndex()}>

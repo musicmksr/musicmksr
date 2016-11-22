@@ -27,6 +27,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log(err);
+        res.status(400).send({ error: 'User Could Not Be Found Or Created' });
       });
   },
 
@@ -52,6 +53,7 @@ module.exports = {
       })
       .catch((err) => {
         console.log(err);
+        res.status(400).send({ error: 'User ID Could Not Be Set' });
       });
   },
 
@@ -87,17 +89,16 @@ module.exports = {
             const sampleHash = response.dataValues.hash;
 
             return sampleHash;
-          }else{
-            res.status(401).send({ error: 'Not Found' });
           }
         })
         .then((sampleHash) =>{
           const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
 
           fs.stat(filePath, (err, stat) =>{
-            if(err) {
+            if(stat === undefined || err) {
               console.log(err);
-              res.status(400).send({ error: err });
+              res.status(400).send({ error: 'File Not Found'});
+              return;
             }
 
             res.writeHead(200, {
@@ -112,7 +113,7 @@ module.exports = {
         })
         .catch((err) =>{
           console.log(err);
-          res.status(400).send({ error: err });
+          res.status(400).send({ error: 'File Not Found' });
         });
   },
 
@@ -134,7 +135,7 @@ module.exports = {
             res.send({sequences: sequences, samples: samples});
           });
         }else {
-          res.status(401).send({ error: 'Not Found' });
+          throw new Error();
         }
       })
       .catch((err) =>{
@@ -156,33 +157,33 @@ module.exports = {
           // create
           Sequence.create({name: title, matrix: sequence, userId: req.body.userId})
             .then((response) =>{
+              if(response.dataValues === undefined) throw new Error();
               res.send('Saved');
-            })
-            .catch((err) => {
-              console.log(err);
             });
         }else{
           foundItem.updateAttributes({ matrix: sequence })
             .then((response) =>{
+              if(response.dataValues === undefined) throw new Error();
               res.send('Successful Update');
-            })
-            .catch((err) => {
-              console.log(err);
             });
         }
       })
       .catch((err) => {
         console.log(err);
+        res.status(400).send({ error: 'Sequence Could Not Be Created And Saved' });
       });
   },
 
   deleteSequence(req, res, next) {
     Sequence.destroy({where: { name: req.params.sequenceName, userId: req.params.userId}})
       .then((response) =>{
+        if(response === 0) throw new Error();
+
         res.end();
       })
       .catch((err) =>{
         console.log(err);
+        res.status(400).send({ error: 'Sequence Could Not Be Deleted' });
       });
   },
 
@@ -192,12 +193,12 @@ module.exports = {
         if(samples !== null){
           if(cb) cb(samples);
         }else {
-          res.status(401).send({ error: 'Not Found' });
+          throw new Error();
         }
       })
       .catch((err) => {
         console.log(err);
-        res.status(400).send({ error: err });
+        res.status(400).send({ error: 'Sample Not Found' });
       });
   },
 
@@ -213,7 +214,7 @@ module.exports = {
         if(response){
           fs.writeFile(`${__dirname}/../samples/${fileNameHash}.wav`, req.file.buffer, (err) =>{
             if(err) {
-              console.log(err);
+              throw err;
             }else{
               res.send('refresh');
             }
