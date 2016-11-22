@@ -1,13 +1,22 @@
 import _ from 'lodash';
 import initialMatrix from '../data.json';
 
-export default (state = initialMatrix, action) => {
+let matrixUsed = {};
+
+if(window.localStorage.loadSequence !== 'undefined'){
+  matrixUsed = JSON.parse(window.localStorage.loadSequence);
+  window.localStorage.loadSequence = undefined;
+}else {
+  matrixUsed = initialMatrix;
+}
+
+export default (state = matrixUsed, action) => {
   const newSequence = _.cloneDeep(state);
 
   switch (action.type){
     case "TOGGLE_SAMPLE":
     	const index = action.payload;
-			// mutate toggle 
+			// mutate toggle
 			newSequence.matrix[index[0]][index[1]].toggled = !newSequence.matrix[index[0]][index[1]].toggled;
 
 			// mutate class
@@ -35,12 +44,12 @@ export default (state = initialMatrix, action) => {
           step.class = 'step-tt';
         } else if (step.class === 'step-mtf'){
           step.class = 'step-tf';
-        }  
+        }
         console.log(step.class);
       });
 
 
-     return newSequence; 
+     return newSequence;
 
     case "CHANGE_SAMPLE":
       console.log('change sample');
@@ -65,7 +74,7 @@ export default (state = initialMatrix, action) => {
       });
 
       newSequence.matrix.push(newTrack);
-      
+
       let sampleLength = newSequence.matrix.length - 1;
 
       newSequence.samples[sampleLength] = 'bigkik.wav';
@@ -82,8 +91,8 @@ export default (state = initialMatrix, action) => {
           return step;
         });
         newSequence.matrix[index] = clearedTrack;
-      });    
-      
+      });
+
       return newSequence;
 
     case "DELETE_TRACK":
@@ -137,7 +146,7 @@ export default (state = initialMatrix, action) => {
             newSequence.matrix[index].push(step);
           })
 
-        });  
+        });
       } else if (numOfSteps < currentLength) {
         state.matrix.map((track, index) => {
           let newBar = track.splice(0, difference)
@@ -145,9 +154,9 @@ export default (state = initialMatrix, action) => {
         })
 
       }
-      return newSequence;  
+      return newSequence;
 
     default:
-      return state;
+        return state;
   }
 };
