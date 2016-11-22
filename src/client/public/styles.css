@@ -392,7 +392,7 @@ body{
 
 /*LOGIN*/
 #modalHeader {
-	background-color: #DFE1E2;
+	background-color: #f6f6f6;
 }
 #modalTitle {
 	color: #2D2B30;
@@ -402,7 +402,7 @@ body{
 	color: white;
 }
 .modal-footer {
-	background-color: #DFE1E2;
+	background-color: #f6f6f6;
 }
 #loginBtn {
 	text-align: center;
