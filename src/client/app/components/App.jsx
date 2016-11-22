@@ -4,6 +4,7 @@ import { Link, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import request from 'axios';
+import swal from 'sweetalert';
 
 class App extends React.Component {
 	constructor(props) {
@@ -54,7 +55,7 @@ class App extends React.Component {
 	}
 
 	notLoggedIn() {
-		alert('Login to upload your beats');
+		swal('Login to upload your beats');
 	}
 
 	render() {

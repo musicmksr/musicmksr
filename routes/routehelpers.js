@@ -18,7 +18,7 @@ module.exports = {
       emailOrId = req.session.passport.user.emails[0].value;
     }
 
-    User.findOrCreate({ where: { name: req.session.passport.user.displayName, 
+    User.findOrCreate({ where: { name: req.session.passport.user.displayName,
                                  email: emailOrId } })
       .then(function(user) {
         console.log(user[0].dataValues.id);
@@ -89,7 +89,7 @@ module.exports = {
             return sampleHash;
           }else{
             res.status(401).send({ error: 'Not Found' });
-          } 
+          }
         })
         .then((sampleHash) =>{
           const filePath = path.join(`${__dirname}/../samples/${sampleHash}.wav`);
@@ -210,7 +210,7 @@ module.exports = {
 
     Sample.create({name: fileName, hash: fileNameHash, userId: req.body.id})
       .then((response) =>{
-        if(response){   
+        if(response){
           fs.writeFile(`${__dirname}/../samples/${fileNameHash}.wav`, req.file.buffer, (err) =>{
             if(err) {
               console.log(err);
@@ -222,7 +222,7 @@ module.exports = {
       })
       .catch((err) =>{
         console.log(err);
-      });    
+      });  
   }
 
 };
