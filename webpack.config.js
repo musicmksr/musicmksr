@@ -43,3 +43,11 @@ const config = {
   }
 };
 module.exports = config;
+
+// needed for production 
+//     new webpack.NoErrorsPlugin(),
+//     new webpack.DefinePlugin({
+//       'process.env': {
+//         'NODE_ENV': JSON.stringify('production')
+//       }
+//     })

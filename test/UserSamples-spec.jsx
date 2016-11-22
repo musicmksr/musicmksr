@@ -21,6 +21,5 @@ describe('<UserSamples />', () =>{
     )
     .to.equal(1);
   });
-  
 
 });

@@ -5,7 +5,7 @@ import { Alert } from 'react-bootstrap';
 import profileSequence from '../actions/profileSequence';
 import request from 'axios';
 
-class UserSequence extends React.Component {
+export class UserSequence extends React.Component {
   constructor(props){
     super(props);
 

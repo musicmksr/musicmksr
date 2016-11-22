@@ -16,7 +16,7 @@ let currentCol = 1;
 
 window.innerPlay;
 window.howlObj = {};
-class Sequencer extends React.Component {
+export class Sequencer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -298,6 +298,8 @@ function mapStateToProps(state) {
     playSequence: state.playSequence,
   }
 }
+
+
 export default connect(mapStateToProps, {
   toggleMatrix: toggleMatrix,
   setPlaySequence: setPlaySequence,
