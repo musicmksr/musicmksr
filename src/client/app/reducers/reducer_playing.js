@@ -73,7 +73,7 @@ export default (state = initialMatrix, action) => {
       return newSequence;
 
      case "CLEAR_SEQUENCER":
-
+     
       state.matrix.forEach((track, index)=>{
         let clearedTrack = _.clone(state.matrix[index]);
         clearedTrack = clearedTrack.map((step) =>{
