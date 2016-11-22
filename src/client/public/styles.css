@@ -54,13 +54,11 @@ body{
 	font-size: 25px;
 	margin-bottom: 0px;
 }
-#navbar{
-	position: absolute;
-	bottom: 0;
-}
-#uploadNav{
-	position: absolute;
-	bottom: 0;
+.navbar-collapse{
+  position: absolute;
+  margin-top: 50px;
+  background-color: #f8f8f8;
+  z-index: 2;
 }
 @media (max-width: 767px) {
     .navbar-right {
@@ -68,7 +66,6 @@ body{
 		}
 }
 /*NAVBAR*/
-
 
 /*SEQUENCER*/
 .outer{
@@ -124,6 +121,7 @@ body{
 	}
 	.saveAlert{
 	  margin-left: 15px;
+    color: #9a76ff;
 	}
 	#playButton{
 		display:inline-block;
@@ -173,7 +171,7 @@ body{
 	border-radius: 5px;
 }
 .step-tt{
-	background-color: #99DFCA;
+	background-color: #4af4b5;
 	height: 34px;
 	width: 34px;
 	margin: 0px;
@@ -192,7 +190,7 @@ body{
 	border-radius: 5px;
 }
 .step-mtt{
-	background-color: #3066BE;
+	background-color: #9a76ff;
 	height: 34px;
 	width: 34px;
 	display: inline-block;
@@ -327,6 +325,37 @@ body{
 /*SEQUENCER*/
 
 /*PROFILE*/
+#username{
+  color: #DFE1E2;
+  margin-bottom: 25px;
+}
+#profileContainer{
+  padding: 15px 15px 15px 15px;
+}
+#contentContainer{
+  background-color: #f8f8f8;
+  padding: 15px 15px 15px 15px;
+  border-radius: 10px;
+  opacity: 60%;
+}
+#home #menu2{
+  padding: 15px 15px 15px 15px;
+}
+
+.nav>li>a{
+  color: #777;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #f66662;
+  background-color: #f8f8f8;
+}
+#allSequences, #allSamples{
+  color: #777;
+}
+#sampleTitle{
+  text-align: center;
+  color: #f66662;
+}
 .userSequence-container {
 	margin: 1%;
 }
@@ -338,7 +367,8 @@ body{
 }
 .userSequence img {
 	width: 100%;
-	padding: 1%;
+  margin: 10%;
+  padding-right: 15%;
 }
 
 .userSample-container {
@@ -352,6 +382,12 @@ body{
 	padding: 1%;
 	width: 50%;
 }
+#deleteBtn{
+  color: #777;
+  margin-left: 30%;
+  color: #333333;
+}
+
 /*PROFILE**/
 
 /*LOGIN*/
@@ -412,5 +448,39 @@ footer a:hover, footer a {
 /*AUDIO UPLOAD*/
 #spectrum{
   height:100px;
+}
+#uploadContainer{
+  background-color: #2D2B30;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+#uploadNav{
+  position: absolute;
+  height: 125px;
+	padding-top: 25px;
+	padding-right: 25px;
+	font-size: 25px;
+	bottom: 0px;
+}
+#uploadLogo{
+  margin-top: -10px;
+}
+.btn.btn-success{
+  background-color: #2f3434;
+  color: #f66662;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A39B94;
+}
+.btn.btn-primary{
+  background-color: #C0C0C0;
+  color: #333333;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #A39B94;
+}
+.btn.disabled{
+  background-color: #2f3434;
+  color: #9a76ff;
 }
 /*AUDIO UPLOAD*/

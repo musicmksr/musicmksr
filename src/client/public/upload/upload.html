@@ -28,7 +28,7 @@
   <body onload="onDocumentLoaded()">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
-        <div class="logo navbar-brand navbar-right" to='/sequencer'>STEP<br/><br/>S160</div>
+        <div id='uploadLogo' class="logo navbar-brand navbar-right" to='/sequencer'><p className='logo'>STEP</p><br/><p className='logo' id='s160'>S160</p></div>
       </div>
       <div className="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -45,16 +45,16 @@
         </ul>
       </div>
     </nav>
-    <div class="container">
+    <div id='uploadContainer' class="row">
       <div class="row">
         <div class="span4">
-          <h6>Spectrum</h6>
+          <h3 style="color:#DFE1E2">Spectrum</h3>
           <div class="well">
             <div id="spectrum"></div>
           </div>
         </div>
         <div class="span8">
-          <h6>Editor</h6>
+          <h3 style="color:#DFE1E2">Editor</h3>
           <div class="well">
              <audioLayerControl id="audioLayerControl" title="CloudCompany.mp3" />
           </div>
@@ -70,27 +70,27 @@
           <center>
             <div class="btn-toolbar">
               <div class="btn-group">
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].copy();"><i class="icon-share icon-white"></i> Copy</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].paste();"><i class="icon-chevron-down icon-white"></i> Paste</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].cut();"><i class="icon-chevron-up icon-white"></i> Cut</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].crop();"><i class="icon-retweet icon-white"></i> Crop</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].del();"><i class="icon-remove icon-white"></i> Delete</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].copy();"><i class="icon-share icon-white"></i> Copy</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].paste();"><i class="icon-chevron-down icon-white"></i> Paste</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].cut();"><i class="icon-chevron-up icon-white"></i> Cut</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].crop();"><i class="icon-retweet icon-white"></i> Crop</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].del();"><i class="icon-remove icon-white"></i> Delete</a>
               </div>
               <div class="btn-group">
-                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].selectAll();"><i class="icon-resize-horizontal icon-white"></i> Select All</a>
-                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].zoomIntoSelection();"><i class="icon-plus-sign icon-white"></i> Zoom To Selection</a>
-                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].zoomToFit();"><i class="icon-fullscreen icon-white"></i> Zoom To Fit</a>
+                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].selectAll();"><i class="icon-resize-horizontal icon-white"></i> Select All</a>
+                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].zoomIntoSelection();"><i class="icon-plus-sign icon-white"></i> Zoom To Selection</a>
+                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].zoomToFit();"><i class="icon-fullscreen icon-white"></i> Zoom To Fit</a>
               </div>
               <div class="btn-group">
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterNormalize();">Normalize</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterSilence();">Silence</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterFadeIn();">Fade In</a>
-                <a class="btn btn-primary" onclick="$('#audioLayerControl')[0].filterFadeOut();">Fade Out</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].filterNormalize();">Normalize</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].filterSilence();">Silence</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].filterFadeIn();">Fade In</a>
+                <a class="btn btn-success" onclick="$('#audioLayerControl')[0].filterFadeOut();">Fade Out</a>
               </div>
               <div class="btn-group" >
-                  <a class="btn btn-success glyphicon glyphicon-minus" onclick="decrease_db()"></a>
+                  <a class="btn btn-primary glyphicon glyphicon-minus" onclick="decrease_db()"></a>
                   <a class="btn disabled" onclick="gain_btn_clicked()">0 db</a>
-                  <a class="btn btn-success glyphicon glyphicon-plus" onclick="increase_db()"></a>
+                  <a class="btn btn-primary glyphicon glyphicon-plus" onclick="increase_db()"></a>
               </div>
           </div>
         </center>
@@ -104,11 +104,11 @@
               <div class="btn-group">
                 <a class="btn btn-success glyphicon glyphicon-play" onclick="$('#audioLayerControl')[0].play()" rel="tooltip" title="first tooltip"></a>
                 <a class="btn btn-success glyphicon glyphicon-stop" onclick="$('#audioLayerControl')[0].stop()"></a>
-                <a class="btn btn-warning glyphicon glyphicon-repeat" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"></a>
+                <a class="btn btn-success glyphicon glyphicon-repeat" data-toggle="button" onclick="$('#audioLayerControl')[0].toggleLoop();"></a>
               </div>
               <div class="btn-group">
                 <form action='javascript:void(0)'>
-                  <input style='width: 250px; margin-right: 15px; margin-top: 5px'type='text' name='fileTitle' placeholder='name without extension' required/>
+                  <input style='width: 250px; margin-left: 15px; margin-right: 15px; margin-top: 5px'type='text' name='fileTitle' placeholder='name without extension' required/>
                   <a class="btn btn-large btn-primary pull-right" onclick="$('#audioLayerControl')[0].save($('#savelink')[0]);">Upload</a>
                 </form>
               </div>
