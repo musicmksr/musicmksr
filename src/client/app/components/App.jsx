@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Alert } from 'react-bootstrap';
 import { Link, browserHistory } from 'react-router';
 import { Modal } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
@@ -11,7 +12,10 @@ class App extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      loggedIn: false
+      loggedIn: false,
+      message: 'An Error Occured, please try refreshing the page or logging back in.',
+      bsStyle: 'danger',
+      messageCl: 'hidden'
     };
   }
   componentWillMount() {
@@ -26,6 +30,7 @@ class App extends React.Component {
 	}
 
 	getCookie() {
+    console.log('get cookie')
 		request.get('/api/session')
 			.then((response) =>{
 				if(response.data.userID === undefined){
@@ -57,6 +62,13 @@ class App extends React.Component {
 	notLoggedIn() {
 		swal('Login to upload your beats');
 	}
+  serverStopped() {
+    console.log('the server stopped')
+    this.setState({
+      loggedIn: false,
+      messageCl: 'show'
+    });
+  }
 
 	render() {
 		let profileLink;
@@ -117,8 +129,12 @@ class App extends React.Component {
 	        </div>
 	      </nav>
 	      <div className="scrollbox container-fluid">
+          <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
+            {this.state.message}
+          </Alert>
 				 {this.props.children && React.cloneElement(this.props.children, {
-            loggedIn: this.state.loggedIn
+            loggedIn: this.state.loggedIn,
+            serverStopped: this.serverStopped.bind(this)
           })}
 				</div>
 			</div>
