@@ -227,21 +227,21 @@ module.exports = {
   },
 
   loadSequence(req, res, next) {
-    console.log(`${__dirname}/../src/client/app/public/index.html`)
-    res.sendFile(`${__dirname}/../src/client/app/public/index.html`);
-    // console.log(req.params.sequenceName, req.params.userId);
+    res.sendFile(path.resolve(`${__dirname}/../src/client/public/index.html`));
+  },
 
-    // Sequence.find({where: { name: req.params.sequenceName, userId: req.params.userId }})
-    //   .then((response) =>{
-    //     console.log(response)
-    //     if(!response) throw new Error(0);
+  getSequence(req, res, next) {
+    Sequence.find({where: { name: req.params.sequenceName, userId: req.params.userId }})
+      .then((response) =>{
+        console.log(response)
+        if(!response) throw new Error(0);
         
-    //     res.send(response.dataValues.matrix);
-    //   })
-    //   .catch((err) =>{
-    //     console.log(err);
-    //     res.status(400).send({ error: 'Sequence Not Found' });
-    //   });
+        res.send(response.dataValues.matrix);
+      })
+      .catch((err) =>{
+        console.log(err);
+        res.status(400).send({ error: 'Sequence Not Found' });
+      });
   }
 
 };

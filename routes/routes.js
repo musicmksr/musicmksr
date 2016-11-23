@@ -71,4 +71,8 @@ module.exports = function(app) {
     helpers.loadSequence
   );
 
+  app.get('/api/sequence/:userId/:sequenceName',
+    helpers.getSequence
+  );
+
 };
