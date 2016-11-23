@@ -10,6 +10,8 @@ if(window.localStorage.loadSequence !== 'undefined'){
   matrixUsed = initialMatrix;
 }
 
+console.log(matrixUsed)
+
 export default (state = matrixUsed, action) => {
   const newSequence = _.cloneDeep(state);
 
