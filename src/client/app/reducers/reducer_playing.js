@@ -3,10 +3,12 @@ import initialMatrix from '../data.json';
 
 let matrixUsed = {};
 
-if(window.localStorage.loadSequence !== 'undefined'){
+if(window.localStorage.length > 0){
+  console.log('local storage set');
   matrixUsed = JSON.parse(window.localStorage.loadSequence);
-  window.localStorage.loadSequence = undefined;
+  window.localStorage.clear();
 }else {
+   console.log('local storage not set');
   matrixUsed = initialMatrix;
 }
 
@@ -157,6 +159,6 @@ export default (state = matrixUsed, action) => {
       return newSequence;
 
     default:
-        return state;
+      return state;
   }
 };

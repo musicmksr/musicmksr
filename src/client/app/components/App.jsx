@@ -73,7 +73,6 @@ class App extends React.Component {
 	saveToLocal() {
 		window.localStorage.setItem('loadSequence', JSON.stringify(this.props.sequence));
 		window.location.assign('auth/facebook');
-		console.log(window.localStorage['loadSequence']);
 	}
 
 	render() {
