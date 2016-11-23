@@ -1,18 +1,18 @@
 import _ from 'lodash';
 import initialMatrix from '../data.json';
 
-let matrixUsed = {};
+// let matrixUsed = {};
 
-if(window.localStorage.loadSequence !== 'undefined'){
-  console.log('local storage set');
-  matrixUsed = JSON.parse(window.localStorage.loadSequence);
-  window.localStorage.loadSequence = undefined;
-}else {
-   console.log('local storage not set');
-  matrixUsed = initialMatrix;
-}
+// if(window.localStorage.loadSequence !== 'undefined'){
+//   console.log('local storage set');
+//   matrixUsed = JSON.parse(window.localStorage.loadSequence);
+//   window.localStorage.loadSequence = undefined;
+// }else {
+//    console.log('local storage not set');
+//   matrixUsed = initialMatrix;
+// }
 
-export default (state = matrixUsed, action) => {
+export default (state = initialMatrix, action) => {
   const newSequence = _.cloneDeep(state);
 
   switch (action.type){
