@@ -1,0 +1,22 @@
+<html>
+  <body>
+    <h1>Redirecting ...</h1>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.15.2/axios.min.js"></script>
+    <script>
+      let load = window.location.pathname.split('/');
+
+      if(load.indexOf('load') >= 0){
+        axios.get(`/api/sequence/${load[3]}/${load[2]}`)
+          .then((response) =>{
+            console.log(response);
+            window.localStorage.loadSequence = JSON.stringify(response.data);
+            window.location.href = '/';
+          })
+          .catch((err) =>{
+            console.log(err);
+            window.location.href = '/';
+          });
+      }
+    </script>
+  </body>
+</html>

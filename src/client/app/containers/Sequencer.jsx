@@ -218,6 +218,14 @@ export class Sequencer extends React.Component {
     this.setState({numOfSteps:e.target.value });
     this.props.addBar(e.target.value);
   }
+  share() {
+    if(this.state.title === ''){
+      swal('Name Your Beat And Save Before Sharing.')
+    }else{
+      let urlString = `http://steps160.com/load/${this.state.title}/${window.newCookie.user.mainId}`;
+      swal('Share on social media', urlString);
+    }
+  }
   render() {
     this.howlObjRequest(this.props.sequence.samples);
 
@@ -272,6 +280,9 @@ export class Sequencer extends React.Component {
 
           <div className='playCtrl col-md-3'>
             <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className={this.state.playIcon}></span></button>
+            <button id='saveBtn'className='btn' onClick={this.share.bind(this)}>
+              Share
+            </button>
           </div>
       </div>
 
