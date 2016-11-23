@@ -10,8 +10,8 @@ import saveBPM from '../actions/saveBPM';
 import addTrack from '../actions/addTrack';
 import addBar from '../actions/addBar';
 import clearSequencer from '../actions/clearSequencer';
+import swal from 'sweetalert'
 import request from 'axios';
-import swal from 'sweetalert';
 
 let currentCol = 1;
 
@@ -80,14 +80,15 @@ export class Sequencer extends React.Component {
 
       currentCol = 1;
       const context = this;
-      const steps = _.flatten(this.props.playSequence);
+      const steps = _.unzip(this.props.playSequence);
+      const stepStyle = _.flatten(this.props.playSequence);
+      console.log('Stpes',steps)
 
       window.innerPlay = setInterval(() =>{
-        steps.forEach((step, index) =>{
+        stepStyle.forEach((step, index)=>{
           if(step.props.stepIndex === currentCol){
             let elements = document.getElementsByClassName(step.props.stepIndex.toString());
             elements = Array.prototype.slice.call(elements);
-
             elements.forEach((element)=>{
               element.id='step-wrapper-active';
             });
@@ -98,6 +99,10 @@ export class Sequencer extends React.Component {
                 element.id='step-wrapper';
               });
           }
+        });
+
+        steps[currentCol-1].forEach((step, index) =>{
+
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
@@ -213,11 +218,11 @@ export class Sequencer extends React.Component {
 
     return(
       <div className='outer container-fluid'>
-        <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
-          {message}
-        </Alert>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
+            <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
+              {message}
+            </Alert>
             <div className='col-md-2'>
               <form id='bpmForm' action='javascript:void(0)'>
                 <input
@@ -274,7 +279,6 @@ export class Sequencer extends React.Component {
                 loggedIn={this.props.loggedIn}
                 numOfSteps={this.state.numOfSteps}
                 playing={this.state.playing}
-                serverStopped={this.props.serverStopped}
               />
           )}
         </div>
