@@ -12,6 +12,7 @@ import addBar from '../actions/addBar';
 import clearSequencer from '../actions/clearSequencer';
 import request from 'axios';
 import swal from 'sweetalert';
+import _ from 'lodash';
 
 let currentCol = 1;
 
@@ -127,8 +128,23 @@ export class Sequencer extends React.Component {
           titleWarning: 'Saving Sequence...'
         });
 
+        let newSequence = _.cloneDeep(sequence);
+
+        newSequence.matrix.map((track, indexT) =>{
+          return track.map((step, indexS) =>{
+            if(step.class === 'step-mtf'){
+              step.class = 'step-tf';
+            }
+            if(step.class === 'step-mtt'){
+              step.class = 'step-tt';
+            }
+
+            return step;
+          });
+        });
+
         const sendObj = {
-          sequence: sequence,
+          sequence: newSequence,
           title: this.state.title,
           userId: window.newCookie.user.mainId
         };
