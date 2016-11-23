@@ -16,7 +16,7 @@ if(window.localStorage.loadSequence !== 'undefined'){
 
 console.log(matrixUsed);
 
-export default (state = initialMatrix, action) => {
+export default (state = matrixUsed, action) => {
   const newSequence = _.cloneDeep(state);
 
   switch (action.type){
