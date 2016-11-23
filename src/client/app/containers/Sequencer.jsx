@@ -80,14 +80,15 @@ export class Sequencer extends React.Component {
 
       currentCol = 1;
       const context = this;
-      const steps = _.flatten(this.props.playSequence);
+      const steps = _.unzip(this.props.playSequence);
+      const stepStyle = _.flatten(this.props.playSequence);
+      console.log('Stpes',steps)
 
       window.innerPlay = setInterval(() =>{
-        steps.forEach((step, index) =>{
+        stepStyle.forEach((step, index)=>{
           if(step.props.stepIndex === currentCol){
             let elements = document.getElementsByClassName(step.props.stepIndex.toString());
             elements = Array.prototype.slice.call(elements);
-
             elements.forEach((element)=>{
               element.id='step-wrapper-active';
             });
@@ -98,6 +99,10 @@ export class Sequencer extends React.Component {
                 element.id='step-wrapper';
               });
           }
+        });
+
+        steps[currentCol-1].forEach((step, index) =>{
+
           if(step.props.stepIndex === currentCol &&
               context.props.sequence.matrix[step.props.index[0]][step.props.index[1]].toggled === true && !window.howlObj[step.props.index[0]]._muted
             )
