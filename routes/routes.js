@@ -67,7 +67,7 @@ module.exports = function(app) {
   );
 
   // share beats by loading them on route get request
-  app.get('/api/load/:sequenceName/:userId', 
+  app.get('/load/:sequenceName/:userId', 
     helpers.loadSequence
   );
 
