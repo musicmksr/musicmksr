@@ -220,9 +220,6 @@ export class Sequencer extends React.Component {
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
-            <Alert className={this.state.messageCl} bsStyle={this.state.bsStyle}>
-              {message}
-            </Alert>
             <div className='col-md-2'>
               <form id='bpmForm' action='javascript:void(0)'>
                 <input
@@ -279,6 +276,7 @@ export class Sequencer extends React.Component {
                 loggedIn={this.props.loggedIn}
                 numOfSteps={this.state.numOfSteps}
                 playing={this.state.playing}
+                serverStopped={this.props.serverStopped}
               />
           )}
         </div>
