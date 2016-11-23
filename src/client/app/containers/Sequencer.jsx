@@ -271,6 +271,7 @@ export class Sequencer extends React.Component {
                 <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
                   Save
                 </button>
+                <div id="fb-root"></div>
                 <span className='saveAlert'>
                   {this.state.titleWarning}
                 </span>

@@ -47,19 +47,16 @@ export default (state = matrixUsed, action) => {
         } else if (step.class === 'step-mtf'){
           step.class = 'step-tf';
         }
-        console.log(step.class);
       });
 
 
      return newSequence;
 
     case "CHANGE_SAMPLE":
-      console.log('change sample');
       newSequence.samples[action.sampleIndex] = action.sound;
       return newSequence;
 
     case "LOAD_PROFILE_SEQUENCE":
-      console.log('add from profile');
       return action.payload.matrix;
 
     case "ADD_TRACK":
@@ -102,8 +99,6 @@ export default (state = matrixUsed, action) => {
         return newSequence;
       }
 
-      console.log('delete track');
-
       newSequence.matrix.splice(action.deleteTrackIndex, 1);
 
       delete newSequence.samples[action.deleteTrackIndex];
@@ -119,9 +114,7 @@ export default (state = matrixUsed, action) => {
 
     case 'SAVE_BPM':
       const bpm = Number(action.payload);
-      console.log('before: ', state);
       state.bpm = bpm;
-      console.log('after: ', state);
 
       return state;
 
