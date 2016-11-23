@@ -223,7 +223,12 @@ export class Sequencer extends React.Component {
       swal('Name Your Beat And Save Before Sharing.')
     }else{
       let urlString = `http://steps160.com/load/${this.state.title}/${window.newCookie.user.mainId}`;
-      swal('Share on social media', urlString);
+      swal({
+        title: 'Share on social media',
+        type: 'input',
+        inputValue: urlString,
+        html: true,
+      });
     }
   }
   render() {
@@ -280,7 +285,7 @@ export class Sequencer extends React.Component {
 
           <div className='playCtrl col-md-3'>
             <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className={this.state.playIcon}></span></button>
-            <button id='saveBtn'className='btn' onClick={this.share.bind(this)}>
+            <button id='shareBtn'className='btn' onClick={this.share.bind(this)}>
               Share
             </button>
           </div>
@@ -309,7 +314,7 @@ export class Sequencer extends React.Component {
         </div>
 
         <div className='row addTrack'>
-          <div className='btn-toolbar'>
+          <div id='trackToolBar' className='btn-toolbar'>
             <button id='addTrackBtn' className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
             <button id='addTrackBtn' className='btn' onClick={this.clearSequencer.bind(this)}>Clear Sequence</button>
             <select id='addSamples' ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>
