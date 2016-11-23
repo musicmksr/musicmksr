@@ -227,7 +227,7 @@ module.exports = {
   },
 
   loadSequence(req, res, next) {
-    res.sendFile(path.resolve(`${__dirname}/../src/client/public/index.html`));
+    res.sendFile(path.resolve(`${__dirname}/../src/client/public/load.html`));
   },
 
   getSequence(req, res, next) {
