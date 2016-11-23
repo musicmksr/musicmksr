@@ -66,4 +66,13 @@ module.exports = function(app) {
     helpers.uploadAudio
   );
 
+  // share beats by loading them on route get request
+  app.get('/load/:sequenceName/:userId', 
+    helpers.loadSequence
+  );
+
+  app.get('/api/sequence/:userId/:sequenceName',
+    helpers.getSequence
+  );
+
 };
