@@ -224,6 +224,24 @@ module.exports = {
       .catch((err) =>{
         console.log(err);
       });  
+  },
+
+  loadSequence(req, res, next) {
+    res.sendFile(path.resolve(`${__dirname}/../src/client/public/index.html`));
+  },
+
+  getSequence(req, res, next) {
+    Sequence.find({where: { name: req.params.sequenceName, userId: req.params.userId }})
+      .then((response) =>{
+        console.log(response)
+        if(!response) throw new Error(0);
+        
+        res.send(response.dataValues.matrix);
+      })
+      .catch((err) =>{
+        console.log(err);
+        res.status(400).send({ error: 'Sequence Not Found' });
+      });
   }
 
 };
