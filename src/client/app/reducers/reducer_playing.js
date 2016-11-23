@@ -3,8 +3,6 @@ import initialMatrix from '../data.json';
 
 let matrixUsed = {};
 
-console.log(window.localStorage.loadSequence, window.localStorage.loadSequence === 'undefined');
-
 if(window.localStorage.loadSequence !== 'undefined'){
   console.log('local storage set');
   matrixUsed = JSON.parse(window.localStorage.loadSequence);
@@ -13,8 +11,6 @@ if(window.localStorage.loadSequence !== 'undefined'){
    console.log('local storage not set');
   matrixUsed = initialMatrix;
 }
-
-console.log(matrixUsed);
 
 export default (state = matrixUsed, action) => {
   const newSequence = _.cloneDeep(state);
