@@ -85,7 +85,6 @@ body{
     width: 50%;
     padding-left: 5%;
     margin-left: 3%;
-    margin-top: 3%;
     margin-right: 3%;
 		white-space: nowrap;
 		display: inline-block;
@@ -125,9 +124,11 @@ body{
 		height: 45px;
 		font-size: 20px;
 	}
-	.saveAlert{
+	#saveAlert{
 	  margin-left: 2.5%;
     color: #9a76ff;
+    margin-top: 1%;
+    position: absolute;
 	}
 	#playButton{
 		display:inline-block;
@@ -150,12 +151,20 @@ body{
     color: #F66662
   }
   #shareBtn{
-    margin-top: 3%;
-    margin-left: 165%;
+    margin-left: 3%;
     height: 45px;
     font-size: 20px;
+    margin-bottom: 3px;
   }
 		/*MOBILE SEQUENCER HEADER*/
+    @media (max-width: 992px) {
+      #saveAlert{
+    	  margin-left: 2.5%;
+        color: #9a76ff;
+        margin-top: 1%;
+        position: relative;
+    	}
+    }
 	  @media (max-width: 700px){
 	  		.titleInput{
 	  			margin-top: 1%;
@@ -165,17 +174,19 @@ body{
 				#playButton{
 					margin-left: 5%;
 				}
-        #shareBtn{
-          margin-top: 3%;
-          margin-left: 0px;
-          height: 45px;
-          font-size: 20px;
-        }
-        #saveBtn{
-          margin-top: 3%;
-        }
-
 	  }
+    @media (max-width: 401px) {
+      #bpmForm{
+        margin-left: 0px;
+        margin-top: 3%;
+      }
+      #shareBtn{
+        margin-top: 3%;
+        margin-left: 0px;
+        height: 45px;
+        font-size: 20px;
+      }
+    }
 	  /*MOBILE SEQUENCER HEADER*/
 	/*SEQUENCER HEADER*/
 

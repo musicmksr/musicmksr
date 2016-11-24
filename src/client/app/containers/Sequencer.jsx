@@ -278,33 +278,29 @@ export class Sequencer extends React.Component {
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
-            <div className='col-md-7'>
-              <form className='saveForm' action='javascript:void(0)'>
-                <input
-                  type='text'
-                  name='title'
-                  className='titleInput'
-                  value={this.state.title || this.props.sequence.name}
-                  onChange={this.setTitle.bind(this)}
-                  placeholder='sequence title'
-                  required
-                />
-                <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
-                  Save
-                </button>
-                <div id="fb-root"></div>
-                <span className='saveAlert'>
-                  {this.state.titleWarning}
-                </span>
-              </form>
-            </div>
-            <div className='col-md-2'>
+            <form className='saveForm' action='javascript:void(0)'>
+              <input
+                type='text'
+                name='title'
+                className='titleInput'
+                value={this.state.title || this.props.sequence.name}
+                onChange={this.setTitle.bind(this)}
+                placeholder='sequence title'
+                required
+              />
+              <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>
+                Save
+              </button>
               <button id='shareBtn'className='btn' onClick={this.share.bind(this)}>
                 Share
               </button>
-            </div>
+              <div id='saveAlert'>
+                <span>
+                  {this.state.titleWarning}
+                </span>
+              </div>
+            </form>
           </div>
-
           <div className='playCtrl col-md-3'>
             <form id='bpmForm' action='javascript:void(0)'>
               <input
