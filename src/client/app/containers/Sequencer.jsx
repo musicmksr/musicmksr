@@ -347,7 +347,6 @@ export class Sequencer extends React.Component {
           <div id='trackToolBar' className='btn-toolbar'>
             <button id='addTrackBtn' className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
             <button id='addTrackBtn' className='btn' onClick={this.clearSequencer.bind(this)}>Clear Sequence</button>
-            <button id='addTrackBtn' className='btn' onClick={this.animate.bind(this)}>Animate</button>
             <select id='addSamples' ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>
               <option value='16'>16 Steps</option>
               <option value='32'>32 Steps</option>
