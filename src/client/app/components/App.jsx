@@ -9,7 +9,7 @@ import { Button } from 'react-bootstrap';
 import request from 'axios';
 import swal from 'sweetalert';
 
-class App extends React.Component {
+export class App extends React.Component {
 	constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,6 @@ class App extends React.Component {
 	}
 
 	getCookie() {
-    console.log('get cookie')
 		request.get('/api/session')
 			.then((response) =>{
 				if(response.data.userID === undefined){

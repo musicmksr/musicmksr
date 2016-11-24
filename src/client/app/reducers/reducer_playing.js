@@ -121,8 +121,8 @@ export default (state = matrixUsed, action) => {
     case "ADD_BAR":
 
       let numOfSteps = action.payload;
-      let currentLength = state.matrix[0].length
-      var difference = currentLength - numOfSteps
+      let currentLength = state.matrix[0].length;
+      let difference = currentLength - numOfSteps;
       if(numOfSteps > currentLength){
         state.matrix.map((track,index) => {
           let newBar = _.clone(track);
@@ -130,23 +130,23 @@ export default (state = matrixUsed, action) => {
             if(step.class === 'step-mtf' || step.class === 'step-mtt'){
               step.class = 'step-mtf';
               step.toggled = false;
-              return step
+              return step;
             } else {
               step.class = 'step-tf';
               step.toggled = false;
-              return step
+              return step;
             }
           });
           newBar.forEach((step)=>{
             newSequence.matrix[index].push(step);
-          })
+          });
 
         });
       } else if (numOfSteps < currentLength) {
         state.matrix.map((track, index) => {
-          let newBar = track.splice(0, difference)
+          let newBar = track.splice(0, difference);
           newSequence.matrix[index] = newBar;
-        })
+        });
 
       }
       return newSequence;
