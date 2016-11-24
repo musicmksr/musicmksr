@@ -82,8 +82,11 @@ body{
 }
 	/*SEQUENCER HEADER*/
 	#bpmForm{
-    width: 100%;
+    width: 50%;
     padding-left: 5%;
+    margin-left: 3%;
+    margin-top: 3%;
+    margin-right: 3%;
 		white-space: nowrap;
 		display: inline-block;
 		border-width: 2px;
@@ -131,8 +134,8 @@ body{
 		position: relative;
 		height: 48px;
 		width: 48px;
-		margin-top: 3%;
-		margin-left: 3%;
+    margin-left: 3%;
+    margin-bottom: 3%;
 		background-color: #2F3434;
 		border-width: 2px;
 		border-style: solid;
@@ -148,7 +151,7 @@ body{
   }
   #shareBtn{
     margin-top: 3%;
-    margin-left: 10%;
+    margin-left: 165%;
     height: 45px;
     font-size: 20px;
   }
@@ -156,12 +159,22 @@ body{
 	  @media (max-width: 700px){
 	  		.titleInput{
 	  			margin-top: 1%;
-					width: 72.5%;
+					width: 60%;
 					margin-right: 10px;
 				}
 				#playButton{
 					margin-left: 5%;
 				}
+        #shareBtn{
+          margin-top: 3%;
+          margin-left: 0px;
+          height: 45px;
+          font-size: 20px;
+        }
+        #saveBtn{
+          margin-top: 3%;
+        }
+
 	  }
 	  /*MOBILE SEQUENCER HEADER*/
 	/*SEQUENCER HEADER*/
@@ -273,11 +286,16 @@ body{
     	margin-right: 2%;
     }
     #addSamples{
-      width: 33%
+      width: 33%;
+      margin-right: 2%
     }
-
   }
 
+  @media (max-width: 365px) {
+    #addSamples{
+      margin-top: 3%;
+    }
+  }
 	/*TRACK CONTROLS*/
 	.sampleSelect{
 		background-color: #2F3434;

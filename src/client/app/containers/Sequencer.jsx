@@ -249,19 +249,6 @@ export class Sequencer extends React.Component {
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
-            <div className='col-md-2'>
-              <form id='bpmForm' action='javascript:void(0)'>
-                <input
-                  id='bpmInput'
-                  name='bpm'
-                  type='number'
-                  defaultValue={this.state.bpm || this.props.sequence.bpm}
-                  onChange={this.setBPM.bind(this)}
-                  required
-                />
-                <span id='bpmText'>BPM</span>
-              </form>
-            </div>
             <div className='col-md-7'>
               <form className='saveForm' action='javascript:void(0)'>
                 <input
@@ -281,13 +268,26 @@ export class Sequencer extends React.Component {
                 </span>
               </form>
             </div>
+            <div className='col-md-2'>
+              <button id='shareBtn'className='btn' onClick={this.share.bind(this)}>
+                Share
+              </button>
+            </div>
           </div>
 
           <div className='playCtrl col-md-3'>
+            <form id='bpmForm' action='javascript:void(0)'>
+              <input
+                id='bpmInput'
+                name='bpm'
+                type='number'
+                defaultValue={this.state.bpm || this.props.sequence.bpm}
+                onChange={this.setBPM.bind(this)}
+                required
+              />
+              <span id='bpmText'>BPM</span>
+            </form>
             <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className={this.state.playIcon}></span></button>
-            <button id='shareBtn'className='btn' onClick={this.share.bind(this)}>
-              Share
-            </button>
           </div>
       </div>
 
