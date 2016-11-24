@@ -47,19 +47,16 @@ export default (state = matrixUsed, action) => {
         } else if (step.class === 'step-mtf'){
           step.class = 'step-tf';
         }
-        console.log(step.class);
       });
 
 
      return newSequence;
 
     case "CHANGE_SAMPLE":
-      console.log('change sample');
       newSequence.samples[action.sampleIndex] = action.sound;
       return newSequence;
 
     case "LOAD_PROFILE_SEQUENCE":
-      console.log('add from profile');
       return action.payload.matrix;
 
     case "ADD_TRACK":
@@ -102,8 +99,6 @@ export default (state = matrixUsed, action) => {
         return newSequence;
       }
 
-      console.log('delete track');
-
       newSequence.matrix.splice(action.deleteTrackIndex, 1);
 
       delete newSequence.samples[action.deleteTrackIndex];
@@ -119,17 +114,15 @@ export default (state = matrixUsed, action) => {
 
     case 'SAVE_BPM':
       const bpm = Number(action.payload);
-      console.log('before: ', state);
       state.bpm = bpm;
-      console.log('after: ', state);
 
       return state;
 
     case "ADD_BAR":
 
       let numOfSteps = action.payload;
-      let currentLength = state.matrix[0].length
-      var difference = currentLength - numOfSteps
+      let currentLength = state.matrix[0].length;
+      let difference = currentLength - numOfSteps;
       if(numOfSteps > currentLength){
         state.matrix.map((track,index) => {
           let newBar = _.clone(track);
@@ -137,23 +130,23 @@ export default (state = matrixUsed, action) => {
             if(step.class === 'step-mtf' || step.class === 'step-mtt'){
               step.class = 'step-mtf';
               step.toggled = false;
-              return step
+              return step;
             } else {
               step.class = 'step-tf';
               step.toggled = false;
-              return step
+              return step;
             }
           });
           newBar.forEach((step)=>{
             newSequence.matrix[index].push(step);
-          })
+          });
 
         });
       } else if (numOfSteps < currentLength) {
         state.matrix.map((track, index) => {
-          let newBar = track.splice(0, difference)
+          let newBar = track.splice(0, difference);
           newSequence.matrix[index] = newBar;
-        })
+        });
 
       }
       return newSequence;
