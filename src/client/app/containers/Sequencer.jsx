@@ -17,6 +17,7 @@ import _ from 'lodash';
 let currentCol = 1;
 
 window.innerPlay;
+window.innerAnimate;
 window.howlObj = {};
 export class Sequencer extends React.Component {
   constructor(props) {
@@ -30,6 +31,7 @@ export class Sequencer extends React.Component {
       title: this.props.sequence.name || '',
       titleWarning: '',
       test: {},
+      animating: true,
       bpm: this.props.sequence.bpm || 120,
       numOfSteps: 16,
       playIcon: 'glyphicon glyphicon-play'
@@ -43,7 +45,8 @@ export class Sequencer extends React.Component {
       e.preventDefault();
       context.play();
       }
-  }
+    }
+   // this.animate();
   }
   bpmConversion(bpm) {
     let convertedBPM = (1/(bpm)) * 15000;
@@ -211,6 +214,32 @@ export class Sequencer extends React.Component {
   }
   clearSequencer(){
     this.props.clearSequencer();
+  }  
+  animate(){
+    let animContext = this;
+    let animArr = _.flatten(animContext.props.sequence.matrix)
+    let count = 0;
+    let myElements = document.getElementsByClassName(".step-mtt")
+    console.log(myElements);
+
+    window.innerAnimate = setInterval(function(){
+      // if(count>0){
+      if(count === 175){
+          clearInterval(window.innerAnimate)
+        }
+      if(count < animArr.length){
+            animArr[count].class = 'step-mtt'
+          }
+      let deleter = count-16;
+      if (count > 15){
+        animArr[deleter].class = 'step-tf'
+      }      
+      count++;
+      animContext.setState({
+        animating: !animContext.state.animating
+      })
+
+    }, 1)
   }
   addBar(e) {
     window.lastId = 0;
@@ -318,6 +347,7 @@ export class Sequencer extends React.Component {
           <div id='trackToolBar' className='btn-toolbar'>
             <button id='addTrackBtn' className='btn' onClick={this.addTrack.bind(this)}>Add Track</button>
             <button id='addTrackBtn' className='btn' onClick={this.clearSequencer.bind(this)}>Clear Sequence</button>
+            <button id='addTrackBtn' className='btn' onClick={this.animate.bind(this)}>Animate</button>
             <select id='addSamples' ref='barSet' className='sampleSelect form-control' onChange={this.addBar.bind(this)}>
               <option value='16'>16 Steps</option>
               <option value='32'>32 Steps</option>
