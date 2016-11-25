@@ -4,7 +4,7 @@ import { Router, Route, browserHistory, IndexRoute} from 'react-router';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-import App from './components/App.jsx';
+import App from './containers/App.jsx';
 import Profile from './components/Profile.jsx';
 import Sequencer from './containers/Sequencer.jsx';
 import rootReducer from './reducers/rootreducer.js';

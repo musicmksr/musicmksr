@@ -34,7 +34,8 @@ export class Sequencer extends React.Component {
       animating: true,
       bpm: this.props.sequence.bpm || 120,
       numOfSteps: 16,
-      playIcon: 'glyphicon glyphicon-play'
+      playIcon: 'glyphicon glyphicon-play',
+      tutorial: this.props.tutorial
     };
   }
   componentDidMount() {
@@ -153,7 +154,7 @@ export class Sequencer extends React.Component {
 
         const sendObj = {
           sequence: newSequence,
-          title: this.state.title,
+          title: this.state.title.replace(/[^\w\s]/gi, ''),
           userId: window.newCookie.user.mainId
         };
 
@@ -261,11 +262,14 @@ export class Sequencer extends React.Component {
     }
   }
   render() {
+    console.log('Sequencer tutorial ', this.props.tutorial);
+
     this.howlObjRequest(this.props.sequence.samples);
 
     let message = this.state.message;
     let play = '';
     let disabled = '';
+    let tutorialClass = 'hidden';
 
     if(this.state.playing === false){
       play = 'Play';
@@ -274,10 +278,24 @@ export class Sequencer extends React.Component {
       disabled = 'true';
     }
 
+    if(this.props.tutorial){
+      tutorialClass = 'show';
+    }else{
+      tutorialClass = 'hidden';
+    }
+
     return(
       <div className='outer container-fluid'>
         <div className='sequencerHeader'>
           <div className='save_bpm col-md-9'>
+            <div className='tutorial'>
+              <Alert className={tutorialClass} bsStyle='info'>
+                <ul>
+                  <li>Enter a name and click save when you have created a beat. You must be logged in to perform this action</li>
+                  <li>Once you have saved a beat, click share to recieve a share link for social media and friends</li>
+                </ul>
+              </Alert>
+            </div>
             <form className='saveForm' action='javascript:void(0)'>
               <input
                 type='text'
@@ -302,6 +320,13 @@ export class Sequencer extends React.Component {
             </form>
           </div>
           <div className='playCtrl col-md-3'>
+            <div className='tutorial'>
+              <Alert className={tutorialClass} bsStyle='info'>
+                <ul>
+                  <li>BPMS control the speed of the loop (goes from 120 to 150)</li>
+                </ul>
+              </Alert>
+            </div>
             <form id='bpmForm' action='javascript:void(0)'>
               <input
                 id='bpmInput'
@@ -314,10 +339,21 @@ export class Sequencer extends React.Component {
               <span id='bpmText'>BPM</span>
             </form>
             <button id='playButton' className='btn' onClick={this.play.bind(this, null)}><span className={this.state.playIcon}></span></button>
+            <Alert className={tutorialClass} bsStyle='info'>
+              <ul>
+                <li>Toggle play button by clicking or using space bar to start and stop loops.</li>
+              </ul>
+            </Alert>
           </div>
       </div>
-
         <div className='sequence container-fluid col-md-12'>
+          <div className='tutorial tutorial-sequence'>
+            <Alert className={tutorialClass} bsStyle='info'>
+              <ul>
+                <li>Toggle steps on and off to play in the loop. (Possible click to load pre made beat)</li>
+              </ul>
+            </Alert>
+          </div>
           {this.props.sequence.matrix.map((track, index) =>
               <Track
                 playState={this.state.playing}
@@ -335,6 +371,7 @@ export class Sequencer extends React.Component {
                 numOfSteps={this.state.numOfSteps}
                 playing={this.state.playing}
                 serverStopped={this.props.serverStopped}
+                tutorial={this.props.tutorial}
               />
           )}
         </div>
@@ -354,6 +391,14 @@ export class Sequencer extends React.Component {
     )
   }
 }
+// alert for adding tracks is covering the sequence
+            //<div className='tutorial'>
+             // <Alert className={tutorialClass} bsStyle='info'>
+             //   <ul>
+             //     <li>Add tracks to your sequence, clear the sequence and start over, or change the steps from 16 to 32.</li>
+             //   </ul>
+            //  </Alert>
+          //  </div>
 function mapStateToProps(state) {
   return {
     sequence: state.sequence,

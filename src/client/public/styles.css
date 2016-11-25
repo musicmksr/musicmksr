@@ -538,3 +538,9 @@ footer a:hover, footer a {
   color: #9a76ff;
 }
 /*AUDIO UPLOAD*/
+
+/*TUTORIAL*/
+.tutorial .tutorial-sequence {
+  width: 90%;
+}
+/*TUTORIAL*/

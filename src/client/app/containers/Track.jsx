@@ -21,7 +21,8 @@ class Track extends React.Component {
       messageCl: 'hidden',
       bsStyle: 'danger',
       samples: Object.keys(this.props.samples).map(key => this.props.samples[key]),
-      volIcon: 'glyphicon glyphicon-volume-up'
+      volIcon: 'glyphicon glyphicon-volume-up',
+      tutorial: this.props.tutorial
     };
   }
   componentDidMount() {
@@ -131,6 +132,7 @@ class Track extends React.Component {
     });
   }
   render() {
+    console.log('Track tutorial ', this.props.tutorial)
     this.createPlaySequence.call(this);
 
     return(
@@ -146,6 +148,7 @@ class Track extends React.Component {
                   index={[this.props.index, index]}
                   sound={this.props.howlerObject}
                   toggleMatrix={this.props.toggleMatrix}
+                  tutorial={this.props.tutorial}
                 />
               </div>
           )}
