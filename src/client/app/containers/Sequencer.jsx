@@ -34,18 +34,14 @@ export class Sequencer extends React.Component {
       animating: true,
       bpm: this.props.sequence.bpm || 120,
       numOfSteps: 16,
-      playIcon: 'glyphicon glyphicon-play'
+      playIcon: 'glyphicon glyphicon-play',
+      inputFocus: false,
     };
   }
   componentDidMount() {
+    console.log('component did mount');
     let context = this;
     clearInterval(window.innerPlay);
-    document.body.onkeydown = function(e){
-    if(e.keyCode == 32){
-      e.preventDefault();
-      context.play();
-      }
-    }
    // this.animate();
   }
   bpmConversion(bpm) {
@@ -86,7 +82,6 @@ export class Sequencer extends React.Component {
       const context = this;
       const steps = _.unzip(this.props.playSequence);
       const stepStyle = _.flatten(this.props.playSequence);
-      console.log('Stpes',steps)
 
       window.innerPlay = setInterval(() =>{
         stepStyle.forEach((step, index)=>{
@@ -260,7 +255,21 @@ export class Sequencer extends React.Component {
       });
     }
   }
+  disableSpacePlay() {
+    this.setState({ inputFocus: true })
+  }
+  enableSpacePlay() {
+    this.setState({ inputFocus: false });
+  }
   render() {
+
+    let context = this;
+    document.body.onkeydown = function(e){
+    if(e.keyCode == 32 && context.state.inputFocus === false){
+      e.preventDefault();
+      context.play();
+      }
+    }
     this.howlObjRequest(this.props.sequence.samples);
 
     let message = this.state.message;
@@ -280,6 +289,8 @@ export class Sequencer extends React.Component {
           <div className='save_bpm col-md-9'>
             <form className='saveForm' action='javascript:void(0)'>
               <input
+                onFocus={this.disableSpacePlay.bind(this)}
+                onBlur={this.enableSpacePlay.bind(this)}
                 type='text'
                 name='title'
                 id='titleInput'
