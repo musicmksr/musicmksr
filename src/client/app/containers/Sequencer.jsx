@@ -214,7 +214,7 @@ export class Sequencer extends React.Component {
   }
   clearSequencer(){
     this.props.clearSequencer();
-  }  
+  }
   animate(){
     let animContext = this;
     let animArr = _.flatten(animContext.props.sequence.matrix)
@@ -233,7 +233,7 @@ export class Sequencer extends React.Component {
       let deleter = count-16;
       if (count > 15){
         animArr[deleter].class = 'step-tf'
-      }      
+      }
       count++;
       animContext.setState({
         animating: !animContext.state.animating
@@ -282,10 +282,10 @@ export class Sequencer extends React.Component {
               <input
                 type='text'
                 name='title'
-                className='titleInput'
+                id='titleInput'
                 value={this.state.title || this.props.sequence.name}
                 onChange={this.setTitle.bind(this)}
-                placeholder='sequence title'
+                placeholder='Input sequence title...'
                 required
               />
               <button id='saveBtn'className='btn'onClick={this.save.bind(this, this.props.sequence)}>

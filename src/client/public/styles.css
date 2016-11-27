@@ -112,12 +112,13 @@ body{
 		color: #DFE1E2;
 		background-color: #2F3434;
 	}
-	.titleInput{
+	#titleInput{
 		padding-left: 2.5%;
 		height: 48px;
 		margin-right: 5%;
 		width: 35%;
 		font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
 	}
 	#saveBtn{
 		margin-bottom: 2px;
@@ -536,5 +537,8 @@ footer a:hover, footer a {
 .btn.disabled{
   background-color: #2f3434;
   color: #9a76ff;
+}
+#fileTitle{
+  font-family: 'Open Sans', sans-serif;  
 }
 /*AUDIO UPLOAD*/
