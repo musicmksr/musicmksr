@@ -247,7 +247,7 @@ export class Sequencer extends React.Component {
     if(this.state.title === ''){
       swal('Name Your Beat And Save Before Sharing.')
     }else{
-      let urlString = `http://steps160.com/load/${this.state.title}/${window.newCookie.user.mainId}`;
+      let urlString = `http://steps160.com/load/${this.state.title.replace(/\s/g, '%20')}/${window.newCookie.user.mainId}`;
       swal({
         title: 'Share on social media',
         type: 'input',
