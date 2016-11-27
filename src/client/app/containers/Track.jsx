@@ -131,9 +131,21 @@ class Track extends React.Component {
       $('.stepsWrapper').scrollLeft(e.target.scrollLeft);
     });
   }
+  removeDuplicates(samples) {
+    return samples.reduce((acc, nxt) =>{
+      acc = acc || [];
+
+      if(acc.indexOf(nxt) === -1){
+        acc.push(nxt);
+      }
+
+      return acc;
+    }, []);
+  }
   render() {
-    console.log('Track tutorial ', this.props.tutorial)
     this.createPlaySequence.call(this);
+
+    const reducedSamples = this.removeDuplicates(this.state.samples)
 
     return(
       <div className='tracksWrapper'>
@@ -156,7 +168,7 @@ class Track extends React.Component {
         <div className='trackControls col-md-3 container-fluid'>
           <div id='sampleWrapper' className='col-md-6'>
             <select className='sampleSelect form-control' value={this.props.sample} onChange={this.changeSample.bind(this)}>
-              {this.state.samples.map((sound, index) =>
+              {reducedSamples.map((sound, index) =>
                 <Options key={[sound, index]} sound={sound} />
               )}
             </select>
