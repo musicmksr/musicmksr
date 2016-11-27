@@ -262,8 +262,6 @@ export class Sequencer extends React.Component {
     }
   }
   render() {
-    console.log('Sequencer tutorial ', this.props.tutorial);
-
     this.howlObjRequest(this.props.sequence.samples);
 
     let message = this.state.message;
@@ -391,7 +389,7 @@ export class Sequencer extends React.Component {
     )
   }
 }
-// alert for adding tracks is covering the sequence
+// tutorial for adding tracks is covering the sequence
             //<div className='tutorial'>
              // <Alert className={tutorialClass} bsStyle='info'>
              //   <ul>

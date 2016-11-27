@@ -8,7 +8,7 @@ if(window.localStorage.length > 0){
   matrixUsed = JSON.parse(window.localStorage.loadSequence);
   window.localStorage.clear();
 }else {
-   console.log('local storage not set');
+  console.log('local storage not set');
   matrixUsed = initialMatrix;
 }
 
@@ -24,11 +24,11 @@ export default (state = matrixUsed, action) => {
 			// mutate class
 			if(newSequence.matrix[index[0]][index[1]].class === 'step-tf'){
 				newSequence.matrix[index[0]][index[1]].class = 'step-tt';
-			} else if (newSequence.matrix[index[0]][index[1]].class === 'step-tt'){
+			}else if (newSequence.matrix[index[0]][index[1]].class === 'step-tt'){
 				newSequence.matrix[index[0]][index[1]].class = 'step-tf';
-			} else if (newSequence.matrix[index[0]][index[1]].class === 'step-mtt'){
+			}else if (newSequence.matrix[index[0]][index[1]].class === 'step-mtt'){
         newSequence.matrix[index[0]][index[1]].class = 'step-mtf';
-      }  else if (newSequence.matrix[index[0]][index[1]].class === 'step-mtf'){
+      }else if (newSequence.matrix[index[0]][index[1]].class === 'step-mtf'){
         newSequence.matrix[index[0]][index[1]].class = 'step-mtt';
       }
 
@@ -42,9 +42,9 @@ export default (state = matrixUsed, action) => {
           step.class = 'step-mtt';
         }else if (step.class === 'step-tf'){
           step.class = 'step-mtf';
-        } else if (step.class === 'step-mtt'){
+        }else if (step.class === 'step-mtt'){
           step.class = 'step-tt';
-        } else if (step.class === 'step-mtf'){
+        }else if (step.class === 'step-mtf'){
           step.class = 'step-tf';
         }
       });
@@ -80,8 +80,7 @@ export default (state = matrixUsed, action) => {
 
       return newSequence;
 
-     case "CLEAR_SEQUENCER":
-     
+    case "CLEAR_SEQUENCER":
       state.matrix.forEach((track, index)=>{
         let clearedTrack = _.clone(state.matrix[index]);
         clearedTrack = clearedTrack.map((step) =>{
@@ -119,7 +118,6 @@ export default (state = matrixUsed, action) => {
       return state;
 
     case "ADD_BAR":
-
       let numOfSteps = action.payload;
       let currentLength = state.matrix[0].length;
       let difference = currentLength - numOfSteps;
