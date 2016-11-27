@@ -182,8 +182,7 @@ body{
         margin-top: 3%;
       }
       #shareBtn{
-        margin-top: 3%;
-        margin-left: 0px;
+        margin-left: 3%;
         height: 45px;
         font-size: 20px;
       }
@@ -539,7 +538,7 @@ footer a:hover, footer a {
   color: #9a76ff;
 }
 #fileTitle{
-  font-family: 'Open Sans', sans-serif;  
+  font-family: 'Open Sans', sans-serif;
 }
 /*AUDIO UPLOAD*/
 
