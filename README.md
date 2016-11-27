@@ -42,7 +42,7 @@ If you would like to fork this repository, please follow these steps to set up y
 
 ##Testing
 
-* [Jamine](https://jasmine.github.io/): API endpoint testing.
+* [Jasmine](https://jasmine.github.io/): API endpoint testing.
 * [Enzyme](https://github.com/airbnb/enzyme) with [Mocha](https://mochajs.org/) and [Chai](http://chaijs.com/): for React component testing.
 
 ## Dev/Build Tools
