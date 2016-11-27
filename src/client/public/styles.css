@@ -542,3 +542,9 @@ footer a:hover, footer a {
   font-family: 'Open Sans', sans-serif;  
 }
 /*AUDIO UPLOAD*/
+
+/*TUTORIAL*/
+.tutorial .tutorial-sequence {
+  width: 90%;
+}
+/*TUTORIAL*/

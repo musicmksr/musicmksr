@@ -21,7 +21,8 @@ class Track extends React.Component {
       messageCl: 'hidden',
       bsStyle: 'danger',
       samples: Object.keys(this.props.samples).map(key => this.props.samples[key]),
-      volIcon: 'glyphicon glyphicon-volume-up'
+      volIcon: 'glyphicon glyphicon-volume-up',
+      tutorial: this.props.tutorial
     };
   }
   componentDidMount() {
@@ -130,8 +131,21 @@ class Track extends React.Component {
       $('.stepsWrapper').scrollLeft(e.target.scrollLeft);
     });
   }
+  removeDuplicates(samples) {
+    return samples.reduce((acc, nxt) =>{
+      acc = acc || [];
+
+      if(acc.indexOf(nxt) === -1){
+        acc.push(nxt);
+      }
+
+      return acc;
+    }, []);
+  }
   render() {
     this.createPlaySequence.call(this);
+
+    const reducedSamples = this.removeDuplicates(this.state.samples)
 
     return(
       <div className='tracksWrapper'>
@@ -146,6 +160,7 @@ class Track extends React.Component {
                   index={[this.props.index, index]}
                   sound={this.props.howlerObject}
                   toggleMatrix={this.props.toggleMatrix}
+                  tutorial={this.props.tutorial}
                 />
               </div>
           )}
@@ -153,7 +168,7 @@ class Track extends React.Component {
         <div className='trackControls col-md-3 container-fluid'>
           <div id='sampleWrapper' className='col-md-6'>
             <select className='sampleSelect form-control' value={this.props.sample} onChange={this.changeSample.bind(this)}>
-              {this.state.samples.map((sound, index) =>
+              {reducedSamples.map((sound, index) =>
                 <Options key={[sound, index]} sound={sound} />
               )}
             </select>
