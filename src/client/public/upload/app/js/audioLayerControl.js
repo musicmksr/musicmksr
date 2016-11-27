@@ -402,7 +402,7 @@ function audioLayerControl(elementContext)
 
         // grab the form data for the file info and the window id
 
-        fileUploadInfo.append('name', $('input[name=fileTitle]').val());
+        fileUploadInfo.append('name', $('input[name=fileTitle]').val().replace(/[^\w\s]/gi, ''));
         fileUploadInfo.append('id', window.userID);
         fileUploadInfo.append('file', blob);
 

@@ -17,7 +17,8 @@ export class App extends React.Component {
       loggedIn: false,
       message: 'An Error Occured, please try refreshing the page or logging back in.',
       bsStyle: 'danger',
-      messageCl: 'hidden'
+      messageCl: 'hidden',
+      tutorial: false
     };
   }
   componentWillMount() {
@@ -73,7 +74,11 @@ export class App extends React.Component {
 		window.localStorage.setItem('loadSequence', JSON.stringify(this.props.sequence));
 		window.location.assign('auth/facebook');
 	}
-
+  startTutorial() {
+    this.setState({
+      tutorial: !this.state.tutorial
+    });
+  }
 	render() {
 		let profileLink;
 		let login;
@@ -91,6 +96,8 @@ export class App extends React.Component {
 			upload = <a href='javascript:void(0)' onClick={this.notLoggedIn.bind(this)}>Upload</a>;
 			fbLogin = <a href='javascript:void(0)' onClick={this.saveToLocal.bind(this)}><img id='loginImg' src="/imgs/login.png"/></a>;
 		}
+
+    // <li onClick={this.startTutorial.bind(this)}><a href='javascript:void(0)'>Tutorial</a></li>
 
 		return(
 			<div>
@@ -138,7 +145,8 @@ export class App extends React.Component {
           </Alert>
 				 {this.props.children && React.cloneElement(this.props.children, {
             loggedIn: this.state.loggedIn,
-            serverStopped: this.serverStopped.bind(this)
+            serverStopped: this.serverStopped.bind(this),
+            tutorial: this.state.tutorial
           })}
 				</div>
 			</div>
