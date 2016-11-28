@@ -401,15 +401,16 @@ function audioLayerControl(elementContext)
         let fileUploadInfo = new FormData();
 
         // grab the form data for the file info and the window id
+        let fileName = $('input[name=fileTitle]').val();
 
-        fileUploadInfo.append('name', $('input[name=fileTitle]').val().replace(/[^\w\s]/gi, ''));
+        fileUploadInfo.append('name', fileName.replace(/[^\w\s]/gi, ''));
         fileUploadInfo.append('id', window.userID);
         fileUploadInfo.append('file', blob);
 
         axios.post('/api/upload', fileUploadInfo, 
           {headers: {'Content-Type': 'multipart/form-data'}})
           .then((response) =>{
-            console.log(response);
+            console.log(response, ' upload');
             if(response === 'refresh'){
                 window.location.replace("/upload/upload.html");
             }
