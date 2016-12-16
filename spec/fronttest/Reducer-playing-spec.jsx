@@ -1,4 +1,3 @@
-import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import reducerPlaying from '../../src/client/app/reducers/reducer_playing';
 import data from '../../src/client/app/data.json';
@@ -124,6 +123,6 @@ describe('Reducer Playing', () =>{
 
     const reducerOutput = reducerPlaying(data, toggleData);
 
-    expect(reducerOutput.matrix[0].length).to.equal(32)
+    expect(reducerOutput.matrix[0].length).to.equal(32);
   });
 });

@@ -49,7 +49,7 @@ class Track extends React.Component {
     } else {
       this.setState({volIcon: 'glyphicon glyphicon-volume-up'});
     }
-    this.props.toggleMuteStyle(this.props.index)
+    this.props.toggleMuteStyle(this.props.index);
     this.props.howlerObject._muted = !this.props.howlerObject._muted;
   }
   volChange(){
@@ -120,6 +120,15 @@ class Track extends React.Component {
 
     this.createPlaySequence.call(this, event.target.value);
     this.props.changeSample(event.target.value, this.props.index);
+
+    if(this.state.volIcon === 'glyphicon glyphicon-volume-off'){
+      if(this.state.volIcon === 'glyphicon glyphicon-volume-up') {
+        this.setState({volIcon: 'glyphicon glyphicon-volume-off'});
+      } else {
+        this.setState({volIcon: 'glyphicon glyphicon-volume-up'});
+      }
+      this.props.toggleMuteStyle(this.props.index);
+    }
   }
   deleteTrack(index) {
     if(!this.props.playing){
