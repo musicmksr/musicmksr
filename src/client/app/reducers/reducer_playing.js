@@ -4,9 +4,14 @@ import initialMatrix from '../data.json';
 let matrixUsed = {};
 
 if(window.localStorage.length > 0){
-  console.log('local storage set');
-  matrixUsed = JSON.parse(window.localStorage.loadSequence);
-  window.localStorage.clear();
+  try{
+    console.log('local storage set');
+    matrixUsed = JSON.parse(window.localStorage.loadSequence);
+    window.localStorage.clear();
+  } catch(e){
+    window.localStorage.clear();
+    window.location.href = '/';
+  }
 }else {
   console.log('local storage not set');
   matrixUsed = initialMatrix;
